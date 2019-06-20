@@ -1,7 +1,5 @@
 <template>
-  <nuxt-link class="button" to="/about">
-    SKIP
-  </nuxt-link>
+  <a class="button" href="/about">SKIP</a>
 </template>
 
 <script>

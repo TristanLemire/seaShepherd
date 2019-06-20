@@ -1,40 +1,49 @@
 <template>
-  <button @click="soundChange">SOUND: ON</button>
+  <button @click="soundChange">SOUND: {{ sound }}</button>
 </template>
 
 <script>
+
 export default {
+  data() {
+    return {
+      sound: 'ON'
+    };
+  },
   methods: {
     soundChange() {
-      let videoSound = document.querySelector("video");
-      let audioSounds = document.querySelectorAll("audio");
-      let off = localStorage.getItem('sound');
-      if (off != true) {
-        console.log('coucou',off);
-        localStorage.setItem('sound',false);
-        console.log('coucou',off);
-        if (videoSound != null) {
-          videoSound.volume = 0;
+      let video = document.querySelector('video');
+      let audios = document.querySelectorAll('audio');
+      if(this.sound == 'OFF'){
+        this.sound = 'ON'
+        if(video != null){
+          video.volume = 0;
+        } 
+        if (audios.length > 0) {
+          audios.forEach(audio => {
+          audio.stop();
+        });
         }
-        if (audioSounds.length > 1) {
-          audioSounds.forEach(audioSound => {
-            audioSound.pause;
-          });
+        localStorage.setItem('sound','OFF');
+      } else {
+        this.sound = 'OFF'
+        if(video != null){
+          video.volume = 1;
+        } 
+        if (audios.length > 0) {
+          audios.forEach(audio => {
+          audio.start();
+        });
         }
-      } else   {
-        console.log('coucou');
-        localStorage.setItem('sound',true);
-        if (videoSound != null) {
-          videoSound.volume = 1;
-        }
-        if (audioSounds.length > 1) {
-          audioSounds.forEach(audioSound => {
-            audioSound.play();
-          });
-        }
+        localStorage.setItem('sound','ON');
       }
     }
-  }
+  },
+  beforeMount(){
+    if(localStorage.getItem('sound') == 'OFF'){
+      this.sound = localStorage.getItem('sound');
+    }
+ },
 };
 </script>
 
