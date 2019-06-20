@@ -41,6 +41,7 @@ knex migrate:latest
 ## API
 
 Our routes are availables on the `/api` route.
+
 |route       |description                            |
 |------------|---------------------------------------|
 |`/steps`    |The steps of the doc                   |
