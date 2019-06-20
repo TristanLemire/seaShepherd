@@ -36,7 +36,6 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res, next) => {
     //insert into db
-    console.log(req.body);
     queries.create('questions', req.body).then(response => {
         res.json(response);
     })
