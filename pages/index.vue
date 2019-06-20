@@ -7,6 +7,7 @@
     <div class="home__button">
       <SkipButton/>
       <SoundButton />
+      <Logo/>
     </div>
   </div>
 </template>
@@ -14,12 +15,14 @@
 import Menu from "~/components/Menu.vue";
 import SkipButton from "~/components/SkipButton.vue";
 import SoundButton from "~/components/SoundButton.vue";
+import Logo from "~/components/Logo.vue";
 
 export default {
   components: {
     Menu,
     SkipButton,
-    SoundButton
+    SoundButton,
+    Logo
   },
   methods:{
     soundActive: function() {
