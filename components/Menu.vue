@@ -3,19 +3,19 @@
     <div class="menu">
       <ul>
         <li>
-          <a href="http://www.tristanlemire.com">ABOUT</a>
+          <a href="./about">ABOUT</a>
         </li>
         <li>
-          <a href>CONTACT</a>
+          <a href="./contact">CONTACT</a>
         </li>
         <li>
-          <a href>FACEBOOK</a>
+          <a href="https://www.facebook.com/seashepherdglobal/">FACEBOOK</a>
         </li>
         <li>
-          <a href>TWITTER</a>
+          <a href="https://twitter.com/seashepherd?lang=fr">TWITTER</a>
         </li>
         <li>
-          <a href>INSTAGRAM</a>
+          <a href="https://www.instagram.com/seashepherd/?hl=fr">INSTAGRAM</a>
         </li>
       </ul>
     </div>
@@ -53,17 +53,6 @@ export default {
 
 
 <style lang="scss">
-body {
-  align-items: center;
-  display: flex;
-  height: 100%;
-  justify-content: center;
-  margin: 0;
-  overflow: hidden;
-  position: absolute;
-  width: 100%;
-}
-
 .menu {
   background: #0d1b2a;
   width: 30%;
@@ -90,19 +79,20 @@ body {
 
     li {
       a {
+        font-family: "Poppins", sans-serif;
         color: white;
         text-decoration: none;
         font-size: 18px;
         font-weight: bold;
         cursor: pointer;
-          background-image: linear-gradient(180deg, transparent 65%, #fcf113 0);
-  background-repeat: no-repeat;
-  background-size: 0 100%;
-  transition: background-size .4s ease;
+        background-image: linear-gradient(180deg, transparent 65%, #fcf113 0);
+        background-repeat: no-repeat;
+        background-size: 0 100%;
+        transition: background-size 0.4s ease;
       }
       a:hover {
-  background-size: 100% 100%;
-}
+        background-size: 100% 100%;
+      }
     }
   }
 }
@@ -115,7 +105,9 @@ body {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  position: relative;
+  position: absolute;
+  left: 5.86%;
+  top: 2.33%;
   z-index: 2;
 }
 .hamRotate.active {
