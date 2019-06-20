@@ -5,6 +5,7 @@
   "author": "TristanLemire",
   "private": true,
   "scripts": {
+    "installall": "brew install postgres && brew services start postgres && npm i -g knex",
     "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
     "build": "nuxt build",
     "start": "cross-env NODE_ENV=production node server/index.js",
