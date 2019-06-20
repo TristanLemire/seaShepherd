@@ -24,3 +24,16 @@ For detailed explanation on how things work, checkout [Nuxt.js docs](https://nux
 ## DB
 
 ![](./assets/bdd.png)
+
+### Install the DB
+
+We are using postgres for our database.
+First you have to create the db, you can do it with the following command: 
+```
+createdb sea-shepherd
+```
+
+Once it's done you have to run migrations in order to have your tables created:
+```
+knex migrate:latest
+```
