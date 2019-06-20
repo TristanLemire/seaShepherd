@@ -14,19 +14,9 @@ export default {
     soundChange() {
       let video = document.querySelector('video');
       let audios = document.querySelectorAll('audio');
+      console.log(video);
       if(this.sound == 'OFF'){
         this.sound = 'ON'
-        if(video != null){
-          video.volume = 0;
-        } 
-        if (audios.length > 0) {
-          audios.forEach(audio => {
-          audio.stop();
-        });
-        }
-        localStorage.setItem('sound','OFF');
-      } else {
-        this.sound = 'OFF'
         if(video != null){
           video.volume = 1;
         } 
@@ -36,6 +26,17 @@ export default {
         });
         }
         localStorage.setItem('sound','ON');
+      } else {
+        this.sound = 'OFF'
+        if(video != null){
+          video.volume = 0;
+        } 
+        if (audios.length > 0) {
+          audios.forEach(audio => {
+          audio.pause();
+        });
+        }
+        localStorage.setItem('sound','OFF');  
       }
     }
   },
