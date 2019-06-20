@@ -2,10 +2,8 @@
 exports.up = function(knex, Promise) {
     return knex.schema.createTable('users', (table) => {
         table.increments();
-        table.text('title');
-        table.text('description');
-        table.float('rating');
-        table.text('url');
+        table.text('name');
+        table.text('date');
     })
 };
 
