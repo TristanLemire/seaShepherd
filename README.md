@@ -37,3 +37,15 @@ Once it's done you have to run migrations in order to have your tables created:
 ```
 knex migrate:latest
 ```
+---
+## API
+
+Our routes are availables on the `/api` route.
+|route       |description                            |
+|------------|---------------------------------------|
+|`/steps`    |The steps of the doc                   |
+|`/users`    |The users of the doc                   |
+|`/questions`|The questions we ask to users          |
+|`/answers`  |The answer possibilities of a question |
+|`/reply`    |The reply of the user                  |
+|`/contents` |The content we put in a step           |
