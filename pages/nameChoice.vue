@@ -52,8 +52,13 @@ if (process.client) {
       },
       referrer: "no-referrer", // no-referrer, *client
       body: JSON.stringify(data) // body data type must match "Content-Type" header
-    });
-            window.location.href = "/worldMap";
+    }).then(response => {
+      return response.json();
+    }).then(user => {
+      localStorage.setItem('user',JSON.stringify(user));
+    })
+      
+      window.location.href = "/worldMap";
   });
 }
 

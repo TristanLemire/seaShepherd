@@ -2,7 +2,7 @@
   <div class="home">
     <!-- <nuxt-link to="/about" class="button--green">Home</nuxt-link> -->
     <Intro/>
-    <video class="home__video" src="../assets/video/home2.mp4"  autoplay @click="controlVideo"></video>
+    <video class="home__video" src="../assets/video/home.mp4"  autoplay @click="controlVideo"></video>
     <!-- <iframe class="home__video"
 src="hhttps://www.youtube.com/embed/b44QrmTn0Ng?autoplay=1&controls=0&fs=0&modestbranding=1&rel=0&showinfo=0" frameborder="0" allowfullscreen> -->
 <!-- <iframe class="home__video" src="https://www.youtube.com/embed/668nUCeBHyY?autoplay=1&controls=0&fs=0&modestbranding=1&rel=0&showinfo=0" frameborder="0" allowfullscreen>
