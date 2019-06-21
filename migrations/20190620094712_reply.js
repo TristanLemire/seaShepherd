@@ -4,6 +4,7 @@ exports.up = function (knex, Promise) {
         table.increments();
         table.integer('id_question');
         table.integer('id_user');
+        table.integer('id_answer');
     })
 };
 

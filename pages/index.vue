@@ -1,7 +1,13 @@
 <template>
   <div class="home">
-    <video src="../assets/video/home.mp4" class="home__video" autoplay @click="controlVideo"></video>
-    <svg @click="controlVideo" display="none" class="play" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- <nuxt-link to="/about" class="button--green">Home</nuxt-link> -->
+    <Intro/>
+    <video class="home__video" src="../assets/video/home2.mp4"  autoplay @click="controlVideo"></video>
+    <!-- <iframe class="home__video"
+src="hhttps://www.youtube.com/embed/b44QrmTn0Ng?autoplay=1&controls=0&fs=0&modestbranding=1&rel=0&showinfo=0" frameborder="0" allowfullscreen> -->
+<!-- <iframe class="home__video" src="https://www.youtube.com/embed/668nUCeBHyY?autoplay=1&controls=0&fs=0&modestbranding=1&rel=0&showinfo=0" frameborder="0" allowfullscreen>
+</iframe> -->
+<svg @click="controlVideo" display="none" class="play" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="50" cy="50" r="49" stroke="#DEDEDE" stroke-width="2"/>
       <path d="M74 49.5L37.25 70.7176V28.2824L74 49.5Z" fill="white"/>
     </svg>
@@ -10,12 +16,14 @@
       <rect x="57" y="27" width="13" height="46" fill="white"/>
       <circle cx="50" cy="50" r="49" stroke="#DEDEDE" stroke-width="2"/>
     </svg>
+   <div id="player"></div>
+
     <h1>Introduction</h1>
     <hr>
     <Menu/>
     <div class="home__button">
       <SkipButton/>
-      <SoundButton />
+      <SoundButton/>
       <Logo/>
     </div>
   </div>
@@ -25,34 +33,45 @@ import Menu from "~/components/Menu.vue";
 import SkipButton from "~/components/SkipButton.vue";
 import SoundButton from "~/components/SoundButton.vue";
 import Logo from "~/components/Logo.vue";
-import { setTimeout } from 'timers';
+import Intro from "~/components/Intro.vue";
+import { returnStatement } from "babel-types";
 
 let memo;
 
 export default {
+    transition: "intro",
   components: {
     Menu,
     SkipButton,
     SoundButton,
-    Logo
+    Logo,
+    Intro
   },
-  methods:{
-    soundActive: function() {
-      let video = document.querySelector('video');
-      let active = localStorage.getItem('sound');
-      let audios = document.querySelectorAll('audio');
-       if(active == 'OFF' || active == null){
-        if(video != null){
+  methods: {
+    soundActive() {
+      console.log(document.querySelector(".home__video"));
+      let video = document.querySelector(".home__video");
+      let active = localStorage.getItem("sound");
+      let audios = document.querySelectorAll("audio");
+      if (active == "OFF" || active == null) {
+        if (video != null) {
           video.volume = 0;
-        } 
+        }
         if (audios.length > 0) {
           audios.forEach(audio => {
-          audio.pause();
-        });
+            audio.pause();
+          });
         }
-       }
+      }
     },
-    controlVideo() {
+    endVideo() {
+      let video = document.querySelector(".home__video");
+      video.addEventListener("ended", function() {
+        console.log("end");
+        window.location.href = "/nameChoice";
+      });
+    },
+        controlVideo() {
       let video = document.querySelector('video');
       let svgPlay = document.querySelector('svg:nth-child(2)');
       let svgPause = document.querySelector('svg:nth-child(3)');
@@ -74,8 +93,9 @@ export default {
       }
     }
   },
-  beforeMount(){
-    this.soundActive()
+  beforeMount() {
+    this.soundActive();
+    this.endVideo();
   }
 };
 </script>
@@ -134,8 +154,9 @@ div.home {
 
   .home__video {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
     height: 100vh;
     width: 100%;
     object-fit: cover;
@@ -164,6 +185,101 @@ div.home {
     top: 0;
     left: 0;
     transition: 0.55s all cubic-bezier(0.18, 0.89, 0.32, 1.28);
+  }
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition-property: opacity;
+  transition-timing-function: ease-in-out;
+  transition-duration: 5000ms;
+}
+
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+}
+
+$t-duration: 800ms;
+$t-delay: 300ms;
+
+.intro-enter-active,
+.intro-leave-active {
+  transition-duration: $t-duration * 2;
+
+  &::before,
+  &::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    display: block;
+    width: 100%;
+    height: 50%;
+    transition-property: opacity, transform;
+    transition-timing-function: ease-in-out;
+  }
+
+  &::before {
+    background-color: #2e2e2e;
+  }
+
+  &::after {
+    top: 50%;
+    background-color: #2e2e2e;
+  }
+}
+
+.intro-leave {
+  &::before,
+  &::after {
+    transform: scaleX(0);
+  }
+}
+
+.intro-leave-active {
+  &::before {
+    transition-duration: $t-duration;
+  }
+
+  &::after {
+    transition-duration: $t-duration - $t-delay;
+    transition-delay: $t-delay;
+  }
+}
+
+.intro-leave-to {
+  &::before,
+  &::after {
+    transform: scale(1);
+    transform-origin: left;
+  }
+}
+
+.intro-enter {
+  &::before,
+  &::after {
+    transform: scaleX(1);
+  }
+}
+
+.intro-enter-active {
+  &::before {
+    transition-duration: $t-duration;
+  }
+
+  &::after {
+    transition-duration: $t-duration - $t-delay;
+    transition-delay: $t-delay;
+  }
+}
+
+.intro-enter-to {
+  &::before,
+  &::after {
+    transform: scaleX(0);
+    transform-origin: right;
   }
 }
 </style>

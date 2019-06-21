@@ -1,5 +1,5 @@
 <template>
-  <a class="button" href="/about">SKIP</a>
+  <a class="button" href="/nameChoice">SKIP</a>
 </template>
 
 <script>

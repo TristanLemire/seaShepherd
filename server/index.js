@@ -11,6 +11,7 @@ const contentRouter = require('./routers/contentRouter');
 const replyRouter = require('./routers/replyRouter');
 const answerRouter = require('./routers/answerRouter');
 const stepRouter = require('./routers/stepRouter');
+const adminRouter = require('./routers/adminRouter');
 
 // Import and Set Nuxt.js options
 let config = require('../nuxt.config.js')
@@ -40,6 +41,7 @@ async function start() {
   app.use('/api/contents', contentRouter);
   app.use('/api/questions', questionRouter);
   app.use('/api/steps', stepRouter);
+  app.use('/api/admins', adminRouter);
 
   // Give nuxt middleware to express
   app.use(nuxt.render)

@@ -1,13 +1,9 @@
 <template>
   <div class="about">
     <Menu/>
-    <div class="back">
-      <svg class="fleche_back" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M26.3599 9.24001L15.3199 20.6L26.3599 32L25.9999 32.6L14.3599 20.6L25.9999 8.60001L26.3599 9.24001Z" fill="white"/>
-    </svg>
-    <p>BACK</p>
-    </div>
-    <div class="text">
+    <Back/>
+    <div class="content">
+      <div class="text">
       <h1>ABOUT US</h1>
       <span>
         Established in 1977, Sea Shepherd Conservation Society (SSCS) is an international non-profit, marine wildlife conservation 
@@ -20,17 +16,19 @@
         ensure their survival for future generations.
       </span>
     </div>
-    <div class="image">
     <img src="../assets/image/baleine_about.jpg" alt="baleines">
     </div>
   </div>
 </template>
 <script>
 import Menu from "~/components/Menu.vue";
+import Back from "~/components/Back.vue";
 
 export default {
+  transition: "intro",
   components: {
-    Menu
+    Menu,
+    Back
   },
 };
 </script>
@@ -40,17 +38,9 @@ export default {
     background-color: #0D1B2A;
   }
 
-  .back {
+  .content {
     display: flex;
-    width: 10vw;
-    font-size: 14px;
-    align-items: center;
-  }
-
-  .about {
-    display: flex;
-    align-items: end;
-    
+    justify-content: center;
 
     .text {
       width: 35vw;
@@ -74,7 +64,7 @@ export default {
         margin-bottom: 10%;
       }
     } 
-  } 
+  }
 
   p {
     font-family: "Poppins", sans-serif;
