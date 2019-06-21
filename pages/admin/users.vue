@@ -26,7 +26,9 @@
 
 <script>
 import Hero from "~/components/Hero.vue";
-
+if (process.client) {
+  if(!localStorage.getItem('connected') || localStorage.getItem('connected') !== 'true') window.location.href = 'http://localhost:3000/login';
+}
 export default {
   data() {
     return {

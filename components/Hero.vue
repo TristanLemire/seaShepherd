@@ -10,7 +10,7 @@
         </div>
       </div>
     </section>
-    <div class="tabs is-medium is-boxed">
+    <div class="tabs is-medium is-fullwidth is-boxed">
       <ul>
         <li :class="{'is-active': active==='index'}">
           <a href="/admin/">Admin home</a>

@@ -49,7 +49,7 @@
             <td>{{ admin.id }}</td>
             <td>{{ admin.name }}</td>
             <td>
-              <button :id="'edit-'+admin.id" class="button is-primary edit">Edit</button>
+              <button :id="'edit-'+admin.id" class="button is-info edit">Edit</button>
               <button :id="'delete-'+admin.id" class="button is-danger deleteButton">Delete</button>
             </td>
           </tr>
@@ -67,6 +67,9 @@
 import Hero from "~/components/Hero.vue";
 
 if (process.client) {
+  // Redirect if not admin
+  if(!localStorage.getItem('connected') || localStorage.getItem('connected') !== 'true') window.location.href = 'http://localhost:3000/login';
+
   // Form submit
   let form = document.querySelector("form");
   form.addEventListener("submit", e => {
@@ -199,16 +202,6 @@ export default {
     Hero
   },
   methods: {
-    // getAdmins() {
-    //   let url = "http://localhost:3000/api/admins";
-    //   fetch(url, { method: "GET" })
-    //     .then(response => {
-    //       return response.json();
-    //     })
-    //     .then(response => {
-    //       this.adminList = response;
-    //     });
-    // }
   }
 };
 </script>
