@@ -1,6 +1,15 @@
 <template>
   <div class="home">
-    <video src="../assets/video/home.mp4" class="home__video" autoplay></video>
+    <video src="../assets/video/home.mp4" class="home__video" autoplay @click="controlVideo"></video>
+    <svg @click="controlVideo" display="none" class="play" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="49" stroke="#DEDEDE" stroke-width="2"/>
+      <path d="M74 49.5L37.25 70.7176V28.2824L74 49.5Z" fill="white"/>
+    </svg>
+    <svg @click="controlVideo" display="none" class="play" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="30" y="27" width="13" height="46" fill="white"/>
+      <rect x="57" y="27" width="13" height="46" fill="white"/>
+      <circle cx="50" cy="50" r="49" stroke="#DEDEDE" stroke-width="2"/>
+    </svg>
     <h1>Introduction</h1>
     <hr>
     <Menu/>
@@ -16,6 +25,9 @@ import Menu from "~/components/Menu.vue";
 import SkipButton from "~/components/SkipButton.vue";
 import SoundButton from "~/components/SoundButton.vue";
 import Logo from "~/components/Logo.vue";
+import { setTimeout } from 'timers';
+
+let memo;
 
 export default {
   components: {
@@ -39,7 +51,28 @@ export default {
         });
         }
        }
-     }
+    },
+    controlVideo() {
+      let video = document.querySelector('video');
+      let svgPlay = document.querySelector('svg:nth-child(2)');
+      let svgPause = document.querySelector('svg:nth-child(3)');
+
+      if (memo === false) {
+        memo = true;
+        svgPlay.setAttribute('display', 'none');
+        svgPause.setAttribute('display', '');
+        setTimeout(function() {
+          svgPause.style.opacity = 0;
+        }, 200)
+        video.play();
+      } else {
+        svgPause.style.opacity = 1;
+        memo = false;
+        svgPause.setAttribute('display', 'none');
+        svgPlay.setAttribute('display', '');
+        video.pause();
+      }
+    }
   },
   beforeMount(){
     this.soundActive()
@@ -59,6 +92,16 @@ body {
   width: 100%;
 }
 
+.play {
+  opacity: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  transition: opacity .25s ease-in-out;
+}
+
 div.home {
   overflow: hidden;
   height: 100vh;
@@ -73,6 +116,7 @@ div.home {
     height: 3px;
     background-color: white;
     border: none; /*on supprime le style par défaut*/
+    z-index: 1;
   }
 
   h1 {
@@ -85,6 +129,7 @@ div.home {
     bottom: 15%;
     transform: translateX(-50%);
     font-family: "Poppins", sans-serif;
+    z-index: 1;
   }
 
   .home__video {
@@ -94,7 +139,7 @@ div.home {
     height: 100vh;
     width: 100%;
     object-fit: cover;
-    z-index: -20;
+    z-index: 1;
   }
 }
 
