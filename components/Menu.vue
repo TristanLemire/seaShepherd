@@ -60,7 +60,7 @@ export default {
   position: absolute;
   left: -30%;
   transition: transform 0.6s ease-in-out;
-  z-index: 1;
+  z-index: 3;
 
   &.open {
     transform: translateX(100%);
@@ -108,7 +108,7 @@ export default {
   position: absolute;
   left: 5.86%;
   top: 2.33%;
-  z-index: 2;
+  z-index: 3;
 }
 .hamRotate.active {
   transform: rotate(45deg);
