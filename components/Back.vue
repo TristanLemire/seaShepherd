@@ -19,8 +19,14 @@
     color: #fff;
 
     &:after {
+      font-family: "Poppins", sans-serif;
       content: 'BACK';
       font-size: 14px;
+      text-decoration: none;
+      color: white;
+    }
+    &:hover {
+      color: inherit;
     }
   }
 </style>

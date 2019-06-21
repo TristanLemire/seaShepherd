@@ -38,12 +38,16 @@ export default {
     background-color: #0D1B2A;
   }
 
+  h1, img {
+    margin-top: 128px;
+  }
+
   .content {
     width: 80vw;
     display: flex;
     justify-content: space-around;
     margin: auto;
-    margin-top: 11%;
+    /* margin-top: 11%; */
 
     .text {
       width: 35vw;

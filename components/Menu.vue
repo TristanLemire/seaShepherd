@@ -57,7 +57,7 @@ export default {
   background: #0d1b2a;
   width: 30%;
   height: 100vh;
-  position: absolute;
+  position: fixed;
   left: -30%;
   transition: transform 0.6s ease-in-out;
   z-index: 3;
