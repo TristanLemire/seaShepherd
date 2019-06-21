@@ -1,6 +1,9 @@
 <template>
   <div>
     <Hero :active="active"/>
+    <div class="container">
+
+    </div>
   </div>
 </template>
 
@@ -10,7 +13,7 @@ import Hero from '~/components/Hero.vue';
 export default {
     data() {
         return {
-            active: 'steps'
+            active: 'steps',
         }
     },
     components: {

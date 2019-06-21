@@ -1,6 +1,14 @@
 <template>
   <div>
     <Hero :active="active"/>
+    <div class="container">
+      <br>
+      <br>
+      <h2 class="title">Introduction</h2>
+      <p class="content">If you are here you are an admin. <br>
+      Please keep in mind that it's not a place to play, so be responsible.
+      </p>
+    </div>
   </div>
 </template>
 

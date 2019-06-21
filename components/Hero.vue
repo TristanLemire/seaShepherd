@@ -21,6 +21,9 @@
         <li :class="{'is-active': active==='users'}">
           <a href="/admin/users">Users</a>
         </li>
+        <li :class="{'is-active': active==='admins'}">
+          <a href="/admin/admins">Admins</a>
+        </li>
         <li>
           <a class="has-text-danger disconnect">Disconnect</a>
         </li>
