@@ -39,8 +39,11 @@ export default {
   }
 
   .content {
+    width: 80vw;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+    margin: auto;
+    margin-top: 11%;
 
     .text {
       width: 35vw;
