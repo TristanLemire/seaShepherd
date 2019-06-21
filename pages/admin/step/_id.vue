@@ -42,18 +42,35 @@
     <section class="notification is-dark contentSection">
         <h1 class="title">Content</h1>
         <div>
-            <button @click="editMode" class="button is-info addContent">Add content</button>
-            <button v-if="edit" class="button is-primary">Add image</button>
-            <button v-if="edit" class="button is-primary">Add video</button>
-            <button v-if="edit" class="button is-primary">Add audio</button>
-            <button v-if="edit" class="button is-primary">Add text</button>
+            <button class="button is-info addContent">Add content</button>
+            <button class="invisible contentButton button is-primary">Image</button>
+            <button class="invisible contentButton button is-primary">Video</button>
+            <button class="invisible contentButton button is-primary">Audio</button>
+            <button class="invisible contentButton button is-primary">Text</button>
         </div>
 
     </section>
   </div>
 </template>
+<style lang="scss" scoped>
+button.invisible {
+    visibility: hidden;
+}
+</style>
 
 <script>
+
+if (process.client) {
+    let edit = false;
+    let buttons = document.querySelectorAll('button.contentButton');
+    let addContent = document.querySelector('button.addContent');
+
+    addContent.addEventListener('click', () => {
+        if( edit === false) buttons.forEach(button => button.classList.remove('invisible'))
+        else buttons.forEach(button => button.classList.add('invisible'))
+        edit = !edit
+    })
+}
 
 export default {
     head () {
@@ -76,8 +93,7 @@ export default {
   },
   data() {
     return {
-      id: this.$route.params.id,
-      edit: false
+      id: this.$route.params.id
     };
   },
   methods: {
