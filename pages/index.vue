@@ -1,8 +1,23 @@
 <template>
   <div class="home">
-    <nuxt-link to="/about" class="button--green">Home</nuxt-link>
+    <!-- <nuxt-link to="/about" class="button--green">Home</nuxt-link> -->
     <Intro/>
-    <video src="../assets/video/home2.mp4" class="home__video" autoplay></video>
+    <video class="home__video" src="../assets/video/home.mp4"  autoplay @click="controlVideo"></video>
+    <!-- <iframe class="home__video"
+src="hhttps://www.youtube.com/embed/b44QrmTn0Ng?autoplay=1&controls=0&fs=0&modestbranding=1&rel=0&showinfo=0" frameborder="0" allowfullscreen> -->
+<!-- <iframe class="home__video" src="https://www.youtube.com/embed/668nUCeBHyY?autoplay=1&controls=0&fs=0&modestbranding=1&rel=0&showinfo=0" frameborder="0" allowfullscreen>
+</iframe> -->
+<svg @click="controlVideo" display="none" class="play" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="49" stroke="#DEDEDE" stroke-width="2"/>
+      <path d="M74 49.5L37.25 70.7176V28.2824L74 49.5Z" fill="white"/>
+    </svg>
+    <svg @click="controlVideo" display="none" class="play" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="30" y="27" width="13" height="46" fill="white"/>
+      <rect x="57" y="27" width="13" height="46" fill="white"/>
+      <circle cx="50" cy="50" r="49" stroke="#DEDEDE" stroke-width="2"/>
+    </svg>
+   <div id="player"></div>
+
     <h1>Introduction</h1>
     <hr>
     <Menu/>
@@ -21,6 +36,8 @@ import Logo from "~/components/Logo.vue";
 import Intro from "~/components/Intro.vue";
 import { returnStatement } from "babel-types";
 
+let memo;
+
 export default {
     transition: "intro",
   components: {
@@ -32,7 +49,8 @@ export default {
   },
   methods: {
     soundActive() {
-      let video = document.querySelector("video");
+      console.log(document.querySelector(".home__video"));
+      let video = document.querySelector(".home__video");
       let active = localStorage.getItem("sound");
       let audios = document.querySelectorAll("audio");
       if (active == "OFF" || active == null) {
@@ -47,11 +65,32 @@ export default {
       }
     },
     endVideo() {
-      let video = document.querySelector("video");
+      let video = document.querySelector(".home__video");
       video.addEventListener("ended", function() {
         console.log("end");
-        window.location.href = "/about";
+        window.location.href = "/nameChoice";
       });
+    },
+        controlVideo() {
+      let video = document.querySelector('video');
+      let svgPlay = document.querySelector('svg:nth-child(2)');
+      let svgPause = document.querySelector('svg:nth-child(3)');
+
+      if (memo === false) {
+        memo = true;
+        svgPlay.setAttribute('display', 'none');
+        svgPause.setAttribute('display', '');
+        setTimeout(function() {
+          svgPause.style.opacity = 0;
+        }, 200)
+        video.play();
+      } else {
+        svgPause.style.opacity = 1;
+        memo = false;
+        svgPause.setAttribute('display', 'none');
+        svgPlay.setAttribute('display', '');
+        video.pause();
+      }
     }
   },
   beforeMount() {
@@ -73,6 +112,16 @@ body {
   width: 100%;
 }
 
+.play {
+  opacity: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  transition: opacity .25s ease-in-out;
+}
+
 div.home {
   overflow: hidden;
   height: 100vh;
@@ -87,6 +136,7 @@ div.home {
     height: 3px;
     background-color: white;
     border: none; /*on supprime le style par défaut*/
+    z-index: 1;
   }
 
   h1 {
@@ -99,16 +149,18 @@ div.home {
     bottom: 15%;
     transform: translateX(-50%);
     font-family: "Poppins", sans-serif;
+    z-index: 1;
   }
 
   .home__video {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
     height: 100vh;
     width: 100%;
     object-fit: cover;
-    z-index: -20;
+    z-index: 1;
   }
 }
 

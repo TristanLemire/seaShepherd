@@ -62,6 +62,6 @@ button {
   font-size: 14px;
   font-family: "Poppins", sans-serif;
   border: none;
-  z-index: 2;
+  z-index: 3;
 }
 </style>
