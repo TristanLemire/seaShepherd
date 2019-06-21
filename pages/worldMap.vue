@@ -1,6 +1,5 @@
 <template>
   <div class="worldMap">
-    <Menu/>
     <StepsMenu/>
     <div id="chartdiv"></div>
     <div class="home__button">
