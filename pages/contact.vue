@@ -1,6 +1,7 @@
 <template>
   <div class="contact">
     <Menu />
+    <Back />
     <h1>CONTACT</h1>
     <div class="contact__content">
       <div>
@@ -8,21 +9,21 @@
           <h2>Global Headquarters</h2>
           <p>52 Alexander Boersstraat <br>
           1071 KZ Amsterdam, The Netherlands <br>
-          Tel : +31 20 233 7701 <br>
-          Email info @seashepherdglobal.org
+          <a href="tel:+31202337701">Tel : +31 20 233 7701</a> <br>
+          <a href="mail:to@seashepherdglobal.org">Email info @seashepherdglobal.org</a>
           </p>
         </div>
 
         <div>
           <h2 class="content__title--press">Press Inquiries</h2>
           <p>Heather Stimmler, Global Media Director <br>
-          Tel : +339 7719 7742 (Europe) <br>
-          Email media @seashepherdglobal.org
+          <a href="tel:+33977197742">Tel : +339 7719 7742 (Europe)</a> <br>
+          <a href="mail:to@seashepherdglobal.org">Email media @seashepherdglobal.org</a>
           </p>
           <p>
             For Press Inquiries regarding SSCS (North America) <br>
-            Tel : +1 212 220 2302 (USA) <br>
-            Email media @seashepherd.org
+            <a href="tel:+12122202302">Tel : +1 212 220 2302 (USA) </a><br>
+            <a href="mail:to@seashepherd.org">Email media @seashepherd.org</a>
             </p>
         </div>
       </div>
@@ -33,17 +34,18 @@
         <div>
           <h2>Donations</h2>
           <p>Jan Hazeleger, CFO <br>
-          Email finance @seashepherdglobal.org
+          <a href="mailto:@seashepherdglobal.org">Email finance @seashepherdglobal.org</a>
           </p>
         </div>
 
         <div>
           <h2 class="content__title--volunteer">Volunteer Crew</h2>
           <p>General crew inquiries: <br>
-          www.seashepherdglobal.org/get-involved/volunteer-sea/
+          <a href="www.seashepherdglobal.org/get-involved/volunteer-sea/" target="_blank">www.seashepherdglobal.org/get-involved/volunteer-sea/</a>
           </p>
           <p>If you're a ticketed navigator or engineer <br>
-            crewing @seashepherdglobal.org</p>
+            crewing @seashepherdglobal.org
+            </p>
         </div>
       </div>
 
@@ -56,15 +58,15 @@
           1071 KZAmsterdam, The Netherlands <br>
           Opening hours: <br>
           Tue-Sun 11am – 5pm <br>
-          Tel : +31 20 233 7701 <br>
-          Email : cs@seashepherdstore.com
+          <a href="tel:+31202337701">Tel : +31 20 233 7701 </a><br>
+          <a href="mailto:cs@seashepherdstore.com">Email : cs@seashepherdstore.com</a>
           </p>
         </div>
 
         <div>
           <h2 class="content__title--online">Online Store</h2>
-          <p>www.seashepherdstore.com <br>
-          Email : shop@sea-shepherd.de
+          <p><a href="www.seashepherdstore.com" target="_blank">www.seashepherdstore.com</a> <br>
+          <a href="mailto:shop@sea-shepherd.de">Email : shop@sea-shepherd.de</a>
           </p>
         </div>
       </div>
@@ -76,10 +78,12 @@
 
 <script>
   import Menu from '~/components/Menu.vue';
+  import Back from '~/components/Back.vue';
 
   export default {
     components: {
-      Menu
+      Menu,
+      Back
     }
   }
 </script>
@@ -117,6 +121,15 @@
     }
   }
 
+  a {
+    text-decoration: none;
+    color: white;
+
+    &:hover {
+      color: inherit;
+    }
+  }
+
   p {
     margin-top: 32px;
   }
@@ -142,10 +155,10 @@
   }
 
   .content__title--volunteer {
-    margin-top: 114px;
+    margin-top: 122px;
   }
 
   .content__title--online {
-    margin-top: 34px;
+    margin-top: 27px;
   }
 </style>
