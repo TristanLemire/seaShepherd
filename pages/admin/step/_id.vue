@@ -38,12 +38,19 @@
       </div>
       <br>
       <div v-for="content in contents" :key="content.id" class="contentPart notification is-info">
-        <div class="field">
-          <div class="control">
-            <textarea :id="'textarea-'+content.id" :value="content.content" class="textarea" placeholder="Section content"></textarea>
-            <div class="control"><input :id="'order-'+content.id" type="number" :value="content.order"/></div>
+        <form :id="content.id" action>
+          <div class="field">
+            <div class="control">
+              <textarea :value="content.content" class="textarea" placeholder="Section content"></textarea>
+            </div>
           </div>
-        </div>
+          <div class="field">
+            <div class="control">
+              <input class="control" type="number" :value="content.order">
+            </div>
+          </div>
+          <input type="submit" class="button is-outlined is-light" value="Save modifications">
+        </form>
       </div>
     </section>
     <br>
@@ -67,6 +74,7 @@ if (process.client) {
   )
     window.location.href = "http://localhost:3000/login";
 
+  // Buttons display
   let edit = false;
   let buttons = document.querySelectorAll("button.contentButton");
   let addContent = document.querySelector("button.addContent");
@@ -78,32 +86,19 @@ if (process.client) {
     edit = !edit;
   });
 
-  // Image button
-
   // Text button
   let addText = document.querySelector(".textType");
 
   addText.addEventListener("click", () => {
-    let contentSection = document.querySelector(".contentSection");
-    let newInput = document.createElement("div");
-    newInput.classList.add("notification", "is-info", "contentPart");
-    //newInput.innerHTML += "<br><br>";
+    // Create it in database
+    let url = "http://localhost:3000/api/contents";
+    let order = document.querySelectorAll(".contentPart").length;
 
-    newInput.innerHTML +=
-      '<div class="field"> <div class="control"> <textarea class="textarea" placeholder="Section content"></textarea> </div>';
-    newInput.innerHTML += '<div class="control"><input type="number"/></div> ';
-    newInput.innerHTML += '</div>';
-    contentSection.appendChild(newInput);
-
-    let orderInput = newInput.querySelector('input');
-    // Fetch to database
     let data = {
-      type: "text",
       id_step: window.location.href.substring(33, window.location.href.length),
-      order: orderInput.value || document.querySelectorAll('.contentPart').length
+      order: order
     };
 
-    let url = "http://localhost:3000/api/contents";
     fetch(url, {
       method: "POST",
       mode: "cors",
@@ -119,13 +114,35 @@ if (process.client) {
         return response.json();
       })
       .then(content => {
-        let contentId = content[0].id;
-        let input = newInput.querySelector("textarea");
-        input.addEventListener("blur", () => {
-          let url = "http://localhost:3000/api/contents/" + contentId;
+        let id = content[0].id;
+        // Create the new html form
+
+        let div = document.createElement("div");
+        div.classList.add("notification", "contentPart", "is-info");
+
+        div.innerHTML +=
+          '<form id="' +
+          id +
+          '"><div class="field"><div class="control"><textarea class="textarea" placeholder="Section content"></textarea></div></div><div class="field"><div class="control"><input class="control" type="number" value="' +
+          order +
+          '"></div></div><input type="submit" class="button is-outlined is-light" value="Save modifications"></form>';
+        document.querySelector(".contentSection").appendChild(div);
+
+        // Add event listeners
+        let form = document.querySelectorAll("form");
+        form = form[form.length - 1];
+        console.log("form: ", form);
+
+        form.addEventListener("submit", e => {
+          e.preventDefault();
+          let content = form.querySelector("textarea");
+          let order = form.querySelector("input");
+
           let data = {
-            content: input.value
+            content: content.value,
+            order: order.value
           };
+          let url = "http://localhost:3000/api/contents/" + form.id;
 
           fetch(url, {
             method: "PUT",
@@ -142,35 +159,37 @@ if (process.client) {
       });
   });
 
-  // Text fields blur listeners
   setTimeout(() => {
-    
-    let textareas = document.querySelectorAll('textarea')
-  textareas.forEach(textarea => {
-    textarea.addEventListener('blur', () => {
-      let textareaId = textarea.id.substring(9,textarea.length);
-      let orderInput = document.querySelector('input#order-'+textareaId);
+    let forms = document.querySelectorAll("form");
+    forms.forEach(form => {
+      form.addEventListener("submit", e => {
+        e.preventDefault();
+        let content = form.querySelector("textarea");
+        let order = form.querySelector("input");
 
-      let url = "http://localhost:3000/api/contents/" + textareaId;
-          let data = {
-              content: textarea.value,
-              order: orderInput.value
-          };
+        let data = {
+          content: content.value,
+          order: order.value
+        };
+        let url = "http://localhost:3000/api/contents/" + form.id;
 
-          fetch(url, {
-              method: "PUT",
-            mode: "cors",
-            cache: "no-cache",
-            credentials: "same-origin",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            referrer: "no-referrer", // no-referrer, *client
-            body: JSON.stringify(data) // body data type must match "Content-Type" header
-          });
-    })
-  })
+        fetch(url, {
+          method: "PUT",
+          mode: "cors",
+          cache: "no-cache",
+          credentials: "same-origin",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          referrer: "no-referrer", // no-referrer, *client
+          body: JSON.stringify(data) // body data type must match "Content-Type" header
+        });
+      });
+    });
   }, 100);
+  // Text fields blur listeners
+  // TODO: mettre le listener sur les formulaires ajoutés au chargement de la page
+  // ? la méthode est PUT (ils sont déjà créés)
 }
 
 export default {
