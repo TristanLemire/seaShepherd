@@ -1,5 +1,5 @@
 <template>
-  <a class="button" href="/about">SKIP</a>
+  <a class="button" href="/nameChoice">SKIP</a>
 </template>
 
 <script>
@@ -27,6 +27,7 @@ export default {
   font-size: 14px;
   font-family: 'Poppins', sans-serif;
   transition: background-color .5s, color .5s;
+  z-index: 2;
 
   &:hover {
     background-color: white;
