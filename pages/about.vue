@@ -1,128 +1,77 @@
 <template>
-<div>
-  <video src="../assets/video/home.mp4" class="home__video" autoplay></video>
-        <SoundButton />
-              <SkipButton/>
-</div>
+  <div class="about">
+    <Menu/>
+    <Back/>
+    <div class="content">
+      <div class="text">
+      <h1>ABOUT US</h1>
+      <span>
+        Established in 1977, Sea Shepherd Conservation Society (SSCS) is an international non-profit, marine wildlife conservation 
+        organization. Our mission is to end the destruction of habitat and slaughter of wildlife in the world’s oceans in order to conserve 
+        and protect ecosystems and species.
+      </span>
+      <span>
+        Sea Shepherd uses innovative direct-action tactics to investigate, document, and take action when necessary to expose and confront 
+        illegal activities on the high seas. By safeguarding the biodiversity of our delicately balanced ocean ecosystems, Sea Shepherd works to 
+        ensure their survival for future generations.
+      </span>
+    </div>
+    <img src="../assets/image/baleine_about.jpg" alt="baleines">
+    </div>
+  </div>
 </template>
 <script>
 import Menu from "~/components/Menu.vue";
-import SkipButton from "~/components/SkipButton.vue";
-import SoundButton from "~/components/SoundButton.vue";
-
+import Back from "~/components/Back.vue";
 
 export default {
   transition: "intro",
   components: {
     Menu,
-    SkipButton,
-    SoundButton
+    Back
   },
-  methods:{
-     soundActive: function() {
-      let video = document.querySelector('video');
-      let active = localStorage.getItem('sound');
-      let audios = document.querySelectorAll('audio');
-       if(active == 'OFF'){
-        if(video != null){
-          video.volume = 0;
-        } 
-        if (audios.length > 0) {
-          audios.forEach(audio => {
-          audio.pause();
-        });
-        }
-       }
-     }
-  },
-  beforeMount(){
-    this.soundActive()
-  }
 };
 </script>
 
 <style lang="scss">
-$t-duration: 800ms;
-$t-delay: 300ms;
-
-.intro-enter-active,
-.intro-leave-active {
-  transition-duration: $t-duration * 2;
-
-  &::before,
-  &::after {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    display: block;
-    width: 100%;
-    height: 50%;
-    transition-property: opacity, transform;
-    transition-timing-function: ease-in-out;
+  html {
+    background-color: #0D1B2A;
   }
 
-  &::before {
-    background-color: #2e2e2e;
+  .content {
+    width: 80vw;
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+    margin-top: 11%;
+
+    .text {
+      width: 35vw;
+
+      h1 {
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        font-size: 56px;
+        color: white;
+        margin-bottom: 10%;
+      }
+
+      span {
+        font-family: "Poppins", sans-serif;
+        color: white;
+        font-size: 18px;
+        display: inline-block;
+      }
+
+      span:nth-child(even) {
+        margin-bottom: 10%;
+      }
+    } 
   }
 
-  &::after {
-    top: 50%;
-    background-color: #2e2e2e;
+  p {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    color: white;
   }
-}
-
-.intro-leave {
-  &::before,
-  &::after {
-    transform: scaleX(0);
-  }
-}
-
-.intro-leave-active {
-  &::before {
-    transition-duration: $t-duration;
-  }
-
-  &::after {
-    transition-duration: $t-duration - $t-delay;
-    transition-delay: $t-delay;
-  }
-}
-
-.intro-leave-to {
-  &::before,
-  &::after {
-    transform: scale(1);
-    transform-origin: left;
-  }
-}
-
-.intro-enter {
-  &::before,
-  &::after {
-    transform: scaleX(1);
-  }
-}
-
-.intro-enter-active {
-  &::before {
-    transition-duration: $t-duration;
-  }
-
-  &::after {
-    transition-duration: $t-duration - $t-delay;
-    transition-delay: $t-delay;
-  }
-}
-
-.intro-enter-to {
-  &::before,
-  &::after {
-    transform: scaleX(0);
-    transform-origin: right;
-  }
-}
 </style>
-
