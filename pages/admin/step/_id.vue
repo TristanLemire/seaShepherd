@@ -50,6 +50,7 @@
             </div>
           </div>
           <input type="submit" class="button is-outlined is-light" value="Save modifications">
+          <button class="button is-danger deleteContent">Delete</button>
         </form>
       </div>
     </section>
@@ -125,7 +126,7 @@ if (process.client) {
           id +
           '"><div class="field"><div class="control"><textarea class="textarea" placeholder="Section content"></textarea></div></div><div class="field"><div class="control"><input class="control" type="number" value="' +
           order +
-          '"></div></div><input type="submit" class="button is-outlined is-light" value="Save modifications"></form>';
+          '"></div></div><input type="submit" class="button is-outlined is-light" value="Save modifications"><button class="button is-danger deleteContent">Delete</button></form>';
         document.querySelector(".contentSection").appendChild(div);
 
         // Add event listeners
@@ -162,6 +163,14 @@ if (process.client) {
   setTimeout(() => {
     let forms = document.querySelectorAll("form");
     forms.forEach(form => {
+      let deleteButton = form.querySelector('.deleteContent');
+      deleteButton.addEventListener('click', () => {
+        let url = 'http://localhost:3000/api/contents/'+form.id;
+        fetch(url, {
+          method: 'DELETE'
+        })
+        form.style.display = 'none';
+      })
       form.addEventListener("submit", e => {
         e.preventDefault();
         let content = form.querySelector("textarea");
