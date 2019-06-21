@@ -14,7 +14,7 @@
     top: 4.33%;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 2;
+    z-index: 3;
   }
 
 </style>
