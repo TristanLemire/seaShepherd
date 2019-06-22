@@ -56,7 +56,7 @@
         :key="content.id"
         class="contentPart notification is-info"
       >
-        <form :id="content.id" action>
+        <form v-if="content.type === 'text'" :id="content.id" action>
           <div class="field">
             <div class="control">
               <textarea :value="content.content" class="textarea" placeholder="Section content"></textarea>
@@ -70,6 +70,7 @@
           <input type="submit" class="button is-outlined is-light" value="Save modifications">
           <button class="button is-danger deleteContent">Delete</button>
         </form>
+        <img v-if="content.type==='image'" :src="'/'+content.source" alt="image">
       </div>
     </section>
     <br>
@@ -116,6 +117,24 @@ if (process.client) {
     div.innerHTML += '<form method="POST" action="/api/contents/upload" enctype="multipart/form-data"><div class="file"><label class="file-label"><input class="file-input" type="file" name="myImage"><span class="file-cta"><span class="file-icon"><i class="fas fa-upload"></i></span><span class="file-label">Choose a file…</span></span></label></div><br><input value="Add" type="submit" class="button is-light is-outlined"/></form>';
     document.querySelector(".contentSection").appendChild(div);
 
+    let form = div.querySelector('form');
+    
+    // form.addEventListener('submit', (e) => {
+    //   e.preventDefault();
+
+    //   let fileInput = form.querySelector('input[type=file]');
+    //   let formData = new FormData();
+
+    //   formData.append('file', fileInput.files[0]);
+    //   console.log('fileInput.files[0]: ', fileInput.files[0]);
+
+    //   let url = 'http://localhost:3000/api/contents/upload';
+    //   let options = {
+    //     method: 'POST',
+    //     body: formData
+    //   }
+    //   fetch(url, options);
+    // })
 
   })
 
@@ -165,7 +184,6 @@ if (process.client) {
         // Add event listeners
         let form = document.querySelectorAll("form");
         form = form[form.length - 1];
-        console.log("form: ", form);
 
         form.addEventListener("submit", e => {
           e.preventDefault();

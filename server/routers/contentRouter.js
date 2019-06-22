@@ -22,7 +22,7 @@ const path = require('path');
 // }
 
 const storage = multer.diskStorage({
-    destination: './public/uploads',
+    destination: './static/uploads',
     filename: function (req, file, cb) {
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
     }
@@ -73,7 +73,20 @@ router.delete('/:id', (req, res, next) => {
 
 router.post('/upload', (req,res,err) => {
     upload(req, res, err => {
-        res.json({message: 'test'});
+        backURL = req.header('Referer') || '/';
+        let id = backURL.substring(33, backURL.length);
+        let type = '';
+        if (req.file.mimetype === 'image/png' || req.file.mimetype === 'image/jpg' || req.file.mimetype === 'image/jpeg') type = 'image';
+
+        let data = {
+            source: req.file.path.substring(7,req.file.path.length),
+            id_step: id,
+            type: type
+        }
+       
+        queries.create('content', data).then(() => {
+            res.redirect(backURL);
+        })
     });
 })
 

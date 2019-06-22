@@ -35,7 +35,7 @@ async function start() {
     await nuxt.ready()
   }
 
-  app.use(express.static('./public'));
+  app.use(express.static('./static'));
 
   // Use my routers
   app.use('/api/users', userRouter);
