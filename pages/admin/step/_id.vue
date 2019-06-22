@@ -16,13 +16,27 @@
       <div class="field">
         <label class="label has-text-light">Title</label>
         <div class="control">
-          <input name="username" minlength="5" class="input" type="text" :value="step.title">
+          <input
+            :id="'title-'+step.id"
+            name="title"
+            minlength="5"
+            class="input"
+            type="text"
+            :value="step.title"
+          >
         </div>
       </div>
       <div class="field">
         <label class="label has-text-light">Description</label>
         <div class="control">
-          <input name="username" minlength="5" class="input" type="text" :value="step.description">
+          <input
+            :id="'description-'+step.id"
+            name="description"
+            minlength="5"
+            class="input"
+            type="text"
+            :value="step.description"
+          >
         </div>
       </div>
     </section>
@@ -31,13 +45,17 @@
       <h1 class="title">Content</h1>
       <div>
         <button class="button is-info addContent">Add content</button>
-        <button class="invisible imageType contentButton button is-primary">Image</button>
-        <button class="invisible contentButton button is-primary">Video</button>
+        <button class="invisible imageType contentButton button is-primary">Image / Video</button>
         <button class="invisible contentButton button is-primary">Audio</button>
         <button class="invisible textType contentButton button is-primary">Text</button>
       </div>
       <br>
-      <div v-for="content in contents" :key="content.id" class="contentPart notification is-info">
+      <div
+        :id="'div-'+content.id"
+        v-for="content in contents"
+        :key="content.id"
+        class="contentPart notification is-info"
+      >
         <form :id="content.id" action>
           <div class="field">
             <div class="control">
@@ -87,6 +105,20 @@ if (process.client) {
     edit = !edit;
   });
 
+  // Image button
+  let addImage = document.querySelector('.imageType');
+
+  addImage.addEventListener('click', () => {
+    
+    let div = document.createElement("div");
+    div.classList.add("notification", "contentPart", "is-info");
+
+    div.innerHTML += '<form method="POST" action="/api/contents/upload" enctype="multipart/form-data"><div class="file"><label class="file-label"><input class="file-input" type="file" name="myImage"><span class="file-cta"><span class="file-icon"><i class="fas fa-upload"></i></span><span class="file-label">Choose a file…</span></span></label></div><br><input value="Add" type="submit" class="button is-light is-outlined"/></form>';
+    document.querySelector(".contentSection").appendChild(div);
+
+
+  })
+
   // Text button
   let addText = document.querySelector(".textType");
 
@@ -97,7 +129,8 @@ if (process.client) {
 
     let data = {
       id_step: window.location.href.substring(33, window.location.href.length),
-      order: order
+      order: order,
+      type: "text"
     };
 
     fetch(url, {
@@ -155,6 +188,8 @@ if (process.client) {
             },
             referrer: "no-referrer", // no-referrer, *client
             body: JSON.stringify(data) // body data type must match "Content-Type" header
+          }).then(response => {
+            window.location.reload();
           });
         });
       });
@@ -163,14 +198,16 @@ if (process.client) {
   setTimeout(() => {
     let forms = document.querySelectorAll("form");
     forms.forEach(form => {
-      let deleteButton = form.querySelector('.deleteContent');
-      deleteButton.addEventListener('click', () => {
-        let url = 'http://localhost:3000/api/contents/'+form.id;
+      let deleteButton = form.querySelector(".deleteContent");
+      deleteButton.addEventListener("click", () => {
+        let url = "http://localhost:3000/api/contents/" + form.id;
         fetch(url, {
-          method: 'DELETE'
-        })
-        form.style.display = 'none';
-      })
+          method: "DELETE"
+        });
+        let id = form.id;
+        let div = document.querySelector("#div-" + id);
+        div.style.display = "none";
+      });
       form.addEventListener("submit", e => {
         e.preventDefault();
         let content = form.querySelector("textarea");
@@ -192,13 +229,48 @@ if (process.client) {
           },
           referrer: "no-referrer", // no-referrer, *client
           body: JSON.stringify(data) // body data type must match "Content-Type" header
+        }).then(response => {
+          window.location.reload();
         });
       });
     });
   }, 100);
-  // Text fields blur listeners
-  // TODO: mettre le listener sur les formulaires ajoutés au chargement de la page
-  // ? la méthode est PUT (ils sont déjà créés)
+
+  // Edit title and description
+  let title = document.querySelector("input[name=title]");
+  let description = document.querySelector("input[name=description]");
+
+  title.addEventListener("keyup", () => {
+    let id = title.id.substring(6, title.id.length);
+    let url = "http://localhost:3000/api/steps/" + id;
+    let data = {
+      title: title.value
+    };
+
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+  });
+
+  description.addEventListener("keyup", () => {
+    let id = description.id.substring(12, description.id.length);
+    let url = "http://localhost:3000/api/steps/" + id;
+    let data = {
+      description: description.value
+    };
+
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+  });
 }
 
 export default {
@@ -244,3 +316,6 @@ export default {
   }
 };
 </script>
+
+
+

@@ -4,6 +4,9 @@ const router = express.Router();
 
 const queries = require('../../db/queries');
 
+const multer = require('multer');
+
+const path = require('path');
 // Validation functions
 // function isValidId(req, res, next) {
 //     if (!isNaN(req.params.id)) return next();
@@ -17,6 +20,17 @@ const queries = require('../../db/queries');
 //     const hasRating = !isNaN(sticker.rating);
 //     return hasTitle && hasUrl && hasDescription && hasRating;
 // }
+
+const storage = multer.diskStorage({
+    destination: './public/uploads',
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+    }
+})
+
+const upload = multer({
+    storage: storage
+}).single('myImage');
 
 // Routes
 router.get('/:id', (req, res) => {
@@ -55,6 +69,12 @@ router.delete('/:id', (req, res, next) => {
             deleted: true
         })
     })
+})
+
+router.post('/upload', (req,res,err) => {
+    upload(req, res, err => {
+        res.json({message: 'test'});
+    });
 })
 
 module.exports = router;

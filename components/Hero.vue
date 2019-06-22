@@ -5,8 +5,8 @@
         <div class="container">
           <h1 class="title">Administration - Sea Shepherd</h1>
           <h2
-            class="subtitle"
-          >You're now in the admin part of the doc, please stay aware of what you do.</h2>
+            class="subtitle has-text-info"
+          >You're now in the admin part of the doc.</h2>
         </div>
       </div>
     </section>
