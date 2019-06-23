@@ -40,6 +40,7 @@
         </div>
       </div>
     </section>
+    <Footer />
   </div>
 </template>
 
@@ -48,6 +49,7 @@ import StepsMenu from "~/components/StepsMenu.vue";
 import SoundButton from "~/components/SoundButton.vue";
 import Logo from "~/components/Logo.vue";
 import Back from "~/components/Back.vue";
+import Footer from "~/components/Footer.vue";
 import { returnStatement } from "babel-types";
 
 if (process.client) {
@@ -60,7 +62,8 @@ export default {
     SoundButton,
     Logo,
     StepsMenu,
-    Back
+    Back,
+    Footer
   },
   methods: {
     soundActive() {
