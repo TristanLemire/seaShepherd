@@ -9,6 +9,9 @@
     <div class="console">
       <P></P>
     </div>
+    <div class="steps">
+      <p :id="step.id" v-for="step in stepList" :key="step.id" :data-long="step.longitude" :data-lat="step.latitude" :data-title="step.title"></p>
+    </div>
   </div>
 </template>
 
@@ -19,6 +22,7 @@ import Logo from "~/components/Logo.vue";
 import { returnStatement } from "babel-types";
 
 if (process.client) {
+
   let consoleWelcome = document.querySelector(".console p");
   consoleWelcome.innerHTML =
     "Hey " +
@@ -29,7 +33,7 @@ if (process.client) {
   let countriesHoverColor = "#ffffff";
   let outlineColor = "#121212"
 
-  let dotsColor = "#fff";
+  let dotsColor = "#0f0";
   let dotsStrokeColor = "#666";
   let dotHoverColor = "#df7e00";
 
@@ -105,10 +109,10 @@ if (process.client) {
 
   //! Instanciating cities
 
-  let paris = addCity({ latitude: 48.8567, longitude: 2.351 }, "Paris");
-  let toronto = addCity({ latitude: 43.8163, longitude: -79.4287 }, "Toronto");
-  let la = addCity({ latitude: 34.3, longitude: -118.15 }, "Los Angeles");
-  let havana = addCity({ latitude: 23, longitude: -82 }, "Havana");
+  // let paris = addCity({ latitude: 48.8567, longitude: 2.351 }, "Paris");
+  // let toronto = addCity({ latitude: 43.8163, longitude: -79.4287 }, "Toronto");
+  // let la = addCity({ latitude: 34.3, longitude: -118.15 }, "Los Angeles");
+  // let havana = addCity({ latitude: 23, longitude: -82 }, "Havana");
 
   // Animations on hover
 
@@ -142,10 +146,10 @@ if (process.client) {
     });
   }
 
-  addAnimation(paris);
-  addAnimation(toronto);
-  addAnimation(la);
-  addAnimation(havana);
+  // addAnimation(paris);
+  // addAnimation(toronto);
+  // addAnimation(la);
+  // addAnimation(havana);
 
   //! Lines
 
@@ -176,9 +180,28 @@ if (process.client) {
   }
 
   // Instanciating lines
-  addLine(paris, toronto);
-  addLine(toronto, la);
-  addLine(la, havana);
+  // addLine(paris, toronto);
+  // addLine(toronto, la);
+  // addLine(la, havana);
+
+
+  // Dynamic points on the map
+  setTimeout(() => {
+    let steps = document.querySelectorAll('.steps p');
+    steps.forEach(step => {
+      
+      let title = step.getAttribute('data-title');
+      let longitude = Number(step.getAttribute('data-lat'));
+      let latitude = Number(step.getAttribute('data-long'));
+
+      let point = addCity({
+        latitude: longitude,
+        longitude: latitude
+      }, title);
+
+      addAnimation(point);
+    })
+  }, 100);
 }
 
 export default {
@@ -200,6 +223,15 @@ export default {
     SoundButton,
     Logo,
     StepsMenu
+  },
+  asyncData({ params }) {
+    return fetch("http://localhost:3000/api/steps", { method: "GET" })
+      .then(response => {
+        return response.json();
+      })
+      .then(response => {
+        return { stepList: response };
+      });
   },
   methods: {
     soundActive: function() {
