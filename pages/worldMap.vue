@@ -26,14 +26,15 @@ if (process.client) {
     JSON.parse(localStorage.getItem("user"))[0]["name"] +
     ",  Welcome to the Sea-Shepherd experience.";
   // Colors
-  let countriesColor = "#3d3d3d";
-  let countriesHoverColor = "#367B25";
+  let countriesColor = "#ffffff";
+  let countriesHoverColor = "#ffffff";
+  let outlineColor = "#121212"
 
   let dotsColor = "#fff";
   let dotsStrokeColor = "#666";
   let dotHoverColor = "#df7e00";
 
-  let seaColor = "#004c79";
+  let seaColor = "#121212";
 
   // Imports
   am4core.useTheme(am4themes_animated);
@@ -43,6 +44,11 @@ if (process.client) {
   let map = am4core.create("chartdiv", am4maps.MapChart);
   map.geodata = am4geodata_worldLow;
   map.projection = new am4maps.projections.Orthographic();
+
+  //Disabling double-click zoom
+  map.seriesContainer.events.disableType("doublehit");
+  map.chartContainer.background.events.disableType("doublehit");
+  map.maxZoomLevel = 0;
 
   // Background:
   map.backgroundSeries.mapPolygons.template.polygon.fill = am4core.color(
