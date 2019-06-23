@@ -3,22 +3,22 @@
     <div class="menuSteps">
       <ul class="steps">
         <li>
-          <a href="">Boarding and departure <span>01</span></a>
+          <a href="/template">Boarding and departure <span>01</span></a>
         </li>
         <li>
-          <a href="">The drudgery <span>02</span></a>
+          <a href="/template">The drudgery <span>02</span></a>
         </li>
         <li>
-          <a href="">The magic <span>03</span></a>
+          <a href="/template">The magic <span>03</span></a>
         </li>
         <li>
-          <a href="">The unforeseen events <span>04</span></a>
+          <a href="/template">The unforeseen events <span>04</span></a>
         </li>
         <li>
-          <a href="">At the boarding <span>05</span></a>
+          <a href="/template">At the boarding <span>05</span></a>
         </li>
         <li>
-          <a href="">Mission achieved <span>06</span></a>
+          <a href="/template">Mission achieved <span>06</span></a>
         </li>
       </ul>
       <ul class="basic">
@@ -87,13 +87,14 @@ export default {
   background: #0d1b2a;
   width: 100%;
   height: 100vh;
-  position: absolute;
+  position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%,-50%);
   transition: opacity 0.6s;
   z-index: -1;
   opacity: 0;
+  overflow: hidden;
 
   &.open {
       opacity: 1;
@@ -214,7 +215,7 @@ export default {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  position: absolute;
+  position: fixed;
   left: 5.86%;
   top: 2.33%;
   z-index: 3;

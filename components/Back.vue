@@ -54,14 +54,11 @@ export default {
   cursor: pointer;
   background: transparent;
   border: none;
-  position: fixed;
-  top: 15%;
-  left: 6.86%;
   display: flex;
-  width: 10vw;
   font-size: 14px;
   align-items: center;
   color: #fff;
+  z-index: 2;
 
   &:after {
     font-family: "Poppins", sans-serif;

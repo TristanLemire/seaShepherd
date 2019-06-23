@@ -7,16 +7,16 @@
 src="hhttps://www.youtube.com/embed/b44QrmTn0Ng?autoplay=1&controls=0&fs=0&modestbranding=1&rel=0&showinfo=0" frameborder="0" allowfullscreen> -->
 <!-- <iframe class="home__video" src="https://www.youtube.com/embed/668nUCeBHyY?autoplay=1&controls=0&fs=0&modestbranding=1&rel=0&showinfo=0" frameborder="0" allowfullscreen>
 </iframe> -->
-<svg @click="controlVideo" display="none" class="play" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="50" cy="50" r="49" stroke="#DEDEDE" stroke-width="2"/>
-      <path d="M74 49.5L37.25 70.7176V28.2824L74 49.5Z" fill="white"/>
-    </svg>
-    <svg @click="controlVideo" display="none" class="play" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="30" y="27" width="13" height="46" fill="white"/>
-      <rect x="57" y="27" width="13" height="46" fill="white"/>
-      <circle cx="50" cy="50" r="49" stroke="#DEDEDE" stroke-width="2"/>
-    </svg>
-   <div id="player"></div>
+  <svg @click="controlVideo" display="none" class="play" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="49" stroke="#DEDEDE" stroke-width="2"/>
+        <path d="M74 49.5L37.25 70.7176V28.2824L74 49.5Z" fill="white"/>
+      </svg>
+      <svg @click="controlVideo" display="none" class="play" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="30" y="27" width="13" height="46" fill="white"/>
+        <rect x="57" y="27" width="13" height="46" fill="white"/>
+        <circle cx="50" cy="50" r="49" stroke="#DEDEDE" stroke-width="2"/>
+      </svg>
+    <div id="player"></div>
 
     <h1>Introduction</h1>
     <hr>
