@@ -177,7 +177,7 @@ if (process.client) {
         if (info.id === id) {
           descriptionText = info.getAttribute('data-description')
           titleText = info.getAttribute('data-title')
-          stepLink = 'http://localhost:3000/admin/step/' + id
+          stepLink = 'http://localhost:3000/steps/' + id
         }
       })
 

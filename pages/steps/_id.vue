@@ -47,7 +47,8 @@
         <rect x="57" y="27" width="13" height="46" fill="white"></rect>
         <circle cx="50" cy="50" r="49" stroke="#DEDEDE" stroke-width="2"></circle>
       </svg>
-      <img v-if="content.type === 'image'" :src="'/'+content.source">
+      <img v-if="content.type === 'image'  && content.content !== null && content.content !== ''" :src="'/'+content.source">
+      <img v-if="content.type === 'image'  && content.content === null || content.content === ''" class="image-full" :src="'/'+content.source">
         <div v-if="content.type === 'image'" class="image__title">
            <div>
             <h2>{{ content.subtitle }}</h2>
@@ -200,6 +201,8 @@ html {
     object-fit: cover;
   }
 
+  
+
   .play {
     opacity: 1;
     position: absolute;
@@ -287,8 +290,15 @@ html {
   width: 100%;
   display: flex;
 
-  img {
+  img:not(.image-full) {
     width: 50%;
+    object-fit: cover;
+  }
+
+  .image-full {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
     object-fit: cover;
   }
 
