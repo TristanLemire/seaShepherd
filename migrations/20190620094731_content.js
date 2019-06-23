@@ -4,6 +4,7 @@ exports.up = function (knex, Promise) {
         table.increments();
         table.text('source');
         table.text('type');
+        table.text('subtitle')
         table.integer('order');
         table.text('content');
         table.integer('id_step');

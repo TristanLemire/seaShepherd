@@ -85,12 +85,17 @@
         <form v-if="content.type === 'text'" :id="content.id" action>
           <div class="field">
             <div class="control">
+              <input class="input" :value="content.subtitle" name="subtitle" placeholder="Section subtitle"/>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
               <textarea :value="content.content" class="textarea" placeholder="Section content"></textarea>
             </div>
           </div>
           <div class="field">
             <div class="control">
-              <input class="control" type="number" :value="content.order">
+              <input class="number" name="order" type="number" :value="content.order">
             </div>
           </div>
           <input type="submit" class="button is-outlined is-light" value="Save modifications">
@@ -103,12 +108,17 @@
           <form :id="content.id">
             <div class="field">
               <div class="control">
+                <input :value="content.subtitle" name="subtitle" class="input" placeholder="Section subtitle"/>
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
                 <textarea :value="content.content" class="textarea" placeholder="Section content"></textarea>
               </div>
             </div>
             <div class="field">
               <div class="control">
-                <input class="control" type="number" :value="content.order">
+                <input class="number" name="order" type="number" :value="content.order">
               </div>
             </div>
             <input type="submit" class="button is-outlined is-light" value="Save modifications">
@@ -170,6 +180,7 @@ if (process.client) {
     // Create it in database
     let url = "http://localhost:3000/api/contents";
     let order = document.querySelectorAll(".contentPart").length;
+    console.log('order: ', order);
 
     let data = {
       id_step: window.location.href.substring(33, window.location.href.length),
@@ -201,7 +212,7 @@ if (process.client) {
         div.innerHTML +=
           '<form id="' +
           id +
-          '"><div class="field"><div class="control"><textarea class="textarea" placeholder="Section content"></textarea></div></div><div class="field"><div class="control"><input class="control" type="number" value="' +
+          '"><div class="field"><div class="control"><input class="input" value="" name="subtitle" placeholder="Section subtitle"/></div></div><div class="field"><div class="control"><textarea class="textarea" placeholder="Section content"></textarea></div></div><div class="field"><div class="control"><input name="order" class="number" type="number" value="' +
           order +
           '"></div></div><input type="submit" class="button is-outlined is-light" value="Save modifications"><button class="button is-danger deleteContent">Delete</button></form>';
         document.querySelector(".contentSection").appendChild(div);
@@ -213,9 +224,11 @@ if (process.client) {
         form.addEventListener("submit", e => {
           e.preventDefault();
           let content = form.querySelector("textarea");
-          let order = form.querySelector("input");
+          let order = form.querySelector("input[name=order]");
+          let subtitle = form.querySelector("input[name=subtitle]");
 
           let data = {
+            subtitle: subtitle.value,
             content: content.value,
             order: order.value
           };
@@ -232,6 +245,7 @@ if (process.client) {
             referrer: "no-referrer", // no-referrer, *client
             body: JSON.stringify(data) // body data type must match "Content-Type" header
           }).then(response => {
+            console.log('response: ', response);
             window.location.reload();
           });
         });
@@ -251,14 +265,16 @@ if (process.client) {
         let div = document.querySelector("#div-" + id);
         div.style.display = "none";
       });
-      form.addEventListener("submit", e => {
+      form.addEventListener("submit", (e) => {
         e.preventDefault();
         let content = form.querySelector("textarea");
-        let order = form.querySelector("input");
+        let order = form.querySelector("input[name=order]");
+        let subtitle = form.querySelector("input[name=subtitle]");
 
         let data = {
           content: content.value,
-          order: order.value
+          order: order.value,
+          subtitle: subtitle.value
         };
         let url = "http://localhost:3000/api/contents/" + form.id;
 
@@ -277,7 +293,7 @@ if (process.client) {
         });
       });
     });
-  }, 100);
+  }, 300);
 
   // Edit title, description, longitude and latitude
   let title = document.querySelector("input[name=title]");
