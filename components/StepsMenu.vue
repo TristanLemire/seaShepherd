@@ -28,7 +28,6 @@
       class="ham hamRotate ham8"
       viewBox="0 0 100 100"
       width="80"
-      onclick="this.classList.toggle('active')"
     >
       <path
         class="line top"
@@ -48,12 +47,15 @@ export default {
   methods: {
     openMenu() {
       let menu = document.querySelector(".menuSteps");
+      let bouton = document.querySelector('.ham');
       if(menu.className === 'menuSteps zIdenx open'){
+        bouton.classList.remove('active')
         menu.classList.remove('open');
-        // setTimeout(function() {
-        //   menu.classList.remove('zIdenx');
-        //   }, 1000);
-      } else {
+        setTimeout(function() {
+          menu.classList.remove('zIdenx');
+          }, 500);
+      } else if (menu.className === 'menuSteps') {
+        bouton.classList.add('active')
         menu.classList.add('zIdenx');
         menu.classList.add('open');
       }
