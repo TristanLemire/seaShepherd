@@ -153,9 +153,9 @@ export default {
 
 .back {
   height: 0;
-  position: absolute;
+  position: fixed;
   top: 15%;
-  left: 6.86%;
+  left: 5.86%;
 }
 
 .imageText {
