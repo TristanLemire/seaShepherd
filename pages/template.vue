@@ -76,6 +76,11 @@ export default {
 </script>
 
 <style lang="scss">
+
+html {
+    background-color: #0D1B2A;
+  }
+  
 .video {
   background: #0d1b2a;
   height: 100vh;

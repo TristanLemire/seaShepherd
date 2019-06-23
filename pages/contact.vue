@@ -130,6 +130,11 @@ export default {
 </script>
 
 <style lang="scss">
+
+html {
+    background-color: #0D1B2A;
+  }
+  
 .contact {
   color: #fff;
   background-color: #0d1b2a;
