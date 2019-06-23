@@ -24,15 +24,24 @@ export default {
   methods: {
     goToPageAction() {
       let lastPageName = document.referrer;
-      let lastPageNameArray = lastPageName.split('');
-      let lastChat = lastPageNameArray[lastPageNameArray.length - 1];
-      let goToPage = "";
-      let NameChoice = lastPageNameArray[lastPageNameArray.length - 10]+ lastPageNameArray[lastPageNameArray.length - 9]+ lastPageNameArray[lastPageNameArray.length - 8]+ lastPageNameArray[lastPageNameArray.length - 7]+ lastPageNameArray[lastPageNameArray.length - 6]+ lastPageNameArray[lastPageNameArray.length - 5]+ lastPageNameArray[lastPageNameArray.length - 4] + lastPageNameArray[lastPageNameArray.length - 3] + lastPageNameArray[lastPageNameArray.length - 2] + lastPageNameArray[lastPageNameArray.length - 1];
+      let lastPageNameArray = lastPageName.split("");
+      let lastChar = lastPageNameArray[lastPageNameArray.length - 1];
+      let NameChoice =
+        lastPageNameArray[lastPageNameArray.length - 10] +
+        lastPageNameArray[lastPageNameArray.length - 9] +
+        lastPageNameArray[lastPageNameArray.length - 8] +
+        lastPageNameArray[lastPageNameArray.length - 7] +
+        lastPageNameArray[lastPageNameArray.length - 6] +
+        lastPageNameArray[lastPageNameArray.length - 5] +
+        lastPageNameArray[lastPageNameArray.length - 4] +
+        lastPageNameArray[lastPageNameArray.length - 3] +
+        lastPageNameArray[lastPageNameArray.length - 2] +
+        lastPageNameArray[lastPageNameArray.length - 1];
 
       console.log(NameChoice);
-      if (lastChat != "/" && NameChoice != 'nameChoice') { 
+      if (lastChar != "/" && NameChoice != "nameChoice") {
         window.location.href = "/worldMap";
-      } else if(NameChoice == 'nameChoice'){
+      } else if (NameChoice == "nameChoice") {
         window.location.href = "/nameChoice";
       } else {
         window.location.href = "/";
