@@ -99,10 +99,4 @@ export default {
     font-weight: 500;
     color: white;
   }
-
-  .back {
-    position: absolute;
-    top: 15%;
-    left: 6.86%;
-  }
 </style>

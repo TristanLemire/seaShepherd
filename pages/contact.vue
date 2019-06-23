@@ -201,10 +201,4 @@ h3 {
 .content__title--online {
   margin-top: 27px;
 }
-
-.back {
-  position: absolute;
-  top: 15%;
-  left: 6.86%;
-}
 </style>
