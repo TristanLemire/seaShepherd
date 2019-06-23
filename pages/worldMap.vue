@@ -49,6 +49,9 @@ if (process.client) {
   map.seriesContainer.events.disableType("doublehit");
   map.chartContainer.background.events.disableType("doublehit");
   map.maxZoomLevel = 0;
+  map.minZoomCount = 0;
+  map.seriesContainer.draggable = false;
+  map.seriesContainer.resizable = false;
 
   // Background:
   map.backgroundSeries.mapPolygons.template.polygon.fill = am4core.color(
