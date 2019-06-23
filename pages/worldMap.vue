@@ -10,7 +10,16 @@
       <P></P>
     </div>
     <div class="steps">
-      <p :id="step.id" v-for="step in stepList" :key="step.id" :data-long="step.longitude" :data-lat="step.latitude" :data-title="step.title"></p>
+      <p
+        :id="step.id"
+        v-for="step in stepList"
+        :key="step.id"
+        :data-description="step.description"
+        :data-long="step.longitude"
+        :data-lat="step.latitude"
+        :data-title="step.title"
+        :data-id="step.id"
+      ></p>
     </div>
   </div>
 </template>
@@ -22,7 +31,6 @@ import Logo from "~/components/Logo.vue";
 import { returnStatement } from "babel-types";
 
 if (process.client) {
-
   let consoleWelcome = document.querySelector(".console p");
   consoleWelcome.innerHTML =
     "Hey " +
@@ -31,7 +39,7 @@ if (process.client) {
   // Colors
   let countriesColor = "#ffffff";
   let countriesHoverColor = "#ffffff";
-  let outlineColor = "#121212"
+  let outlineColor = "#121212";
 
   let dotsColor = "#0f0";
   let dotsStrokeColor = "#666";
@@ -104,6 +112,7 @@ if (process.client) {
     let city = cities.mapImages.create();
     city.latitude = coords.latitude;
     city.longitude = coords.longitude;
+    // city.tooltipText = '<div class="title">'+title+'</div>';
     return city;
   }
 
@@ -143,6 +152,75 @@ if (process.client) {
       setTimeout(() => {
         bulletAlertCircle.visible = false;
       }, 2000);
+    });
+
+    city.events.on("hit", () => {
+      // Remove the other tooltip if existing
+      let oldTooltips = document.querySelectorAll('.tooltip');
+      if (oldTooltips.length > 0) {
+        oldTooltips.forEach(tooltip => document.querySelector('body').removeChild(tooltip));
+      }
+
+      // Get mouse position 
+      var x = event.clientX - 100 ;     // Get the horizontal coordinate
+      var y = event.clientY + 20;     // Get the vertical coordinate
+
+      // Get the step infos
+      let id = city.dom.className.baseVal
+      let titleText = ''
+      let descriptionText = ''
+      let stepLink = ''
+      id =  String(id).substring(5,id.length);
+      let infos = document.querySelectorAll('p');
+      
+      infos.forEach(info => {
+        if (info.id === id) {
+          descriptionText = info.getAttribute('data-description')
+          titleText = info.getAttribute('data-title')
+          stepLink = 'http://localhost:3000/admin/step/' + id
+        }
+      })
+
+      // Create a new tooltip
+      let tooltip =  document.createElement('div');
+      tooltip.classList.add('tooltip');
+
+      let title = document.createElement('p');
+      title.classList.add('tooltip__title');
+      title.innerHTML = titleText
+
+      let description = document.createElement('p');
+      description.classList.add('tooltip__description');
+      description.innerHTML = descriptionText
+
+      let link = document.createElement('a');
+      link.classList.add('tooltip__link');
+      link.innerHTML = 'BEGIN';
+      link.setAttribute('href', stepLink);
+
+      let deleteButton = document.createElement('p');
+      deleteButton.classList.add('delete');
+
+      deleteButton.addEventListener('click', () => {
+        document.querySelector('body').removeChild(tooltip);
+      })
+
+      tooltip.appendChild(title)
+      tooltip.appendChild(description)
+      tooltip.appendChild(link)
+      tooltip.appendChild(deleteButton)
+
+      tooltip.style.left = x + "px"
+      tooltip.style.top = y + "px"
+
+      document.querySelector('body').appendChild(tooltip);
+      /*
+      <div class="tooltip">
+      <p class="tooltip__title">Step 1</p>
+      <p class="tooltip__description">Boarding and departure</p>
+      <a href="#" class="tooltip__link">BEGIN</a>
+    </div>
+     */
     });
   }
 
@@ -184,23 +262,25 @@ if (process.client) {
   // addLine(toronto, la);
   // addLine(la, havana);
 
-
   // Dynamic points on the map
   setTimeout(() => {
-    let steps = document.querySelectorAll('.steps p');
+    let steps = document.querySelectorAll(".steps p");
     steps.forEach(step => {
-      
-      let title = step.getAttribute('data-title');
-      let longitude = Number(step.getAttribute('data-lat'));
-      let latitude = Number(step.getAttribute('data-long'));
+      let id = step.getAttribute("data-id");
+      let title = step.getAttribute("data-title");
+      let longitude = Number(step.getAttribute("data-lat"));
+      let latitude = Number(step.getAttribute("data-long"));
 
-      let point = addCity({
-        latitude: longitude,
-        longitude: latitude
-      }, title);
-
+      let point = addCity(
+        {
+          latitude: longitude,
+          longitude: latitude
+        },
+        title
+      );
+      point.dom.classList.add('step-'+id);
       addAnimation(point);
-    })
+    });
   }, 100);
 }
 
@@ -263,7 +343,7 @@ body {
   width: 100%;
 }
 
-#chartdiv { 
+#chartdiv {
   height: 75vh;
   width: 100%;
   z-index: 1;
@@ -290,11 +370,61 @@ div.console {
   right: 0;
   bottom: 5.33%;
   padding-left: 30px;
-  border-left: 1px solid #415A77;
+  border-left: 1px solid #415a77;
   color: white;
   font-family: Poppins;
   font-size: 14px;
   line-height: 21px;
   letter-spacing: 2px;
+}
+
+.tooltip {
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  box-shadow: 2px 5px 10px rgba(13, 27, 42, 0.3);
+  background-color: #fff;
+  width: 200px;
+  height: 125px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  transition: transform 0.3s;
+
+  &__title {
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  &__description {
+    margin-bottom: 10px;
+  }
+
+  &__link {
+    font-weight: bold;
+    width: 100px;
+    text-decoration: none;
+    color: gold;
+    border: 1px solid gold;
+    border-radius: 30px;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .delete {
+    top: 10px;
+    right: 10px;
+    position: absolute;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 </style>

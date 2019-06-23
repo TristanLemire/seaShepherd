@@ -161,24 +161,6 @@ if (process.client) {
       '<form method="POST" action="/api/contents/upload" enctype="multipart/form-data"><div class="file"><label class="file-label"><input class="file-input" type="file" name="myImage"><span class="file-cta"><span class="file-icon"><i class="fas fa-upload"></i></span><span class="file-label">Choose a file…</span></span></label></div><br><input value="Add" type="submit" class="button is-light is-outlined"/></form>';
     document.querySelector(".contentSection").appendChild(div);
 
-    let form = div.querySelector("form");
-
-    // form.addEventListener('submit', (e) => {
-    //   e.preventDefault();
-
-    //   let fileInput = form.querySelector('input[type=file]');
-    //   let formData = new FormData();
-
-    //   formData.append('file', fileInput.files[0]);
-    //   console.log('fileInput.files[0]: ', fileInput.files[0]);
-
-    //   let url = 'http://localhost:3000/api/contents/upload';
-    //   let options = {
-    //     method: 'POST',
-    //     body: formData
-    //   }
-    //   fetch(url, options);
-    // })
   });
 
   // Text button
