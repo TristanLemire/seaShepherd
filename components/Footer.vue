@@ -1,7 +1,7 @@
 <template>
   <footer>
     <div class="input__content">
-        <form action="">
+      <form action="">
         <label for="answer">Do you know how to swim?</label>
         <input type="text" name="answer" id="answer" @input="checkAnswer">
         <!-- trip components -->

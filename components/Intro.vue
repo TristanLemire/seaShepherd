@@ -4,8 +4,8 @@
     <img src="../assets/img/hetic.png" alt class="intro__hetic">
     <svg
       class="intro__sea"
-      width="400"
-      height="60"
+      width="150"
+      height="22"
       viewBox="0 0 168 120"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
