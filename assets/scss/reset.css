@@ -51,4 +51,4 @@ table {
 	border-spacing: 0;
 }
 
-textarea, select, input, button { outline: none; }
+textarea, select, input, button, video { outline: none; }

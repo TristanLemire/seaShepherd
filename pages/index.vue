@@ -38,6 +38,10 @@ import { returnStatement } from "babel-types";
 
 let memo;
 
+if (process.client) {
+  localStorage.setItem('user','');
+}
+
 export default {
     transition: "intro",
   components: {
