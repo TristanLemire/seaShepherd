@@ -67,13 +67,6 @@ export default {
           });
         }
       }
-    },
-    endVideo() {
-      let video = document.querySelector(".home__video");
-      video.addEventListener("ended", function() {
-        console.log("end");
-        window.location.href = "/nameChoice";
-      });
     }
   },
   beforeMount() {

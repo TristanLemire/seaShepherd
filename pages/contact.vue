@@ -104,6 +104,27 @@ export default {
   components: {
     Menu,
     Back
+  },
+    methods: {
+    soundActive() {
+      console.log(document.querySelector(".home__video"));
+      let video = document.querySelector(".home__video");
+      let active = localStorage.getItem("sound");
+      let audios = document.querySelectorAll("audio");
+      if (active == "OFF" || active == null) {
+        if (video != null) {
+          video.volume = 0;
+        }
+        if (audios.length > 0) {
+          audios.forEach(audio => {
+            audio.pause();
+          });
+        }
+      }
+    }
+  },
+  beforeMount() {
+    this.soundActive();
   }
 };
 </script>
