@@ -11,6 +11,8 @@
       <path
         d="M26.3599 9.24001L15.3199 20.6L26.3599 32L25.9999 32.6L14.3599 20.6L25.9999 8.60001L26.3599 9.24001Z"
         fill="white"
+        stroke="white"
+        stroke-width="2"
       ></path>
     </svg>
     <!-- <p>BACK</p> -->
@@ -51,6 +53,9 @@ export default {
 
 <style lang="scss">
 .back {
+  position: fixed;
+  top: 15%;
+  left: 5.86%;
   cursor: pointer;
   background: transparent;
   border: none;
@@ -64,6 +69,8 @@ export default {
     font-family: "Poppins", sans-serif;
     content: "BACK";
     font-size: 14px;
+    letter-spacing: 2px;
+    font-weight: bold;
     text-decoration: none;
     color: white;
   }

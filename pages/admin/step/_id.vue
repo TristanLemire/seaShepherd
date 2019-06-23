@@ -39,6 +39,32 @@
           >
         </div>
       </div>
+      <div class="field">
+        <label class="label has-text-light">Latitude</label>
+        <div class="control">
+          <input
+            :id="'lat-'+step.id"
+            name="latitude"
+            minlength="5"
+            class="input"
+            type="text"
+            :value="step.latitude"
+          >
+        </div>
+      </div>
+      <div class="field">
+        <label class="label has-text-light">Longitude</label>
+        <div class="control">
+          <input
+            :id="'lon-'+step.id"
+            name="longitude"
+            minlength="5"
+            class="input"
+            type="text"
+            :value="step.longitude"
+          >
+        </div>
+      </div>
     </section>
 
     <section class="notification is-dark contentSection">
@@ -71,22 +97,23 @@
           <button class="button is-danger deleteContent">Delete</button>
         </form>
         <span v-if="content.type === 'image' || content.type === 'video'">
-        <img v-if="content.type === 'image'" :src="'/'+content.source" alt="image"><br>
-        <video controls v-if="content.type ==='video'" :src="'/'+content.source"></video>
-        <form :id="content.id">
-          <div class="field">
-            <div class="control">
-              <textarea :value="content.content" class="textarea" placeholder="Section content"></textarea>
+          <img v-if="content.type === 'image'" :src="'/'+content.source" alt="image">
+          <br>
+          <video controls v-if="content.type ==='video'" :src="'/'+content.source"></video>
+          <form :id="content.id">
+            <div class="field">
+              <div class="control">
+                <textarea :value="content.content" class="textarea" placeholder="Section content"></textarea>
+              </div>
             </div>
-          </div>
-          <div class="field">
-            <div class="control">
-              <input class="control" type="number" :value="content.order">
+            <div class="field">
+              <div class="control">
+                <input class="control" type="number" :value="content.order">
+              </div>
             </div>
-          </div>
-          <input type="submit" class="button is-outlined is-light" value="Save modifications">
-          <button class="button is-danger deleteContent">Delete</button>
-        </form>
+            <input type="submit" class="button is-outlined is-light" value="Save modifications">
+            <button class="button is-danger deleteContent">Delete</button>
+          </form>
         </span>
       </div>
     </section>
@@ -124,36 +151,17 @@ if (process.client) {
   });
 
   // Image button
-  let addImage = document.querySelector('.imageType');
+  let addImage = document.querySelector(".imageType");
 
-  addImage.addEventListener('click', () => {
-    
+  addImage.addEventListener("click", () => {
     let div = document.createElement("div");
     div.classList.add("notification", "contentPart", "is-info");
 
-    div.innerHTML += '<form method="POST" action="/api/contents/upload" enctype="multipart/form-data"><div class="file"><label class="file-label"><input class="file-input" type="file" name="myImage"><span class="file-cta"><span class="file-icon"><i class="fas fa-upload"></i></span><span class="file-label">Choose a file…</span></span></label></div><br><input value="Add" type="submit" class="button is-light is-outlined"/></form>';
+    div.innerHTML +=
+      '<form method="POST" action="/api/contents/upload" enctype="multipart/form-data"><div class="file"><label class="file-label"><input class="file-input" type="file" name="myImage"><span class="file-cta"><span class="file-icon"><i class="fas fa-upload"></i></span><span class="file-label">Choose a file…</span></span></label></div><br><input value="Add" type="submit" class="button is-light is-outlined"/></form>';
     document.querySelector(".contentSection").appendChild(div);
 
-    let form = div.querySelector('form');
-    
-    // form.addEventListener('submit', (e) => {
-    //   e.preventDefault();
-
-    //   let fileInput = form.querySelector('input[type=file]');
-    //   let formData = new FormData();
-
-    //   formData.append('file', fileInput.files[0]);
-    //   console.log('fileInput.files[0]: ', fileInput.files[0]);
-
-    //   let url = 'http://localhost:3000/api/contents/upload';
-    //   let options = {
-    //     method: 'POST',
-    //     body: formData
-    //   }
-    //   fetch(url, options);
-    // })
-
-  })
+  });
 
   // Text button
   let addText = document.querySelector(".textType");
@@ -271,9 +279,11 @@ if (process.client) {
     });
   }, 100);
 
-  // Edit title and description
+  // Edit title, description, longitude and latitude
   let title = document.querySelector("input[name=title]");
   let description = document.querySelector("input[name=description]");
+  let latitude = document.querySelector("input[name=latitude]");
+  let longitude = document.querySelector("input[name=longitude]");
 
   title.addEventListener("keyup", () => {
     let id = title.id.substring(6, title.id.length);
@@ -296,6 +306,38 @@ if (process.client) {
     let url = "http://localhost:3000/api/steps/" + id;
     let data = {
       description: description.value
+    };
+
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+  });
+
+  longitude.addEventListener("keyup", () => {
+    let id = longitude.id.substring(4, longitude.id.length);
+    let url = "http://localhost:3000/api/steps/" + id;
+    let data = {
+      longitude: longitude.value
+    };
+
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+  });
+
+  latitude.addEventListener("keyup", () => {
+    let id = latitude.id.substring(4, latitude.id.length);
+    let url = "http://localhost:3000/api/steps/" + id;
+    let data = {
+      latitude: latitude.value
     };
 
     fetch(url, {
