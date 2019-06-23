@@ -10,7 +10,7 @@
 
   .logo {
     z-index: 2;
-    position: absolute;
+    position: fixed;
     top: 4.33%;
     left: 50%;
     transform: translateX(-50%);

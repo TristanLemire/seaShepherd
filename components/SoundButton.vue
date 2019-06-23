@@ -52,7 +52,7 @@ export default {
 <style lang="scss">
 button {
   cursor: pointer;
-  position: absolute;
+  position: fixed;
   left: 5.86%;
   bottom: 5.33%;
   background-color: transparent;

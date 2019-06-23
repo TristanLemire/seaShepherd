@@ -13,7 +13,6 @@
 </template>
 
 <script>
-import Menu from "~/components/Menu.vue";
 import StepsMenu from "~/components/StepsMenu.vue";
 import SoundButton from "~/components/SoundButton.vue";
 import Logo from "~/components/Logo.vue";
@@ -198,7 +197,6 @@ export default {
     };
   },
   components: {
-    Menu,
     SoundButton,
     Logo,
     StepsMenu
