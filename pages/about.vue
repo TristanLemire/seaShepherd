@@ -55,6 +55,7 @@ export default {
 </script>
 
 <style lang="scss">
+
   html {
     background-color: #0D1B2A;
   }
@@ -98,11 +99,5 @@ export default {
     font-family: "Poppins", sans-serif;
     font-weight: 500;
     color: white;
-  }
-
-  .back {
-    position: absolute;
-    top: 15%;
-    left: 6.86%;
   }
 </style>

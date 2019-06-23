@@ -120,6 +120,11 @@ export default {
 </script>
 
 <style lang="scss">
+
+html {
+    background-color: #0D1B2A;
+  }
+  
 .video {
   background: #0d1b2a;
   height: 100vh;
@@ -207,9 +212,9 @@ export default {
 
 .back {
   height: 0;
-  position: absolute;
+  position: fixed;
   top: 15%;
-  left: 6.86%;
+  left: 5.86%;
 }
 
 .imageText {
