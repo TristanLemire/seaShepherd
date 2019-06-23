@@ -1,24 +1,41 @@
 <template>
   <div>
     <div class="menuSteps">
-      <ul>
+      <ul class="steps">
         <li>
-          <a href="./about">Boarding and departure <span>01</span></a>
+          <a href="">Boarding and departure <span>01</span></a>
         </li>
         <li>
-          <a href="./contact">The drudgery <span>02</span></a>
+          <a href="">The drudgery <span>02</span></a>
         </li>
         <li>
-          <a href="https://www.facebook.com/seashepherdglobal/">The magic <span>03</span></a>
+          <a href="">The magic <span>03</span></a>
         </li>
         <li>
-          <a href="https://twitter.com/seashepherd?lang=fr">The unforeseen events <span>04</span></a>
+          <a href="">The unforeseen events <span>04</span></a>
         </li>
         <li>
-          <a href="https://www.instagram.com/seashepherd/?hl=fr">At the boarding <span>05</span></a>
+          <a href="">At the boarding <span>05</span></a>
         </li>
         <li>
-          <a href="https://www.instagram.com/seashepherd/?hl=fr">Mission achieved <span>06</span></a>
+          <a href="">Mission achieved <span>06</span></a>
+        </li>
+      </ul>
+      <ul class="basic">
+        <li>
+          <a href="./about">ABOUT</a>
+        </li>
+        <li>
+          <a href="./contact">CONTACT</a>
+        </li>
+        <li>
+          <a href="https://www.facebook.com/seashepherdglobal/">FACEBOOK</a>
+        </li>
+        <li>
+          <a href="https://twitter.com/seashepherd?lang=fr">TWITTER</a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/seashepherd/?hl=fr">INSTAGRAM</a>
         </li>
       </ul>
     </div>
@@ -86,7 +103,7 @@ export default {
     z-index: 3;
   }
 
-  ul {
+  ul.steps {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -123,6 +140,55 @@ export default {
         text-transform: uppercase;
         font-weight: bold;
         font-size: 36px;
+        line-height: 54px;
+        letter-spacing: 2px;
+      }
+      a:hover {
+        background-size: 100% 100%;
+      }
+    }
+    li:nth-child(1),
+    li:nth-child(2),
+    li:nth-child(3),
+    li:nth-child(4),
+    li:nth-child(5) {
+            margin-bottom: 40px;
+    }
+  }
+
+    ul.basic {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    left: 50%;
+    bottom: -15px;
+    transform: translateX(-50%);
+    text-align: center;
+
+    li {
+      a {
+        
+        span{
+          font-family: "Poppins", sans-serif;
+          font-style: normal;
+          font-weight: bold;
+          position: absolute;
+          top:-7px;
+          right: -35px;
+        }
+
+        position: relative;
+        font-family: "Poppins", sans-serif;
+        color: white;
+        text-decoration: none;
+        cursor: pointer;
+        background-image: linear-gradient(180deg, transparent 65%, #fcf113 0);
+        background-repeat: no-repeat;
+        background-size: 0 100%;
+        transition: background-size 0.4s ease;
+        text-transform: uppercase;
+        font-size: 18px;
         line-height: 54px;
         letter-spacing: 2px;
       }
