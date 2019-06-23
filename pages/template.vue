@@ -19,7 +19,16 @@
     </section>
 
     <section class="video">
-      <video class="home__video" src="../assets/video/home.mp4" controls></video>
+      <video class="home__video" src="../assets/video/home.mp4" @click="controlVideo"></video>
+      <svg @click="controlVideo" class="play" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="49" stroke="#DEDEDE" stroke-width="2"/>
+        <path d="M74 49.5L37.25 70.7176V28.2824L74 49.5Z" fill="white"/>
+      </svg>
+      <svg @click="controlVideo" display="none" class="play" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="30" y="27" width="13" height="46" fill="white"/>
+        <rect x="57" y="27" width="13" height="46" fill="white"/>
+        <circle cx="50" cy="50" r="49" stroke="#DEDEDE" stroke-width="2"/>
+      </svg>
     </section>
 
     <section class="imageText">
@@ -44,6 +53,8 @@ import { returnStatement } from "babel-types";
 if (process.client) {
 }
 
+let memo;
+
 export default {
   components: {
     SoundButton,
@@ -67,7 +78,40 @@ export default {
           });
         }
       }
-    }
+    },
+
+    controlVideo() {
+      let video = document.querySelector('video');
+      let svgPlay = document.querySelector('.video svg:nth-child(2)');
+      let svgPause = document.querySelector('.video svg:nth-child(3)');
+
+      if (memo === false) {
+        console.log('oui')
+        memo = true;
+        svgPause.setAttribute('display', 'none');
+        svgPlay.setAttribute('display', '');
+        video.pause();
+      } else if (memo === true) {
+        console.log('non')
+        svgPause.style.opacity = 1;
+        memo = false;
+        svgPlay.setAttribute('display', 'none');
+        svgPause.setAttribute('display', '');
+        setTimeout(function() {
+          svgPause.style.opacity = 0;
+        }, 200)
+        video.play();
+      } else {
+        memo = false;
+        video.play();
+        svgPause.style.opacity = 1;
+        svgPlay.setAttribute('display', 'none');
+        svgPause.setAttribute('display', '');
+        setTimeout(function() {
+          svgPause.style.opacity = 0;
+        }, 200)
+      }
+    } 
   },
   beforeMount() {
     this.soundActive();
@@ -85,6 +129,16 @@ export default {
     height: 100vh;
     width: 100%;
     object-fit: cover;
+  }
+
+  .play {
+    opacity: 1;
+    position: absolute;
+    top: 150%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    transition: opacity .25s ease-in-out;
   }
 }
 
