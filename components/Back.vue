@@ -37,8 +37,6 @@ export default {
         lastPageNameArray[lastPageNameArray.length - 3] +
         lastPageNameArray[lastPageNameArray.length - 2] +
         lastPageNameArray[lastPageNameArray.length - 1];
-
-      console.log(NameChoice);
       if (lastChar != "/" && NameChoice != "nameChoice") {
         window.location.href = "/worldMap";
       } else if (NameChoice == "nameChoice") {
