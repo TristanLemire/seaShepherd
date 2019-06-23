@@ -77,15 +77,18 @@ router.post('/upload', (req,res,err) => {
         let id = backURL.substring(33, backURL.length);
         let type = '';
         if (req.file.mimetype === 'image/png' || req.file.mimetype === 'image/jpg' || req.file.mimetype === 'image/jpeg') type = 'image';
-
-        let data = {
-            source: req.file.path.substring(7,req.file.path.length),
-            id_step: id,
-            type: type
-        }
-       
-        queries.create('content', data).then(() => {
-            res.redirect(backURL);
+        if (req.file.mimetype === 'video/mp4') type = 'video';
+        queries.countContent(id).then((response) => {
+            let data = {
+                source: req.file.path.substring(7,req.file.path.length),
+                id_step: id,
+                type: type,
+                order: Number(response[0].count) + 1
+            }
+            
+            queries.create('content', data).then(() => {
+                res.redirect(backURL);
+            })
         })
     });
 })

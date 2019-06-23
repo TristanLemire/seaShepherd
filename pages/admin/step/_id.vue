@@ -70,7 +70,24 @@
           <input type="submit" class="button is-outlined is-light" value="Save modifications">
           <button class="button is-danger deleteContent">Delete</button>
         </form>
-        <img v-if="content.type==='image'" :src="'/'+content.source" alt="image">
+        <span v-if="content.type === 'image' || content.type === 'video'">
+        <img v-if="content.type === 'image'" :src="'/'+content.source" alt="image"><br>
+        <video controls v-if="content.type ==='video'" :src="'/'+content.source"></video>
+        <form :id="content.id">
+          <div class="field">
+            <div class="control">
+              <textarea :value="content.content" class="textarea" placeholder="Section content"></textarea>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <input class="control" type="number" :value="content.order">
+            </div>
+          </div>
+          <input type="submit" class="button is-outlined is-light" value="Save modifications">
+          <button class="button is-danger deleteContent">Delete</button>
+        </form>
+        </span>
       </div>
     </section>
     <br>

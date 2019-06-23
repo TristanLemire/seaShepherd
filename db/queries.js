@@ -18,5 +18,8 @@ module.exports = {
     },
     getWhereStep(id) {
         return knex('content').where('id_step', id).orderBy('order', 'asc');
+    },
+    countContent(id) {
+        return knex('content').where('id_step', id).count();
     }
 }
