@@ -65,6 +65,20 @@
           >
         </div>
       </div>
+      <!-- Partie jason -->
+      <div class="field">
+        <label class="label has-text-light">Formulaire</label>
+        <div class="control">
+          <input
+            :id="'form-'+step.id"
+            name="formulaire"
+            minlength="5"
+            class="input"
+            type="text"
+            :value="step.formulaire"
+          >
+        </div>
+      </div>
     </section>
 
     <section class="notification is-dark contentSection">
@@ -130,6 +144,9 @@ button.invisible {
 </style>
 
 <script>
+
+
+
 if (process.client) {
   // Redirect if not admin
   if (
@@ -297,11 +314,14 @@ if (process.client) {
     });
   }, 100);
 
-  // Edit title, description, longitude and latitude
+  // Edit title, description, longitude and latitude and formulaire
   let title = document.querySelector("input[name=title]");
   let description = document.querySelector("input[name=description]");
   let latitude = document.querySelector("input[name=latitude]");
   let longitude = document.querySelector("input[name=longitude]");
+  /* Jason */
+  let formulaire = document.querySelector("input[name=formulaire]");
+
 
   title.addEventListener("keyup", () => {
     let id = title.id.substring(6, title.id.length);
@@ -366,7 +386,25 @@ if (process.client) {
       body: JSON.stringify(data)
     });
   });
+
+/* jason */
+  formulaire.addEventListener("keyup", () => {
+    let id = formulaire.id.substring(12, formulaire.id.length);
+    let url = "http://localhost:3000/api/steps/" + id;
+    let data = {
+      formulaire: formulaire.value
+    };
+
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+  });
 }
+
 
 export default {
   head() {
