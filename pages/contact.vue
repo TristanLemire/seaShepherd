@@ -1,6 +1,6 @@
 <template>
   <div class="contact">
-            <audio class="musique" autoplay src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga"></audio>
+            <audio class="musique" loop autoplay src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga"></audio>
     <Menu/>
     <Back/>
         <SoundButton/>

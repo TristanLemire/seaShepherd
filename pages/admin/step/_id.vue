@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <audio class="musique" loop autoplay src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga"></audio>
     <br>
     <br>
     <br>
@@ -177,6 +178,13 @@ button.invisible {
 
 
 if (process.client) {
+  let audiotime = document.querySelector('.musique');
+  audiotime.currentTime = localStorage.getItem('audioTime');
+
+  window.addEventListener('click', () => {
+      let audiotime = document.querySelector('.musique');
+      localStorage.setItem('audioTime',audiotime.currentTime);
+  })
   // Redirect if not admin
   if (
     !localStorage.getItem("connected") ||
