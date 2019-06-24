@@ -7,6 +7,7 @@
       <i class="fas fa-arrow-left"></i>&nbsp
       <span>Go back to steps</span>
     </a>
+    <a class="button is-info" :href="'http://localhost:3000/steps/'+step.id">View step</a>
     <br>
     <br>
     <br>
@@ -99,12 +100,17 @@
         <form v-if="content.type === 'text'" :id="content.id" action>
           <div class="field">
             <div class="control">
+              <input class="input" :value="content.subtitle" name="subtitle" placeholder="Section subtitle"/>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
               <textarea :value="content.content" class="textarea" placeholder="Section content"></textarea>
             </div>
           </div>
           <div class="field">
             <div class="control">
-              <input class="control" type="number" :value="content.order">
+              <input class="number" name="order" type="number" :value="content.order">
             </div>
           </div>
           <input type="submit" class="button is-outlined is-light" value="Save modifications">
@@ -117,12 +123,17 @@
           <form :id="content.id">
             <div class="field">
               <div class="control">
+                <input :value="content.subtitle" name="subtitle" class="input" placeholder="Section subtitle"/>
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
                 <textarea :value="content.content" class="textarea" placeholder="Section content"></textarea>
               </div>
             </div>
             <div class="field">
               <div class="control">
-                <input class="control" type="number" :value="content.order">
+                <input class="number" name="order" type="number" :value="content.order">
               </div>
             </div>
             <input type="submit" class="button is-outlined is-light" value="Save modifications">
@@ -178,24 +189,6 @@ if (process.client) {
       '<form method="POST" action="/api/contents/upload" enctype="multipart/form-data"><div class="file"><label class="file-label"><input class="file-input" type="file" name="myImage"><span class="file-cta"><span class="file-icon"><i class="fas fa-upload"></i></span><span class="file-label">Choose a file…</span></span></label></div><br><input value="Add" type="submit" class="button is-light is-outlined"/></form>';
     document.querySelector(".contentSection").appendChild(div);
 
-    let form = div.querySelector("form");
-
-    // form.addEventListener('submit', (e) => {
-    //   e.preventDefault();
-
-    //   let fileInput = form.querySelector('input[type=file]');
-    //   let formData = new FormData();
-
-    //   formData.append('file', fileInput.files[0]);
-    //   console.log('fileInput.files[0]: ', fileInput.files[0]);
-
-    //   let url = 'http://localhost:3000/api/contents/upload';
-    //   let options = {
-    //     method: 'POST',
-    //     body: formData
-    //   }
-    //   fetch(url, options);
-    // })
   });
 
   // Text button
@@ -205,6 +198,7 @@ if (process.client) {
     // Create it in database
     let url = "http://localhost:3000/api/contents";
     let order = document.querySelectorAll(".contentPart").length;
+    console.log('order: ', order);
 
     let data = {
       id_step: window.location.href.substring(33, window.location.href.length),
@@ -236,7 +230,7 @@ if (process.client) {
         div.innerHTML +=
           '<form id="' +
           id +
-          '"><div class="field"><div class="control"><textarea class="textarea" placeholder="Section content"></textarea></div></div><div class="field"><div class="control"><input class="control" type="number" value="' +
+          '"><div class="field"><div class="control"><input class="input" value="" name="subtitle" placeholder="Section subtitle"/></div></div><div class="field"><div class="control"><textarea class="textarea" placeholder="Section content"></textarea></div></div><div class="field"><div class="control"><input name="order" class="number" type="number" value="' +
           order +
           '"></div></div><input type="submit" class="button is-outlined is-light" value="Save modifications"><button class="button is-danger deleteContent">Delete</button></form>';
         document.querySelector(".contentSection").appendChild(div);
@@ -248,9 +242,11 @@ if (process.client) {
         form.addEventListener("submit", e => {
           e.preventDefault();
           let content = form.querySelector("textarea");
-          let order = form.querySelector("input");
+          let order = form.querySelector("input[name=order]");
+          let subtitle = form.querySelector("input[name=subtitle]");
 
           let data = {
+            subtitle: subtitle.value,
             content: content.value,
             order: order.value
           };
@@ -267,6 +263,7 @@ if (process.client) {
             referrer: "no-referrer", // no-referrer, *client
             body: JSON.stringify(data) // body data type must match "Content-Type" header
           }).then(response => {
+            console.log('response: ', response);
             window.location.reload();
           });
         });
@@ -286,14 +283,16 @@ if (process.client) {
         let div = document.querySelector("#div-" + id);
         div.style.display = "none";
       });
-      form.addEventListener("submit", e => {
+      form.addEventListener("submit", (e) => {
         e.preventDefault();
         let content = form.querySelector("textarea");
-        let order = form.querySelector("input");
+        let order = form.querySelector("input[name=order]");
+        let subtitle = form.querySelector("input[name=subtitle]");
 
         let data = {
           content: content.value,
-          order: order.value
+          order: order.value,
+          subtitle: subtitle.value
         };
         let url = "http://localhost:3000/api/contents/" + form.id;
 
@@ -312,7 +311,7 @@ if (process.client) {
         });
       });
     });
-  }, 100);
+  }, 300);
 
   // Edit title, description, longitude and latitude and formulaire
   let title = document.querySelector("input[name=title]");
