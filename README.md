@@ -37,6 +37,13 @@ Once it's done you have to run migrations in order to have your tables created:
 ```
 knex migrate:latest
 ```
+
+## Export the DB
+
+```
+pg_dump sea-shepherd > dbexport.pgsql
+```
+
 ---
 ## API
 
