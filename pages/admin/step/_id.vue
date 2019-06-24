@@ -1,10 +1,11 @@
 <template>
   <div class="container">
+    <audio class="musique" loop autoplay :src="require('@/assets/music/musique.mp3')"></audio>
     <br>
     <br>
     <br>
     <a href="/admin/steps" class="button">
-      <i class="fas fa-arrow-left"></i>&nbsp
+      <i class="fas fa-arrow-left"></i>
       <span>Go back to steps</span>
     </a>
     <a class="button is-info" :href="'http://localhost:3000/steps/'+step.id">View step</a>
@@ -65,6 +66,14 @@
             :value="step.longitude"
           >
         </div>
+      </div>
+      <div class="field">
+        <label class="label has-text-light">Next step</label>
+      <div class="select">
+        <select class="select-nextStep">
+          <option :value="stepsingle.id" v-for="stepsingle in steps" :key="stepsingle.id">{{ stepsingle.title }}</option>
+        </select>
+      </div>
       </div>
       <!-- Partie jason -->
       <div class="field">
@@ -187,6 +196,13 @@ button.invisible {
 
 <script>
 if (process.client) {
+  let audiotime = document.querySelector('.musique');
+  audiotime.currentTime = localStorage.getItem('audioTime');
+
+  window.addEventListener('click', () => {
+      let audiotime = document.querySelector('.musique');
+      localStorage.setItem('audioTime',audiotime.currentTime);
+  })
   // Redirect if not admin
   if (
     !localStorage.getItem("connected") ||
@@ -383,11 +399,28 @@ if (process.client) {
   let description = document.querySelector("input[name=description]");
   let latitude = document.querySelector("input[name=latitude]");
   let longitude = document.querySelector("input[name=longitude]");
+  let selectNextStep = document.querySelector('.select-nextStep');
   /* Jason */
   let question = document.querySelector("input[name=question]");
   let reponse1 = document.querySelector("input[name=reponse1]");
   let reponse2 = document.querySelector("input[name=reponse2]");
 
+  selectNextStep.addEventListener("change", () => {
+    let id = title.id.substring(6, title.id.length);
+    let url = "http://localhost:3000/api/steps/" + id;
+    let data = {
+      next: selectNextStep.value
+    };
+
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+  });
+  
   title.addEventListener("keyup", () => {
     let id = title.id.substring(6, title.id.length);
     let url = "http://localhost:3000/api/steps/" + id;
@@ -452,6 +485,7 @@ if (process.client) {
     });
   });
 
+<<<<<<< HEAD
   /* jason */
   question.addEventListener("keyup", () => {
     let id = question.getAttribute('data-id');
@@ -467,6 +501,25 @@ if (process.client) {
       body: JSON.stringify(data)
     });
   });
+=======
+/* jason */
+//   formulaire.addEventListener("keyup", () => {
+//     let id = formulaire.id.substring(12, formulaire.id.length);
+//     let url = "http://localhost:3000/api/questions/" + id;
+//     let data = {
+//       title: formulaire.value
+//     };
+    
+
+//     fetch(url, {
+//       method: "PUT",
+//       headers: {
+//         "Content-Type": "application/json"
+//       },
+//       body: JSON.stringify(data)
+//     });
+//   });
+>>>>>>> 627415a563fc21264289765dffdacc39fce18419
 }
 
 export default {
@@ -490,13 +543,29 @@ export default {
     return {
       id: this.$route.params.id,
       contents: this.getContent(),
+<<<<<<< HEAD
       // stepQuestion: this.getQuestion()
+=======
+      steps: this.getSteps(),
+      stepQuestion: this.getQuestion(),
+>>>>>>> 627415a563fc21264289765dffdacc39fce18419
     };
   },
   methods: {
     editMode() {
       if (this.edit) this.edit = false;
       else this.edit = true;
+    },
+    getSteps() {
+      fetch("http://localhost:3000/api/steps/", {
+        method: "GET"
+      })
+        .then(response => {
+          return response.json();
+        })
+        .then(response => {
+          this.steps = response;
+        });
     },
     getContent() {
       let idStep = this.$route.params.id;
@@ -512,6 +581,7 @@ export default {
     },
 
     /* Jason */
+<<<<<<< HEAD
     // getQuestion() {
     //   let idStep = this.$route.params.id;
     //   fetch("http://localhost:3000/api/questions/" + idStep, {
@@ -525,6 +595,21 @@ export default {
     //       console.log("this.stepQuestion: ", this.stepQuestion.title);
     //     });
     // }
+=======
+    getQuestion() {
+      let idStep = this.$route.params.id;
+      fetch("http://localhost:3000/api/questions/" + idStep, {
+        method: "GET"
+      })
+        .then(response => {
+          return response.json();
+        })
+        .then(response => {
+          this.stepQuestion = response;
+          console.log('this.stepQuestion: ', this.stepQuestion.title);
+        });
+    }
+>>>>>>> 627415a563fc21264289765dffdacc39fce18419
   }
 };
 </script>

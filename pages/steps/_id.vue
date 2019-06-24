@@ -1,5 +1,6 @@
 <template>
   <div class="template">
+<audio class="musique" loop autoplay :src="require('@/assets/music/musique.mp3')"></audio>
     <StepsMenu/>
 
     <section class="top">
@@ -17,7 +18,7 @@
         <Logo/>
       </div>
     </section>
-    <section v-for="content in contents" :key="content.id" :class="content.type">
+    <section v-for="content in contents" :key="content.id" :class="'scrollto' + content.type">
       <video v-if="content.type === 'video'" class="home__video" :src="'/'+content.source" @click="controlVideo"></video>
       <svg
         v-if="content.type === 'video'"
@@ -60,6 +61,7 @@
         <p v-if="content.type === 'text' && content.order !== 0">{{ content.content }}</p>
         </div>
     </section>
+    <a :href="'/steps/'+step.next" class="button">Next step</a>    
   </div>
 </template>
 
@@ -70,12 +72,34 @@ import Logo from "~/components/Logo.vue";
 import Back from "~/components/Back.vue";
 import { returnStatement } from "babel-types";
 
-if (process.client) {
+if ( process.client ) {
+  $( function() {
+    $.scrollify( {
+      section : ".scrollto"
+    } );
+  });
+
+  let audiotime = document.querySelector('.musique');
+  audiotime.currentTime = localStorage.getItem('audioTime');
+
+  window.addEventListener('click', () => {
+      let audiotime = document.querySelector('.musique');
+      localStorage.setItem('audioTime',audiotime.currentTime);
+  })
 }
 
 let memo;
 
 export default {
+
+  /* head() {
+    return {
+      script: [
+        { src: "https://cdnjs.cloudflare.com/ajax/libs/scrollify/1.0.19/jquery.scrollify.min.js" },
+      ]
+    };
+  }, */
+  
   data() {
     return {
       contents: this.getContent()

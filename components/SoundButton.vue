@@ -1,5 +1,5 @@
 <template>
-  <button @click="soundChange">SOUND: {{ sound }}</button>
+  <button class="soundButton" @click="soundChange">SOUND: {{ sound }}</button>
 </template>
 
 <script>
@@ -14,7 +14,6 @@ export default {
     soundChange() {
       let video = document.querySelector('video');
       let audios = document.querySelectorAll('audio');
-      console.log(video);
       if(this.sound == 'OFF'){
         this.sound = 'ON'
         if(video != null){
@@ -22,7 +21,7 @@ export default {
         } 
         if (audios.length > 0) {
           audios.forEach(audio => {
-          audio.start();
+          audio.play();
         });
         }
         localStorage.setItem('sound','ON');
@@ -50,7 +49,7 @@ export default {
 
 
 <style lang="scss">
-button {
+.soundButton {
   cursor: pointer;
   position: fixed;
   left: 5.86%;

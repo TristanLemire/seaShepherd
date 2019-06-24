@@ -1,5 +1,6 @@
 <template>
   <div class="worldMap">
+<audio class="musique" loop autoplay :src="require('@/assets/music/musique.mp3')"></audio>
     <StepsMenu/>
     <div id="chartdiv"></div>
     <div class="home__button">
@@ -31,21 +32,34 @@ import Logo from "~/components/Logo.vue";
 import { returnStatement } from "babel-types";
 
 if (process.client) {
+  if (!localStorage.getItem('user')) window.location.href = '/nameChoice';
+
+  let audiotime = document.querySelector('.musique');
+  audiotime.currentTime = localStorage.getItem('audioTime');
+
+    window.addEventListener('click', () => {
+      let audiotime = document.querySelector('.musique');
+      localStorage.setItem('audioTime',audiotime.currentTime);
+  })
+  
   let consoleWelcome = document.querySelector(".console p");
   consoleWelcome.innerHTML =
     "Hey " +
     JSON.parse(localStorage.getItem("user"))[0]["name"] +
     ",  Welcome to the Sea-Shepherd experience.";
+  
+  
+  
   // Colors
-  let countriesColor = "#ffffff";
+  let countriesColor = "#576370";
   let countriesHoverColor = "#ffffff";
-  let outlineColor = "#121212";
+  let outlineColor = "#fff";
 
-  let dotsColor = "#0f0";
-  let dotsStrokeColor = "#666";
+  let dotsColor = "#EECB29";
+  let dotsStrokeColor = "#fff";
   let dotHoverColor = "#df7e00";
 
-  let seaColor = "#121212";
+  let seaColor = "#193350";
 
   // Imports
   am4core.useTheme(am4themes_animated);
@@ -98,7 +112,7 @@ if (process.client) {
   let city = cities.mapImages.template.createChild(am4core.Circle);
   city.radius = 6;
   city.fill = am4core.color(dotsColor);
-  city.strokeWidth = 2;
+  city.strokeWidth = 4;
   city.stroke = am4core.color(dotsStrokeColor);
 
   /**
@@ -288,7 +302,6 @@ export default {
   head() {
     return {
       script: [
-        ,
         { src: "https://www.amcharts.com/lib/4/core.js" },
         { src: "https://www.amcharts.com/lib/4/charts.js" },
         { src: "https://www.amcharts.com/lib/4/maps.js" },
@@ -338,7 +351,7 @@ export default {
 
 <style lang="scss">
 body {
-  background-color: #121212;
+  background-color: #0d1b2a;
   height: 100vh;
   width: 100%;
 }
@@ -392,6 +405,7 @@ div.console {
   align-items: center;
   z-index: 1;
   transition: transform 0.3s;
+  border-radius: 10px;
 
   &__title {
     text-transform: uppercase;
@@ -407,8 +421,8 @@ div.console {
     font-weight: bold;
     width: 100px;
     text-decoration: none;
-    color: gold;
-    border: 1px solid gold;
+    color: black;
+    border: 1px solid black;
     border-radius: 30px;
     padding: 5px 10px;
     display: flex;

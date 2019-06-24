@@ -1,7 +1,9 @@
 <template>
   <div class="about">
+<audio class="musique" loop autoplay :src="require('@/assets/music/musique.mp3')"></audio>
     <Menu/>
     <Back/>
+    <SoundButton/>
     <div class="content">
       <div class="text">
       <h1>ABOUT US</h1>
@@ -23,12 +25,24 @@
 <script>
 import Menu from "~/components/Menu.vue";
 import Back from "~/components/Back.vue";
+import SoundButton from "~/components/SoundButton.vue";
+
+
+if (process.client) {
+      let audiotime = document.querySelector('.musique');
+  audiotime.currentTime = localStorage.getItem('audioTime');
+      window.addEventListener('click', () => {
+      let audiotime = document.querySelector('.musique');
+      localStorage.setItem('audioTime',audiotime.currentTime);
+  })
+}
 
 export default {
   transition: "intro",
   components: {
     Menu,
-    Back
+    Back,
+    SoundButton
   },
     methods: {
     soundActive() {

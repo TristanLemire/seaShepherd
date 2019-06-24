@@ -1,5 +1,6 @@
 <template>
   <div class="nameChoice">
+<audio class="musique" loop autoplay :src="require('@/assets/music/musique.mp3')"></audio>
     <div class="nameChoice__form">
       <h1>Hello, what is your name?</h1>
       <form>
@@ -22,6 +23,8 @@ import Logo from "~/components/Logo.vue";
 import { returnStatement } from "babel-types";
 
 if (process.client) {
+    let audiotime = document.querySelector('.musique');
+  audiotime.currentTime = localStorage.getItem('audioTime');
   let submit = document.querySelector("input[type=submit]");
     let nameText = document.querySelector("input[type=text]");
   submit.addEventListener("click", event => {
@@ -57,7 +60,8 @@ if (process.client) {
     }).then(user => {
       localStorage.setItem('user',JSON.stringify(user));
     })
-      
+      let audiotime = document.querySelector('.musique');
+      localStorage.setItem('audioTime',audiotime.currentTime);
       window.location.href = "/worldMap";
   });
 }

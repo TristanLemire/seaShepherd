@@ -1,8 +1,9 @@
 <template>
   <div class="template">
+<audio class="musique" loop autoplay :src="require('@/assets/music/musique.mp3')"></audio>
     <StepsMenu/>
 
-    <section class="top">
+    <section class="top scrollto">
       <Back/>
       <div class="top__title">
         <p>STEP 01:</p>
@@ -18,7 +19,7 @@
       </div>
     </section>
 
-    <section class="video">
+    <section class="video scrollto">
       <video class="home__video" src="../assets/video/home.mp4" @click="controlVideo"></video>
       <svg @click="controlVideo" class="play" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="50" cy="50" r="49" stroke="#DEDEDE" stroke-width="2"/>
@@ -31,7 +32,7 @@
       </svg>
     </section>
 
-    <section class="imageText">
+    <section class="imageText scrollto">
       <img src="../assets/img/img.png" alt>
       <div class="imageText__title">
         <div>
@@ -40,7 +41,7 @@
         </div>
       </div>
     </section>
-    <Footer />
+    <Footer class="scrollto"/>
   </div>
 </template>
 
@@ -52,12 +53,35 @@ import Back from "~/components/Back.vue";
 import Footer from "~/components/Footer.vue";
 import { returnStatement } from "babel-types";
 
-if (process.client) {
+if ( process.client ) {
+  $( function() {
+    $.scrollify( {
+      section : ".scrollto"
+    } );
+  });
+
+  let audiotime = document.querySelector('.musique');
+  audiotime.currentTime = localStorage.getItem('audioTime');
+
+  window.addEventListener('click', () => {
+      let audiotime = document.querySelector('.musique');
+      localStorage.setItem('audioTime',audiotime.currentTime);
+  })
 }
 
 let memo;
 
 export default {
+  /* https://cdnjs.cloudflare.com/ajax/libs/scrollify/1.0.19/jquery.scrollify.min.js */
+
+  /* head() {
+    return {
+      script: [
+        { src: "https://cdnjs.cloudflare.com/ajax/libs/scrollify/1.0.19/jquery.scrollify.min.js" },
+      ]
+    };
+  }, */
+
   components: {
     SoundButton,
     Logo,
@@ -65,6 +89,7 @@ export default {
     Back,
     Footer
   },
+
   methods: {
     soundActive() {
       console.log(document.querySelector(".home__video"));
@@ -89,13 +114,11 @@ export default {
       let svgPause = document.querySelector('.video svg:nth-child(3)');
 
       if (memo === false) {
-        console.log('oui')
         memo = true;
         svgPause.setAttribute('display', 'none');
         svgPlay.setAttribute('display', '');
         video.pause();
       } else if (memo === true) {
-        console.log('non')
         svgPause.style.opacity = 1;
         memo = false;
         svgPlay.setAttribute('display', 'none');
