@@ -4,7 +4,7 @@
       <form action="">
         <label for="answer">Do you know how to swim?</label>
         <input type="text" name="answer" id="answer" @input="checkAnswer">
-        <input id="submit" value="CONTINUE THE ADVENTURE" disabled @click="redirection()">
+        <input type="submit" id="submit" value="CONTINUE THE ADVENTURE" disabled @click.prevent="redirection()">
       </form>
     </div>
     <svg class="boat" width="1113" height="231" viewBox="0 0 1113 231" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -254,7 +254,6 @@
         position: absolute;
         bottom: 7%;
         z-index: 3;
-        width:43%;
 
         &:disabled {
           opacity: 0.6;
