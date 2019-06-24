@@ -89,3 +89,6 @@ sw.*
 
 # Static files 
 static/uploads/
+
+# Config
+package-lock.json
