@@ -1,5 +1,6 @@
 <template>
   <div class="template">
+            <audio class="musique" autoplay src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga"></audio>
     <StepsMenu/>
 
     <section class="top">
@@ -53,6 +54,13 @@ import Footer from "~/components/Footer.vue";
 import { returnStatement } from "babel-types";
 
 if (process.client) {
+      let audiotime = document.querySelector('.musique');
+  audiotime.currentTime = localStorage.getItem('audioTime');
+
+  window.addEventListener('click', () => {
+      let audiotime = document.querySelector('.musique');
+      localStorage.setItem('audioTime',audiotime.currentTime);
+  })
 }
 
 let memo;
