@@ -18,7 +18,7 @@
         <Logo/>
       </div>
     </section>
-    <section v-for="content in contents" :key="content.id" :class="'scrollto' + content.type">
+    <section v-for="content in contents" :key="content.id" :class="'scrollto ' + content.type">
       <video v-if="content.type === 'video'" class="home__video" :src="'/'+content.source" @click="controlVideo"></video>
       <svg
         v-if="content.type === 'video'"
@@ -62,6 +62,7 @@
         </div>
     </section>
     <a :href="'/steps/'+step.next" class="button">Next step</a>    
+  <Footer class="scrollto" />
   </div>
 </template>
 
@@ -71,6 +72,7 @@ import SoundButton from "~/components/SoundButton.vue";
 import Logo from "~/components/Logo.vue";
 import Back from "~/components/Back.vue";
 import { returnStatement } from "babel-types";
+import Footer from "~/components/Footer.vue";
 
 if ( process.client ) {
   $( function() {
@@ -109,7 +111,8 @@ export default {
     SoundButton,
     Logo,
     StepsMenu,
-    Back
+    Back,
+    Footer
   },
   asyncData({ params }) {
     return fetch("http://localhost:3000/api/steps/" + params.id, {

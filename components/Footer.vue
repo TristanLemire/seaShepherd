@@ -189,7 +189,7 @@
   }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 
   footer {
     height: 100vh;
