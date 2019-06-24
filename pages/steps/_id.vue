@@ -72,7 +72,13 @@ import Logo from "~/components/Logo.vue";
 import Back from "~/components/Back.vue";
 import { returnStatement } from "babel-types";
 
-if (process.client) {
+if ( process.client ) {
+  $( function() {
+    $.scrollify( {
+      /* Mettre la classe ci-dessous pour ajouter des ancres aux scrolls ! */
+      section : ".scrollto"
+    } );
+  });
 
   let audiotime = document.querySelector('.musique');
   audiotime.currentTime = localStorage.getItem('audioTime');
@@ -86,6 +92,15 @@ if (process.client) {
 let memo;
 
 export default {
+
+  /* head() {
+    return {
+      script: [
+        { src: "https://cdnjs.cloudflare.com/ajax/libs/scrollify/1.0.19/jquery.scrollify.min.js" },
+      ]
+    };
+  }, */
+  
   data() {
     return {
       contents: this.getContent()

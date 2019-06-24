@@ -2,23 +2,8 @@
   <div>
     <div class="menuSteps">
       <ul class="steps">
-        <li>
-          <a href="/template">Boarding and departure <span>01</span></a>
-        </li>
-        <li>
-          <a href="/template">The drudgery <span>02</span></a>
-        </li>
-        <li>
-          <a href="/template">The magic <span>03</span></a>
-        </li>
-        <li>
-          <a href="/template">The unforeseen events <span>04</span></a>
-        </li>
-        <li>
-          <a href="/template">At the boarding <span>05</span></a>
-        </li>
-        <li>
-          <a href="/template">Mission achieved <span>06</span></a>
+        <li v-for="step, key in steps" :key="step.id">
+          <a :href="'/steps/'+step.id">{{ step.title }} <span>0{{++key}}</span></a>
         </li>
       </ul>
       <ul class="basic">
@@ -61,7 +46,23 @@
 
 <script>
 export default {
+  data() {
+    return {
+      steps: this.getSteps()
+    }
+  },
   methods: {
+    getSteps() {
+      fetch("http://localhost:3000/api/steps/", {
+        method: "GET"
+      })
+        .then(response => {
+          return response.json();
+        })
+        .then(response => {
+          this.steps = response;
+        });
+    },
     openMenu() {
       let menu = document.querySelector(".menuSteps");
       let bouton = document.querySelector('.ham');
