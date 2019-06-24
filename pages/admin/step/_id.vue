@@ -68,15 +68,36 @@
       </div>
       <!-- Partie jason -->
       <div class="field">
-        <label class="label has-text-light">Formulaire</label>
+        <label class="label has-text-light">Question</label>
         <div class="control">
           <input
-            :id="'form-'"
-            name="formulaire"
+            :id="step.id"
+            name="question"
             minlength="5"
-            class="input"
+            class="input question"
             type="text"
-            :value="stepQuestion"
+          >
+        </div>
+      </div>
+      <div class="field">
+        <label class="label has-text-light">Réponses</label>
+        <div class="control">Réponse 1
+          <input
+            :id="step.id"
+            name="reponse1"
+            minlength="5"
+            class="input reponse1"
+            type="text"
+          >
+        </div>
+        <br>
+        <div class="control">Réponse 2 
+          <input
+            :id="step.id"
+            name="reponse2"
+            minlength="5"
+            class="input reponse2"
+            type="text"
           >
         </div>
       </div>
@@ -100,7 +121,12 @@
         <form v-if="content.type === 'text'" :id="content.id" action>
           <div class="field">
             <div class="control">
-              <input class="input" :value="content.subtitle" name="subtitle" placeholder="Section subtitle"/>
+              <input
+                class="input"
+                :value="content.subtitle"
+                name="subtitle"
+                placeholder="Section subtitle"
+              >
             </div>
           </div>
           <div class="field">
@@ -123,7 +149,12 @@
           <form :id="content.id">
             <div class="field">
               <div class="control">
-                <input :value="content.subtitle" name="subtitle" class="input" placeholder="Section subtitle"/>
+                <input
+                  :value="content.subtitle"
+                  name="subtitle"
+                  class="input"
+                  placeholder="Section subtitle"
+                >
               </div>
             </div>
             <div class="field">
@@ -155,9 +186,6 @@ button.invisible {
 </style>
 
 <script>
-
-
-
 if (process.client) {
   // Redirect if not admin
   if (
@@ -188,7 +216,6 @@ if (process.client) {
     div.innerHTML +=
       '<form method="POST" action="/api/contents/upload" enctype="multipart/form-data"><div class="file"><label class="file-label"><input class="file-input" type="file" name="myImage"><span class="file-cta"><span class="file-icon"><i class="fas fa-upload"></i></span><span class="file-label">Choose a file…</span></span></label></div><br><input value="Add" type="submit" class="button is-light is-outlined"/></form>';
     document.querySelector(".contentSection").appendChild(div);
-
   });
 
   // Text button
@@ -198,7 +225,7 @@ if (process.client) {
     // Create it in database
     let url = "http://localhost:3000/api/contents";
     let order = document.querySelectorAll(".contentPart").length;
-    console.log('order: ', order);
+    console.log("order: ", order);
 
     let data = {
       id_step: window.location.href.substring(33, window.location.href.length),
@@ -263,7 +290,7 @@ if (process.client) {
             referrer: "no-referrer", // no-referrer, *client
             body: JSON.stringify(data) // body data type must match "Content-Type" header
           }).then(response => {
-            console.log('response: ', response);
+            console.log("response: ", response);
             window.location.reload();
           });
         });
@@ -271,6 +298,44 @@ if (process.client) {
   });
 
   setTimeout(() => {
+    // question
+    let inputQuestion = document.querySelector(".question");
+    let id = window.location.href;
+    console.log('id', window.location.href);
+    id = id.substring(33, window.location.href.length);
+    let question = "http://localhost:3000/api/questions/" + id;
+    
+    fetch(question, { method: "GET" })
+      .then(function(response) {
+        return response.json();
+      })
+      .then(response => {
+        inputQuestion.setAttribute('value', response[0].title);
+        inputQuestion.setAttribute('data-id', response[0].id);  
+
+        // reponses
+        let inputReponse1 = document.querySelector(".reponse1");
+        let inputReponse2 = document.querySelector(".reponse2");
+        let reponse = "http://localhost:3000/api/answers/" + id;
+        console.log('id: ', id);
+
+        fetch(reponse, {method: "GET"})
+          .then(function(response){
+            return response.json();
+          })
+          .then(response => {
+            inputReponse1.setAttribute('value', response[0].answer);
+            inputReponse1.setAttribute('data-id', response[0].id);
+            inputReponse2.setAttribute('value', response[1].answer);
+            inputReponse2.setAttribute('data-id', response[1].id);
+          })
+
+      });
+
+      
+
+
+
     let forms = document.querySelectorAll("form");
     forms.forEach(form => {
       let deleteButton = form.querySelector(".deleteContent");
@@ -283,7 +348,7 @@ if (process.client) {
         let div = document.querySelector("#div-" + id);
         div.style.display = "none";
       });
-      form.addEventListener("submit", (e) => {
+      form.addEventListener("submit", e => {
         e.preventDefault();
         let content = form.querySelector("textarea");
         let order = form.querySelector("input[name=order]");
@@ -313,14 +378,15 @@ if (process.client) {
     });
   }, 300);
 
-  // Edit title, description, longitude and latitude and formulaire
+  // Edit title, description, longitude and latitude and question
   let title = document.querySelector("input[name=title]");
   let description = document.querySelector("input[name=description]");
   let latitude = document.querySelector("input[name=latitude]");
   let longitude = document.querySelector("input[name=longitude]");
   /* Jason */
-  let formulaire = document.querySelector("input[name=formulaire]");
-
+  let question = document.querySelector("input[name=question]");
+  let reponse1 = document.querySelector("input[name=reponse1]");
+  let reponse2 = document.querySelector("input[name=reponse2]");
 
   title.addEventListener("keyup", () => {
     let id = title.id.substring(6, title.id.length);
@@ -386,15 +452,13 @@ if (process.client) {
     });
   });
 
-/* jason */
-  formulaire.addEventListener("keyup", () => {
-    let id = formulaire.id.substring(12, formulaire.id.length);
+  /* jason */
+  question.addEventListener("keyup", () => {
+    let id = question.getAttribute('data-id');
     let url = "http://localhost:3000/api/questions/" + id;
     let data = {
-      title: formulaire.value
+      title: question.value
     };
-    
-
     fetch(url, {
       method: "PUT",
       headers: {
@@ -404,7 +468,6 @@ if (process.client) {
     });
   });
 }
-
 
 export default {
   head() {
@@ -427,7 +490,7 @@ export default {
     return {
       id: this.$route.params.id,
       contents: this.getContent(),
-      stepQuestion: this.getQuestion(),
+      // stepQuestion: this.getQuestion()
     };
   },
   methods: {
@@ -449,21 +512,20 @@ export default {
     },
 
     /* Jason */
-    getQuestion() {
-      let idStep = this.$route.params.id;
-      fetch("http://localhost:3000/api/questions/" + idStep, {
-        method: "GET"
-      })
-        .then(response => {
-          return response.json();
-        })
-        .then(response => {
-          this.stepQuestion.title = response;
-          console.log('this.stepQuestion: ', this.stepQuestion.title);
-        });
-    }
+    // getQuestion() {
+    //   let idStep = this.$route.params.id;
+    //   fetch("http://localhost:3000/api/questions/" + idStep, {
+    //     method: "GET"
+    //   })
+    //     .then(response => {
+    //       return response.json();
+    //     })
+    //     .then(response => {
+    //       this.stepQuestion = response;
+    //       console.log("this.stepQuestion: ", this.stepQuestion.title);
+    //     });
+    // }
   }
-  
 };
 </script>
 
