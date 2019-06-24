@@ -69,9 +69,10 @@
       <div class="field">
         <label class="label has-text-light">Next step</label>
       <div class="select">
-        <select>
+        <select class="select-nextStep">
           <option :value="stepsingle.id" v-for="stepsingle in steps" :key="stepsingle.id">{{ stepsingle.title }}</option>
         </select>
+      </div>
       </div>
       <!-- Partie jason -->
       <div class="field">
@@ -83,7 +84,7 @@
             minlength="5"
             class="input"
             type="text"
-            :value="stepQuestion"
+            
           >
         </div>
       </div>
@@ -334,10 +335,27 @@ if (process.client) {
   let description = document.querySelector("input[name=description]");
   let latitude = document.querySelector("input[name=latitude]");
   let longitude = document.querySelector("input[name=longitude]");
+  let selectNextStep = document.querySelector('.select-nextStep');
   /* Jason */
   let formulaire = document.querySelector("input[name=formulaire]");
 
 
+  selectNextStep.addEventListener("change", () => {
+    let id = title.id.substring(6, title.id.length);
+    let url = "http://localhost:3000/api/steps/" + id;
+    let data = {
+      next: selectNextStep.value
+    };
+
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+  });
+  
   title.addEventListener("keyup", () => {
     let id = title.id.substring(6, title.id.length);
     let url = "http://localhost:3000/api/steps/" + id;
@@ -403,22 +421,22 @@ if (process.client) {
   });
 
 /* jason */
-  formulaire.addEventListener("keyup", () => {
-    let id = formulaire.id.substring(12, formulaire.id.length);
-    let url = "http://localhost:3000/api/questions/" + id;
-    let data = {
-      title: formulaire.value
-    };
+//   formulaire.addEventListener("keyup", () => {
+//     let id = formulaire.id.substring(12, formulaire.id.length);
+//     let url = "http://localhost:3000/api/questions/" + id;
+//     let data = {
+//       title: formulaire.value
+//     };
     
 
-    fetch(url, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
-    });
-  });
+//     fetch(url, {
+//       method: "PUT",
+//       headers: {
+//         "Content-Type": "application/json"
+//       },
+//       body: JSON.stringify(data)
+//     });
+//   });
 }
 
 
@@ -486,7 +504,7 @@ export default {
           return response.json();
         })
         .then(response => {
-          this.stepQuestion.title = response;
+          this.stepQuestion = response;
           console.log('this.stepQuestion: ', this.stepQuestion.title);
         });
     }

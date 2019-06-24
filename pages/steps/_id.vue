@@ -60,6 +60,7 @@
         <p v-if="content.type === 'text' && content.order !== 0">{{ content.content }}</p>
         </div>
     </section>
+    <a :href="'/steps/'+step.next" class="button">Next step</a>    
   </div>
 </template>
 
