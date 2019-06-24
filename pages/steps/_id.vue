@@ -1,6 +1,6 @@
 <template>
   <div class="template">
-<audio class="musique" loop autoplay src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga"></audio>
+<audio class="musique" loop autoplay :src="require('@/assets/music/musique.mp3')"></audio>
     <StepsMenu/>
 
     <section class="top">
@@ -18,7 +18,7 @@
         <Logo/>
       </div>
     </section>
-    <section v-for="content in contents" :key="content.id" :class="content.type">
+    <section v-for="content in contents" :key="content.id" :class="'scrollto' + content.type">
       <video v-if="content.type === 'video'" class="home__video" :src="'/'+content.source" @click="controlVideo"></video>
       <svg
         v-if="content.type === 'video'"
@@ -75,7 +75,6 @@ import { returnStatement } from "babel-types";
 if ( process.client ) {
   $( function() {
     $.scrollify( {
-      /* Mettre la classe ci-dessous pour ajouter des ancres aux scrolls ! */
       section : ".scrollto"
     } );
   });
