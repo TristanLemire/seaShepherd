@@ -7,6 +7,7 @@
       <i class="fas fa-arrow-left"></i>&nbsp
       <span>Go back to steps</span>
     </a>
+    <a class="button is-info" :href="'http://localhost:3000/steps/'+step.id">View step</a>
     <br>
     <br>
     <br>
@@ -65,6 +66,14 @@
           >
         </div>
       </div>
+      <div class="field">
+        <label class="label has-text-light">Next step</label>
+      <div class="select">
+        <select>
+          <option :value="stepsingle.id" v-for="stepsingle in steps" :key="stepsingle.id">{{ stepsingle.title }}</option>
+        </select>
+      </div>
+      </div>
     </section>
 
     <section class="notification is-dark contentSection">
@@ -85,7 +94,12 @@
         <form v-if="content.type === 'text'" :id="content.id" action>
           <div class="field">
             <div class="control">
-              <input class="input" :value="content.subtitle" name="subtitle" placeholder="Section subtitle"/>
+              <input
+                class="input"
+                :value="content.subtitle"
+                name="subtitle"
+                placeholder="Section subtitle"
+              >
             </div>
           </div>
           <div class="field">
@@ -108,7 +122,12 @@
           <form :id="content.id">
             <div class="field">
               <div class="control">
-                <input :value="content.subtitle" name="subtitle" class="input" placeholder="Section subtitle"/>
+                <input
+                  :value="content.subtitle"
+                  name="subtitle"
+                  class="input"
+                  placeholder="Section subtitle"
+                >
               </div>
             </div>
             <div class="field">
@@ -170,7 +189,6 @@ if (process.client) {
     div.innerHTML +=
       '<form method="POST" action="/api/contents/upload" enctype="multipart/form-data"><div class="file"><label class="file-label"><input class="file-input" type="file" name="myImage"><span class="file-cta"><span class="file-icon"><i class="fas fa-upload"></i></span><span class="file-label">Choose a file…</span></span></label></div><br><input value="Add" type="submit" class="button is-light is-outlined"/></form>';
     document.querySelector(".contentSection").appendChild(div);
-
   });
 
   // Text button
@@ -180,7 +198,7 @@ if (process.client) {
     // Create it in database
     let url = "http://localhost:3000/api/contents";
     let order = document.querySelectorAll(".contentPart").length;
-    console.log('order: ', order);
+    console.log("order: ", order);
 
     let data = {
       id_step: window.location.href.substring(33, window.location.href.length),
@@ -245,7 +263,7 @@ if (process.client) {
             referrer: "no-referrer", // no-referrer, *client
             body: JSON.stringify(data) // body data type must match "Content-Type" header
           }).then(response => {
-            console.log('response: ', response);
+            console.log("response: ", response);
             window.location.reload();
           });
         });
@@ -265,7 +283,7 @@ if (process.client) {
         let div = document.querySelector("#div-" + id);
         div.style.display = "none";
       });
-      form.addEventListener("submit", (e) => {
+      form.addEventListener("submit", e => {
         e.preventDefault();
         let content = form.querySelector("textarea");
         let order = form.querySelector("input[name=order]");
@@ -386,13 +404,25 @@ export default {
   data() {
     return {
       id: this.$route.params.id,
-      contents: this.getContent()
+      contents: this.getContent(),
+      steps: this.getSteps()
     };
   },
   methods: {
     editMode() {
       if (this.edit) this.edit = false;
       else this.edit = true;
+    },
+    getSteps() {
+      fetch("http://localhost:3000/api/steps/", {
+        method: "GET"
+      })
+        .then(response => {
+          return response.json();
+        })
+        .then(response => {
+          this.steps = response;
+        });
     },
     getContent() {
       let idStep = this.$route.params.id;

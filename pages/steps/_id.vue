@@ -48,36 +48,18 @@
         <circle cx="50" cy="50" r="49" stroke="#DEDEDE" stroke-width="2"></circle>
       </svg>
       <img v-if="content.type === 'image'  && content.content !== null && content.content !== ''" :src="'/'+content.source">
-      <img v-if="content.type === 'image'  && content.content === null || content.content === ''" class="image-full" :src="'/'+content.source">
+      <img v-if="content.type === 'image'  && content.content === null || content.type === 'image' && content.content === ''" class="image-full" :src="'/'+content.source">
         <div v-if="content.type === 'image'" class="image__title">
            <div>
             <h2>{{ content.subtitle }}</h2>
             <p>{{ content.content }}</p>
            </div>
         </div>
-    </section>
-    <!-- <section class="video">
-      <video class="home__video" src="../../assets/video/home.mp4" @click="controlVideo"></video>
-      <svg @click="controlVideo" class="play" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="50" cy="50" r="49" stroke="#DEDEDE" stroke-width="2"/>
-        <path d="M74 49.5L37.25 70.7176V28.2824L74 49.5Z" fill="white"/>
-      </svg>
-      <svg @click="controlVideo" display="none" class="play" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="30" y="27" width="13" height="46" fill="white"/>
-        <rect x="57" y="27" width="13" height="46" fill="white"/>
-        <circle cx="50" cy="50" r="49" stroke="#DEDEDE" stroke-width="2"/>
-      </svg>
-    </section>-->
-
-    <!-- <section class="image">
-      <img src="../../assets/img/img.png" alt>
-      <div class="image__title">
-        <div>
-          <h2>Welcome!</h2>
-          <p>Embarked on one of the ships in Sea-Shepherd's fleet. Attends the traditional departure of a boat and the final preparations.</p>
+        <div v-if="content.type === 'text' && content.order !== 0">
+        <h2 v-if="content.type === 'text' && content.order !== 0">{{ content.subtitle }}</h2>
+        <p v-if="content.type === 'text' && content.order !== 0">{{ content.content }}</p>
         </div>
-      </div>
-    </section> -->
+    </section>
   </div>
 </template>
 
@@ -282,6 +264,36 @@ html {
   position: fixed;
   top: 15%;
   left: 5.86%;
+}
+.text {
+  div {
+    background: #0d1b2a;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #ffffff;
+
+  h2 {
+    font-family: Poppins;
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+    margin-bottom: 57px;
+  }
+
+  p {
+    text-align: center;
+    font-family: Poppins;
+    font-weight: 500;
+    font-size: 23px;
+    letter-spacing: 2px;
+    width: 50vw;
+  }
+  }
 }
 
 .image {
