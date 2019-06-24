@@ -485,7 +485,6 @@ if (process.client) {
     });
   });
 
-<<<<<<< HEAD
   /* jason */
   question.addEventListener("keyup", () => {
     let id = question.getAttribute('data-id');
@@ -501,25 +500,6 @@ if (process.client) {
       body: JSON.stringify(data)
     });
   });
-=======
-/* jason */
-//   formulaire.addEventListener("keyup", () => {
-//     let id = formulaire.id.substring(12, formulaire.id.length);
-//     let url = "http://localhost:3000/api/questions/" + id;
-//     let data = {
-//       title: formulaire.value
-//     };
-    
-
-//     fetch(url, {
-//       method: "PUT",
-//       headers: {
-//         "Content-Type": "application/json"
-//       },
-//       body: JSON.stringify(data)
-//     });
-//   });
->>>>>>> 627415a563fc21264289765dffdacc39fce18419
 }
 
 export default {
@@ -543,12 +523,8 @@ export default {
     return {
       id: this.$route.params.id,
       contents: this.getContent(),
-<<<<<<< HEAD
-      // stepQuestion: this.getQuestion()
-=======
       steps: this.getSteps(),
       stepQuestion: this.getQuestion(),
->>>>>>> 627415a563fc21264289765dffdacc39fce18419
     };
   },
   methods: {
@@ -581,21 +557,6 @@ export default {
     },
 
     /* Jason */
-<<<<<<< HEAD
-    // getQuestion() {
-    //   let idStep = this.$route.params.id;
-    //   fetch("http://localhost:3000/api/questions/" + idStep, {
-    //     method: "GET"
-    //   })
-    //     .then(response => {
-    //       return response.json();
-    //     })
-    //     .then(response => {
-    //       this.stepQuestion = response;
-    //       console.log("this.stepQuestion: ", this.stepQuestion.title);
-    //     });
-    // }
-=======
     getQuestion() {
       let idStep = this.$route.params.id;
       fetch("http://localhost:3000/api/questions/" + idStep, {
@@ -609,7 +570,6 @@ export default {
           console.log('this.stepQuestion: ', this.stepQuestion.title);
         });
     }
->>>>>>> 627415a563fc21264289765dffdacc39fce18419
   }
 };
 </script>
