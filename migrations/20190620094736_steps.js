@@ -6,6 +6,7 @@ exports.up = function (knex, Promise) {
         table.text('latitude');
         table.text('title');
         table.text('description');
+        table.integer('next');  // id for the next step in linear order
     })
 };
 
