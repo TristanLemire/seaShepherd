@@ -38,6 +38,13 @@ import { returnStatement } from "babel-types";
 
 let memo;
 
+if (process.client) {
+  localStorage.setItem('user','');
+  window.addEventListener('click', () => {
+  localStorage.setItem('audioTime','');
+  })
+}
+
 export default {
     transition: "intro",
   components: {

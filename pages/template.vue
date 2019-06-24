@@ -1,5 +1,6 @@
 <template>
   <div class="template">
+            <audio class="musique" loop autoplay src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga"></audio>
     <StepsMenu/>
 
     <section class="top scrollto">
@@ -58,6 +59,13 @@ if (process.client) {
       section : ".scrollto"
     });
   });
+  let audiotime = document.querySelector('.musique');
+  audiotime.currentTime = localStorage.getItem('audioTime');
+
+  window.addEventListener('click', () => {
+      let audiotime = document.querySelector('.musique');
+      localStorage.setItem('audioTime',audiotime.currentTime);
+  })
 }
 
 let memo;

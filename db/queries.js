@@ -16,8 +16,8 @@ module.exports = {
     delete(table, id) {
         return knex(table).where('id', id).del();
     },
-    getWhereStep(id) {
-        return knex('content').where('id_step', id).orderBy('order', 'asc');
+    getWhereStep(table, id) {
+        return knex(table).where('id_step', id).orderBy('order', 'asc');
     },
     countContent(id) {
         return knex('content').where('id_step', id).count();

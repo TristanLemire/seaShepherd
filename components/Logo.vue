@@ -15,6 +15,20 @@
     left: 50%;
     transform: translateX(-50%);
     z-index: 3;
+    cursor: pointer;
   }
 
 </style>
+
+<script>
+
+if (process.client) {
+  let logo = document.querySelector('.logo')
+  logo.addEventListener('click', () => {
+    window.location.href = '/worldMap';
+  })
+}
+export default {
+  
+}
+</script>
