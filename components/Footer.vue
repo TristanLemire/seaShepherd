@@ -192,7 +192,8 @@
 <style lang="scss">
 
   footer {
-    width: 100vw;
+    height: 100vh;
+    width: 100%;
     min-height: 100vh;
     background: #0D1B2A;
     display: flex;
@@ -219,7 +220,12 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-top: 40%;
+        position: absolute;
+        left: 50%;
+        top:60%;
+        transform: translate(-50%,-50%);
+        width: 40%;
+        height: 80vh;
       }
       
       label {
