@@ -18,7 +18,7 @@
         <Logo/>
       </div>
     </section>
-    <section v-for="content in contents" :key="content.id" :class="content.type">
+    <section v-for="content in contents" :key="content.id" :class="'scrollto' + content.type">
       <video v-if="content.type === 'video'" class="home__video" :src="'/'+content.source" @click="controlVideo"></video>
       <svg
         v-if="content.type === 'video'"
