@@ -75,7 +75,6 @@ import { returnStatement } from "babel-types";
 if ( process.client ) {
   $( function() {
     $.scrollify( {
-      /* Mettre la classe ci-dessous pour ajouter des ancres aux scrolls ! */
       section : ".scrollto"
     } );
   });
