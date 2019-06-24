@@ -5,7 +5,7 @@
     <br>
     <br>
     <a href="/admin/steps" class="button">
-      <i class="fas fa-arrow-left"></i>&nbsp
+      <i class="fas fa-arrow-left"></i>
       <span>Go back to steps</span>
     </a>
     <a class="button is-info" :href="'http://localhost:3000/steps/'+step.id">View step</a>

@@ -1,6 +1,6 @@
 <template>
   <div class="template">
-            <audio class="musique" loop autoplay src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga"></audio>
+<audio class="musique" loop autoplay src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga"></audio>
     <StepsMenu/>
 
     <section class="top scrollto">
@@ -114,13 +114,11 @@ export default {
       let svgPause = document.querySelector('.video svg:nth-child(3)');
 
       if (memo === false) {
-        console.log('oui')
         memo = true;
         svgPause.setAttribute('display', 'none');
         svgPlay.setAttribute('display', '');
         video.pause();
       } else if (memo === true) {
-        console.log('non')
         svgPause.style.opacity = 1;
         memo = false;
         svgPlay.setAttribute('display', 'none');
