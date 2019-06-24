@@ -8,10 +8,10 @@
       </ul>
       <ul class="basic">
         <li>
-          <a href="./about">ABOUT</a>
+          <a href="/about">ABOUT</a>
         </li>
         <li>
-          <a href="./contact">CONTACT</a>
+          <a href="/contact">CONTACT</a>
         </li>
         <li>
           <a href="https://www.facebook.com/seashepherdglobal/">FACEBOOK</a>

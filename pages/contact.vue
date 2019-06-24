@@ -1,6 +1,6 @@
 <template>
   <div class="contact">
-            <audio class="musique" loop autoplay src="https://sendeyo.com/getuncry/file/02a7f4b2bf"></audio>
+<audio class="musique" loop autoplay src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga"></audio>
     <Menu/>
     <Back/>
         <SoundButton/>

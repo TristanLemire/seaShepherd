@@ -1,6 +1,6 @@
 <template>
   <div class="template">
-            <audio class="musique" loop autoplay src="https://sendeyo.com/getuncry/file/02a7f4b2bf"></audio>
+<audio class="musique" loop autoplay src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga"></audio>
     <StepsMenu/>
 
     <section class="top scrollto">
@@ -53,7 +53,6 @@ import Back from "~/components/Back.vue";
 import Footer from "~/components/Footer.vue";
 import { returnStatement } from "babel-types";
 
-if (process.client) {
 if ( process.client ) {
   $( function() {
     $.scrollify( {
