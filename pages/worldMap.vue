@@ -288,7 +288,6 @@ export default {
   head() {
     return {
       script: [
-        ,
         { src: "https://www.amcharts.com/lib/4/core.js" },
         { src: "https://www.amcharts.com/lib/4/charts.js" },
         { src: "https://www.amcharts.com/lib/4/maps.js" },
