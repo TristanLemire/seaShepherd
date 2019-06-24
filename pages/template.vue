@@ -53,12 +53,13 @@ import Back from "~/components/Back.vue";
 import Footer from "~/components/Footer.vue";
 import { returnStatement } from "babel-types";
 
-if (process.client) {
-  $(function() {
-    $.scrollify({
+if ( process.client ) {
+  $( function() {
+    $.scrollify( {
       section : ".scrollto"
-    });
+    } );
   });
+
   let audiotime = document.querySelector('.musique');
   audiotime.currentTime = localStorage.getItem('audioTime');
 
@@ -72,14 +73,6 @@ let memo;
 
 export default {
 
-  head() {
-    return {
-      script: [
-        { src: "https://cdnjs.cloudflare.com/ajax/libs/scrollify/1.0.19/jquery.scrollify.min.js" }
-      ]
-    };
-  },
-
   components: {
     SoundButton,
     Logo,
@@ -87,6 +80,7 @@ export default {
     Back,
     Footer
   },
+
   methods: {
     soundActive() {
       console.log(document.querySelector(".home__video"));

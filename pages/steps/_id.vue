@@ -72,7 +72,13 @@ import Logo from "~/components/Logo.vue";
 import Back from "~/components/Back.vue";
 import { returnStatement } from "babel-types";
 
-if (process.client) {
+if ( process.client ) {
+  $( function() {
+    $.scrollify( {
+      /* Mettre la classe ci-dessous pour ajouter des ancres aux scrolls ! */
+      section : ".scrollto"
+    } );
+  });
 
   let audiotime = document.querySelector('.musique');
   audiotime.currentTime = localStorage.getItem('audioTime');
