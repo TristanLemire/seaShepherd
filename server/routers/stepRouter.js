@@ -29,7 +29,7 @@ router.get('/:id', (req, res) => {
 })
 
 router.get('/', (req, res) => {
-    queries.getAll('steps').then(response => {
+    queries.getSteps('steps').then(response => {
         res.json(response);
     })
 })
