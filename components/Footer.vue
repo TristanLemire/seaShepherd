@@ -254,6 +254,7 @@
         position: absolute;
         bottom: 7%;
         z-index: 3;
+        width:43%;
 
         &:disabled {
           opacity: 0.6;
