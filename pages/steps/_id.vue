@@ -92,6 +92,15 @@ if ( process.client ) {
 let memo;
 
 export default {
+
+  /* head() {
+    return {
+      script: [
+        { src: "https://cdnjs.cloudflare.com/ajax/libs/scrollify/1.0.19/jquery.scrollify.min.js" },
+      ]
+    };
+  }, */
+  
   data() {
     return {
       contents: this.getContent()
