@@ -114,13 +114,11 @@ export default {
       let svgPause = document.querySelector('.video svg:nth-child(3)');
 
       if (memo === false) {
-        console.log('oui')
         memo = true;
         svgPause.setAttribute('display', 'none');
         svgPlay.setAttribute('display', '');
         video.pause();
       } else if (memo === true) {
-        console.log('non')
         svgPause.style.opacity = 1;
         memo = false;
         svgPlay.setAttribute('display', 'none');
