@@ -1,3 +1,4 @@
+``
 <template>
   <div>
     <Hero :active="active"/>
