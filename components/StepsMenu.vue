@@ -179,6 +179,7 @@ export default {
           right: -35px;
         }
 
+        font-weight: 500;
         position: relative;
         font-family: "Poppins", sans-serif;
         color: white;

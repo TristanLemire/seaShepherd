@@ -1,7 +1,9 @@
 <template>
   <div class="contact">
+            <audio class="musique" autoplay src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga"></audio>
     <Menu/>
     <Back/>
+        <SoundButton/>
     <h1>CONTACT</h1>
     <div class="contact__content">
       <div>
@@ -99,11 +101,24 @@
 <script>
 import Menu from "~/components/Menu.vue";
 import Back from "~/components/Back.vue";
+import SoundButton from "~/components/SoundButton.vue";
+
+
+if (process.client) {
+      let audiotime = document.querySelector('.musique');
+  audiotime.currentTime = localStorage.getItem('audioTime');
+      window.addEventListener('click', () => {
+      let audiotime = document.querySelector('.musique');
+      localStorage.setItem('audioTime',audiotime.currentTime);
+  })
+}
 
 export default {
   components: {
     Menu,
-    Back
+    Back,
+    SoundButton
+
   },
     methods: {
     soundActive() {
@@ -193,6 +208,8 @@ h3 {
   font-size: 14px;
   text-align: center;
   margin-bottom: 24px;
+  margin-top: 20px;
+  width: 60%;
 }
 
 .content__title--press {

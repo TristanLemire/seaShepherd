@@ -1,5 +1,6 @@
 <template>
   <div class="worldMap">
+        <audio class="musique" autoplay src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga"></audio>
     <StepsMenu/>
     <div id="chartdiv"></div>
     <div class="home__button">
@@ -31,6 +32,14 @@ import Logo from "~/components/Logo.vue";
 import { returnStatement } from "babel-types";
 
 if (process.client) {
+  let audiotime = document.querySelector('.musique');
+  audiotime.currentTime = localStorage.getItem('audioTime');
+
+    window.addEventListener('click', () => {
+      let audiotime = document.querySelector('.musique');
+      localStorage.setItem('audioTime',audiotime.currentTime);
+  })
+  
   let consoleWelcome = document.querySelector(".console p");
   consoleWelcome.innerHTML =
     "Hey " +
@@ -288,7 +297,6 @@ export default {
   head() {
     return {
       script: [
-        ,
         { src: "https://www.amcharts.com/lib/4/core.js" },
         { src: "https://www.amcharts.com/lib/4/charts.js" },
         { src: "https://www.amcharts.com/lib/4/maps.js" },
