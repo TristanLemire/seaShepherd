@@ -78,12 +78,12 @@
         <label class="label has-text-light">Formulaire</label>
         <div class="control">
           <input
-            :id="'form-'+step.id"
+            :id="'form-'"
             name="formulaire"
             minlength="5"
             class="input"
             type="text"
-            :value="step.formulaire"
+            :value="stepQuestion"
           >
         </div>
       </div>
@@ -405,10 +405,11 @@ if (process.client) {
 /* jason */
   formulaire.addEventListener("keyup", () => {
     let id = formulaire.id.substring(12, formulaire.id.length);
-    let url = "http://localhost:3000/api/steps/" + id;
+    let url = "http://localhost:3000/api/questions/" + id;
     let data = {
-      formulaire: formulaire.value
+      title: formulaire.value
     };
+    
 
     fetch(url, {
       method: "PUT",
@@ -442,7 +443,8 @@ export default {
     return {
       id: this.$route.params.id,
       contents: this.getContent(),
-      steps: this.getSteps()
+      steps: this.getSteps(),
+      stepQuestion: this.getQuestion(),
     };
   },
   methods: {
@@ -472,8 +474,24 @@ export default {
         .then(response => {
           this.contents = response;
         });
+    },
+
+    /* Jason */
+    getQuestion() {
+      let idStep = this.$route.params.id;
+      fetch("http://localhost:3000/api/questions/" + idStep, {
+        method: "GET"
+      })
+        .then(response => {
+          return response.json();
+        })
+        .then(response => {
+          this.stepQuestion.title = response;
+          console.log('this.stepQuestion: ', this.stepQuestion.title);
+        });
     }
   }
+  
 };
 </script>
 
