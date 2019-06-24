@@ -7,6 +7,7 @@
       <i class="fas fa-arrow-left"></i>&nbsp
       <span>Go back to steps</span>
     </a>
+    <a class="button is-info" :href="'http://localhost:3000/steps/'+step.id">View step</a>
     <br>
     <br>
     <br>

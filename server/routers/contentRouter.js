@@ -34,7 +34,7 @@ const upload = multer({
 
 // Routes
 router.get('/:id', (req, res) => {
-    queries.getWhereStep(req.params.id).then(sticker => {
+    queries.getWhereStep('content', req.params.id).then(sticker => {
         if (sticker) res.json(sticker);
         else res.json({
             message: 'This record doesn\'t exist'
