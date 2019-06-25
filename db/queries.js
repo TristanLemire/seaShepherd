@@ -4,6 +4,9 @@ module.exports = {
     getAll(table) {
         return knex(table);
     },
+    getSteps(table) {
+        return knex(table).orderBy('id', 'asc');
+    },
     getOne(table, id) {
         return knex(table).where('id', id).first();
     },
