@@ -4,7 +4,7 @@
       <form action="">
         <label for="answer">Do you know how to swim?</label>
         <input type="text" name="answer" id="answer" @input="checkAnswer">
-        <input type="submit" id="submit" value="CONTINUE THE ADVENTURE" disabled @click.prevent="redirection()">
+        <input type="submit" id="submit" value="CONTINUE THE ADVENTURE" disabled @click.prevent="redirection(next)">
       </form>
     </div>
     <svg class="boat" width="1113" height="231" viewBox="0 0 1113 231" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -163,6 +163,12 @@
   }
 
   export default {
+    props: ['next'],
+    data() {
+      return {
+        nextLink: this.next
+      }
+    },
     methods: {
       checkAnswer() {
         /* Ceci est un test */
@@ -180,9 +186,10 @@
          }
       },
 
-      redirection() {
+      redirection(link) {
         setTimeout( function() {
-          document.location.href=""
+          
+          document.location.href= link
         }, 3900)
       }
     }

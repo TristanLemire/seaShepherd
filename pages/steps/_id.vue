@@ -73,7 +73,7 @@
       </div>
     </section>
     <!-- <a :href="'/steps/'+step.next" class="button">Next step</a> -->
-    <Footer class="scrollto"/>
+    <Footer class="scrollto" :next="'/steps/'+step.next" />
   </div>
 </template>
 
