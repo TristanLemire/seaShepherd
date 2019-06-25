@@ -1,9 +1,9 @@
 <template>
-  <div class="template">
+  <div id="fullpage" class="template">
 <audio class="musique" loop autoplay :src="require('@/assets/music/musique.mp3')"></audio>
     <StepsMenu/>
 
-    <section class="top">
+    <section class="top section">
       <Back/>
       <div class="top__title">
         <p>{{ step.title }}</p>
@@ -18,7 +18,7 @@
         <Logo/>
       </div>
     </section>
-    <section v-for="content in contents" :key="content.id" :class="'scrollto ' + content.type">
+    <section v-for="content in contents" :key="content.id" :class="'section ' + content.type">
       <video v-if="content.type === 'video'" class="home__video" :src="'/'+content.source" @click="controlVideo"></video>
       <svg
         v-if="content.type === 'video'"
@@ -62,7 +62,7 @@
         </div>
     </section>
     <a :href="'/steps/'+step.next" class="button">Next step</a>    
-  <Footer class="scrollto" />
+  <Footer class="section" />
   </div>
 </template>
 
@@ -75,12 +75,13 @@ import { returnStatement } from "babel-types";
 import Footer from "~/components/Footer.vue";
 
 if ( process.client ) {
-  $( function() {
-    $.scrollify( {
-      section : ".scrollto"
-    } );
-  });
+  // $( function() {
+  //   $.scrollify( {
+  //     section : ".scrollto"
+  //   } );
+  // });
 
+  
   let audiotime = document.querySelector('.musique');
   audiotime.currentTime = localStorage.getItem('audioTime');
 
