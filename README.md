@@ -44,6 +44,12 @@ knex migrate:latest
 pg_dump sea-shepherd > dbexport.pgsql
 ```
 
+## Import the DB
+
+```
+psql sea-shepherd < dbexport.pgsql
+```
+
 ---
 ## API
 

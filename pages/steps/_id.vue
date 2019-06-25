@@ -1,9 +1,8 @@
 <template>
   <div class="template">
-<audio class="musique" loop autoplay :src="require('@/assets/music/musique.mp3')"></audio>
+    <audio class="musique" loop autoplay :src="require('@/assets/music/musique.mp3')"></audio>
     <StepsMenu/>
-
-    <section class="top">
+    <section class="top scrollto">
       <Back/>
       <div class="top__title">
         <p>{{ step.title }}</p>
@@ -18,8 +17,13 @@
         <Logo/>
       </div>
     </section>
-    <section v-for="content in contents" :key="content.id" :class="content.type">
-      <video v-if="content.type === 'video'" class="home__video" :src="'/'+content.source" @click="controlVideo"></video>
+    <section v-for="content in contents" :key="content.id" :class="'scrollto ' + content.type">
+      <video
+        v-if="content.type === 'video'"
+        class="home__video"
+        :src="'/'+content.source"
+        @click="controlVideo"
+      ></video>
       <svg
         v-if="content.type === 'video'"
         @click="controlVideo"
@@ -48,20 +52,28 @@
         <rect x="57" y="27" width="13" height="46" fill="white"></rect>
         <circle cx="50" cy="50" r="49" stroke="#DEDEDE" stroke-width="2"></circle>
       </svg>
-      <img v-if="content.type === 'image'  && content.content !== null && content.content !== ''" :src="'/'+content.source">
-      <img v-if="content.type === 'image'  && content.content === null || content.type === 'image' && content.content === ''" class="image-full" :src="'/'+content.source">
-        <div v-if="content.type === 'image'" class="image__title">
-           <div>
-            <h2>{{ content.subtitle }}</h2>
-            <p>{{ content.content }}</p>
-           </div>
+      <img
+        v-if="content.type === 'image'  && content.content !== null && content.content !== ''"
+        :src="'/'+content.source"
+      >
+      <img
+        v-if="content.type === 'image'  && content.content === null || content.type === 'image' && content.content === ''"
+        class="image-full"
+        :src="'/'+content.source"
+      >
+      <div v-if="content.type === 'image'" class="image__title">
+        <div>
+          <h2>{{ content.subtitle }}</h2>
+          <p>{{ content.content }}</p>
         </div>
-        <div v-if="content.type === 'text' && content.order !== 0">
+      </div>
+      <div v-if="content.type === 'text' && content.order !== 0">
         <h2 v-if="content.type === 'text' && content.order !== 0">{{ content.subtitle }}</h2>
         <p v-if="content.type === 'text' && content.order !== 0">{{ content.content }}</p>
-        </div>
+      </div>
     </section>
-    <a :href="'/steps/'+step.next" class="button">Next step</a>    
+    <!-- <a :href="'/steps/'+step.next" class="button">Next step</a> -->
+    <Footer class="scrollto"/>
   </div>
 </template>
 
@@ -71,27 +83,70 @@ import SoundButton from "~/components/SoundButton.vue";
 import Logo from "~/components/Logo.vue";
 import Back from "~/components/Back.vue";
 import { returnStatement } from "babel-types";
+import Footer from "~/components/Footer.vue";
 
-if ( process.client ) {
-  $( function() {
-    $.scrollify( {
-      section : ".scrollto"
-    } );
+if (process.client) {
+  setTimeout(() => {
+    let sections = document.querySelectorAll(".scrollto");
+    let arr = [];
+    sections.forEach(section => {
+      arr.push(section)
+    })
+    if (sections[1].className === 'scrollto text')arr.splice(1,1);
+    sections = arr
+    let pos = 0;
+    let scroll = 0;
+    let flag = true;
+    let offset = 0;
+    
+    window.addEventListener("wheel", e => {
+      // If the function is allowed to run
+      if (flag) {
+        if (e.deltaY > 5 && pos < sections.length - 1) {
+          pos += 1;
+          offset = sections[pos].offsetTop;
+          
+          window.scrollTo({
+            behavior: 'smooth',
+            top: offset
+          });
+          flag = false;
+
+          // Allow the listener to work again
+          setTimeout(() => {
+            flag = true;
+          }, 1000);
+        } else if (e.deltaY < -5 && pos > 0) {
+          pos -= 1;
+          offset = sections[pos].offsetTop;
+          
+          window.scrollTo({
+            behavior: 'smooth',
+            top: offset
+          });
+          flag = false;
+
+          // Allow the listener to work again
+          setTimeout(() => {
+            flag = true;
+          }, 1000);
+        }
+      }
+    });
+  }, 200);
+
+  let audiotime = document.querySelector(".musique");
+  audiotime.currentTime = localStorage.getItem("audioTime");
+
+  window.addEventListener("click", () => {
+    let audiotime = document.querySelector(".musique");
+    localStorage.setItem("audioTime", audiotime.currentTime);
   });
-
-  let audiotime = document.querySelector('.musique');
-  audiotime.currentTime = localStorage.getItem('audioTime');
-
-  window.addEventListener('click', () => {
-      let audiotime = document.querySelector('.musique');
-      localStorage.setItem('audioTime',audiotime.currentTime);
-  })
 }
 
 let memo;
 
 export default {
-
   /* head() {
     return {
       script: [
@@ -99,7 +154,7 @@ export default {
       ]
     };
   }, */
-  
+
   data() {
     return {
       contents: this.getContent()
@@ -109,7 +164,8 @@ export default {
     SoundButton,
     Logo,
     StepsMenu,
-    Back
+    Back,
+    Footer
   },
   asyncData({ params }) {
     return fetch("http://localhost:3000/api/steps/" + params.id, {
@@ -156,7 +212,7 @@ export default {
       let video = document.querySelector("video");
       let svgPlay = document.querySelector(".video svg:nth-child(2)");
       let svgPause = document.querySelector(".video svg:nth-child(3)");
-      let audioSound = document.querySelector('audio');
+      let audioSound = document.querySelector("audio");
 
       if (memo === false) {
         console.log("oui");
@@ -164,8 +220,8 @@ export default {
         svgPause.setAttribute("display", "none");
         svgPlay.setAttribute("display", "");
         video.pause();
-        if(localStorage.getItem('sound') == 'ON'){
-                  audioSound.play();
+        if (localStorage.getItem("sound") == "ON") {
+          audioSound.play();
         }
       } else if (memo === true) {
         console.log("non");
@@ -201,6 +257,11 @@ export default {
 html {
   background-color: #0d1b2a;
 }
+body {
+  // padding: 0;
+  // box-sizing: border-box;
+  // margin: 0;
+}
 
 .video {
   background: #0d1b2a;
@@ -212,8 +273,6 @@ html {
     width: 100%;
     object-fit: cover;
   }
-
-  
 
   .play {
     opacity: 1;
@@ -298,31 +357,31 @@ html {
 .text {
   div {
     background: #0d1b2a;
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  color: #ffffff;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #ffffff;
 
-  h2 {
-    font-family: Poppins;
-    font-size: 30px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    text-transform: capitalize;
-    margin-bottom: 57px;
-  }
+    h2 {
+      font-family: Poppins;
+      font-size: 30px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: capitalize;
+      margin-bottom: 57px;
+    }
 
-  p {
-    text-align: center;
-    font-family: Poppins;
-    font-weight: 500;
-    font-size: 23px;
-    letter-spacing: 2px;
-    width: 50vw;
-  }
+    p {
+      text-align: center;
+      font-family: Poppins;
+      font-weight: 500;
+      font-size: 23px;
+      letter-spacing: 2px;
+      width: 50vw;
+    }
   }
 }
 
