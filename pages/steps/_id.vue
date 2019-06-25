@@ -2,7 +2,7 @@
   <div class="template">
     <audio class="musique" loop autoplay :src="require('@/assets/music/musique.mp3')"></audio>
     <StepsMenu/>
-    <section class="top section">
+    <section class="top scrollto">
       <Back/>
       <div class="top__title">
         <p>{{ step.title }}</p>
@@ -17,7 +17,7 @@
         <Logo/>
       </div>
     </section>
-    <section v-for="content in contents" :key="content.id" :class="'section ' + content.type">
+    <section v-for="content in contents" :key="content.id" :class="'scrollto ' + content.type">
       <video
         v-if="content.type === 'video'"
         class="home__video"
@@ -73,7 +73,7 @@
       </div>
     </section>
     <!-- <a :href="'/steps/'+step.next" class="button">Next step</a> -->
-    <Footer class="section"/>
+    <Footer class="scrollto"/>
   </div>
 </template>
 
@@ -87,12 +87,12 @@ import Footer from "~/components/Footer.vue";
 
 if (process.client) {
   setTimeout(() => {
-    let sections = document.querySelectorAll(".section");
+    let sections = document.querySelectorAll(".scrollto");
     let arr = [];
     sections.forEach(section => {
       arr.push(section)
     })
-    if (sections[1].className === 'section text')arr.splice(1,1);
+    if (sections[1].className === 'scrollto text')arr.splice(1,1);
     sections = arr
     let pos = 0;
     let scroll = 0;
@@ -256,6 +256,11 @@ export default {
 <style lang="scss">
 html {
   background-color: #0d1b2a;
+}
+body {
+  // padding: 0;
+  // box-sizing: border-box;
+  // margin: 0;
 }
 
 .video {
