@@ -18,7 +18,7 @@
         <Logo/>
       </div>
     </section>
-    <section v-for="content in contents" :key="content.id" :class="'scrollto' + content.type">
+    <section v-for="content in contents" :key="content.id" :class="content.type">
       <video v-if="content.type === 'video'" class="home__video" :src="'/'+content.source" @click="controlVideo"></video>
       <svg
         v-if="content.type === 'video'"
@@ -156,6 +156,7 @@ export default {
       let video = document.querySelector("video");
       let svgPlay = document.querySelector(".video svg:nth-child(2)");
       let svgPause = document.querySelector(".video svg:nth-child(3)");
+      let audioSound = document.querySelector('audio');
 
       if (memo === false) {
         console.log("oui");
@@ -163,6 +164,9 @@ export default {
         svgPause.setAttribute("display", "none");
         svgPlay.setAttribute("display", "");
         video.pause();
+        if(localStorage.getItem('sound') == 'ON'){
+                  audioSound.play();
+        }
       } else if (memo === true) {
         console.log("non");
         svgPause.style.opacity = 1;
@@ -173,9 +177,11 @@ export default {
           svgPause.style.opacity = 0;
         }, 200);
         video.play();
+        audioSound.pause();
       } else {
         memo = false;
         video.play();
+        audioSound.pause();
         svgPause.style.opacity = 1;
         svgPlay.setAttribute("display", "none");
         svgPause.setAttribute("display", "");
