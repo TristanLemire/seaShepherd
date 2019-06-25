@@ -337,6 +337,7 @@ if (process.client) {
 
         fetch(reponse, {method: "GET"})
           .then(function(response){
+            console.log('response: ', response);
             return response.json();
           })
           .then(response => {
@@ -492,6 +493,35 @@ if (process.client) {
     let data = {
       title: question.value
     };
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+  });
+  reponse1.addEventListener("keyup", () => {
+    let id = reponse1.getAttribute('data-id');
+    let url = "http://localhost:3000/api/answers/" + id;
+    let data = {
+      answer: reponse1.value
+    };console.log('data1: ', data);
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+  });
+  reponse2.addEventListener("keyup", () => {
+    let id = reponse2.getAttribute('data-id');
+    let url = "http://localhost:3000/api/answers/" + id;
+    let data = {
+      answer: reponse2.value
+    };console.log('data2: ', data);
+
     fetch(url, {
       method: "PUT",
       headers: {
