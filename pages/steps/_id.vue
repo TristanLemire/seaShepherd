@@ -86,6 +86,8 @@ import { returnStatement } from "babel-types";
 import Footer from "~/components/Footer.vue";
 
 if (process.client) {
+
+  // TODO: solve scroll problems 
   setTimeout(() => {
     let sections = document.querySelectorAll(".scrollto");
     let arr = [];
