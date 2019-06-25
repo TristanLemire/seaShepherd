@@ -20,7 +20,7 @@ const queries = require('../../db/queries');
 
 // Routes
 router.get('/:id', (req, res) => {
-    queries.getOne('answers', req.params.id).then(sticker => {
+    queries.getWhereQuestion('answers', req.params.id).then(sticker => {
         if (sticker) res.json(sticker);
         else res.json({
             message: 'This record doesn\'t exist'

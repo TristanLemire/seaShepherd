@@ -73,7 +73,7 @@
       </div>
     </section>
     <!-- <a :href="'/steps/'+step.next" class="button">Next step</a> -->
-    <Footer class="scrollto"/>
+    <Footer class="scrollto" :next="'/steps/'+step.next" />
   </div>
 </template>
 
@@ -86,6 +86,8 @@ import { returnStatement } from "babel-types";
 import Footer from "~/components/Footer.vue";
 
 if (process.client) {
+
+  // TODO: solve scroll problems 
   setTimeout(() => {
     let sections = document.querySelectorAll(".scrollto");
     let arr = [];

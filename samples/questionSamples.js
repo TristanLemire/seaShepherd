@@ -1,10 +1,10 @@
 module.exports = [
     {
-        "id_step": 8,
+        "id_step": 3,
         "title": "Are you a man"
     },
     {
-        "id_step": 5,
+        "id_step": 2,
         "title": "Are you a woman"
     },
     {
