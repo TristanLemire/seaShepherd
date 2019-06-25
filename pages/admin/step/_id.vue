@@ -117,7 +117,6 @@
       <div>
         <button class="button is-info addContent">Add content</button>
         <button class="invisible imageType contentButton button is-primary">Image / Video</button>
-        <button class="invisible contentButton button is-primary">Audio</button>
         <button class="invisible textType contentButton button is-primary">Text</button>
       </div>
       <br>
@@ -241,7 +240,6 @@ if (process.client) {
     // Create it in database
     let url = "http://localhost:3000/api/contents";
     let order = document.querySelectorAll(".contentPart").length;
-    console.log("order: ", order);
 
     let data = {
       id_step: window.location.href.substring(33, window.location.href.length),
@@ -306,7 +304,6 @@ if (process.client) {
             referrer: "no-referrer", // no-referrer, *client
             body: JSON.stringify(data) // body data type must match "Content-Type" header
           }).then(response => {
-            console.log("response: ", response);
             window.location.reload();
           });
         });
@@ -317,7 +314,6 @@ if (process.client) {
     // question
     let inputQuestion = document.querySelector(".question");
     let id = window.location.href;
-    console.log('id', window.location.href);
     id = id.substring(33, window.location.href.length);
     let question = "http://localhost:3000/api/questions/" + id;
     
@@ -333,7 +329,6 @@ if (process.client) {
         let inputReponse1 = document.querySelector(".reponse1");
         let inputReponse2 = document.querySelector(".reponse2");
         let reponse = "http://localhost:3000/api/answers/" + id;
-        console.log('id: ', id);
 
         fetch(reponse, {method: "GET"})
           .then(function(response){
@@ -597,7 +592,6 @@ export default {
         })
         .then(response => {
           this.stepQuestion = response;
-          console.log('this.stepQuestion: ', this.stepQuestion.title);
         });
     }
   }

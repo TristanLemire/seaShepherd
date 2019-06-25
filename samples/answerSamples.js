@@ -5,6 +5,10 @@ module.exports = [
     },
     {
         "id_step": 1,
+        "answer": "No i'm a god"
+    },
+    {
+        "id_step": 2,
         "answer": "No, I'm men"
     },
     {

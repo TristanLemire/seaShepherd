@@ -404,7 +404,6 @@ div.console {
   line-height: 21px;
   letter-spacing: 2px;
   overflow-y: scroll;
-  z-index: 3;
   max-height: 90vh;
   scrollbar-color: rebeccapurple green;
   scrollbar-width: thin;

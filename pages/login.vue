@@ -43,7 +43,7 @@ if (process.client) {
                 ) {
                   window.location.href = 'http://localhost:3000/admin';
                   localStorage.setItem('connected', 'true');
-                } else console.log('Access denied');
+                }
             });
         })
         
