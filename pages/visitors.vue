@@ -33,7 +33,7 @@ if (process.client) {
 
         document.querySelector("body").appendChild(fishElement);
         let topPos = Math.random() * window.innerHeight;
-        let delay = Math.random() * window.innerWidth;
+        let delay = Math.random() * window.innerWidth / 2;
         let speed = Math.random() * 3;
         let leftPos = -30 - delay;
         fishElement.style.top = topPos + "px";
@@ -138,6 +138,7 @@ body {
     background-color: rgb(255, 135, 23);
 
     .name {
+        width: 500px;
         color: white;
         position: absolute;bottom: -20px;
     }

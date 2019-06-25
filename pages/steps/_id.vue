@@ -194,7 +194,6 @@ export default {
         });
     },
     soundActive() {
-      console.log(document.querySelector(".home__video"));
       let video = document.querySelector(".home__video");
       let active = localStorage.getItem("sound");
       let audios = document.querySelectorAll("audio");
@@ -217,7 +216,6 @@ export default {
       let audioSound = document.querySelector("audio");
 
       if (memo === false) {
-        console.log("oui");
         memo = true;
         svgPause.setAttribute("display", "none");
         svgPlay.setAttribute("display", "");
@@ -226,7 +224,6 @@ export default {
           audioSound.play();
         }
       } else if (memo === true) {
-        console.log("non");
         svgPause.style.opacity = 1;
         memo = false;
         svgPlay.setAttribute("display", "none");
