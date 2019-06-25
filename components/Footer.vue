@@ -3,17 +3,13 @@
     <div class="input__content">
       <form action="">
         <label for="answer">Do you know how to swim?</label>
-<<<<<<< HEAD
-        <input type="text" name="answer" id="answer" @input="checkAnswer">
-        <input type="submit" id="submit" value="CONTINUE THE ADVENTURE" disabled @click.prevent="redirection(next)">
-=======
+        <!-- <input type="text" name="answer" id="answer" @input="checkAnswer"> -->
         <!-- <input type="text" name="answer" id="answer" @input="storeAnswer"> -->
         <div class="answers__content">
           <button class="answer__one answers" id="answer-1" @click.prevent="storeAnswer(1)"  value="answer one">ANSWER ONE</button>
           <button class="answer__two answers" id="answer-2" @click.prevent="storeAnswer(2)" value="answer two">ANSWER TWO</button>
         </div>
-        <input type="submit" id="submit" value="CONTINUE THE ADVENTURE" disabled @click.prevent="redirection()">
->>>>>>> 45674b4235a3061dcece6ee871cd72562c0de60f
+        <input type="submit" id="submit" value="CONTINUE THE ADVENTURE" disabled @click.prevent="redirection(next)">
       </form>
     </div>
     <svg class="boat" width="1113" height="231" viewBox="0 0 1113 231" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -172,16 +168,12 @@
   }
 
   export default {
-<<<<<<< HEAD
     props: ['next'],
     data() {
       return {
         nextLink: this.next
       }
     },
-=======
-    
->>>>>>> 45674b4235a3061dcece6ee871cd72562c0de60f
     methods: {
       storeAnswer(button) {
         console.log(document.querySelector(`#answer-${button}`));
