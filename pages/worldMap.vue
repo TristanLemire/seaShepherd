@@ -429,7 +429,14 @@ div.console {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    
+    &:hover {
+      color: gold;
+      border: 1px solid gold;
+    }
   }
+
+
 
   .delete {
     top: 10px;
