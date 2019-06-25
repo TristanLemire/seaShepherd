@@ -2,6 +2,7 @@
   <div class="intro">
     <!-- <img src="../assets/img/hetic.png" alt="" class="intro__hetic"> -->
     <img src="../assets/img/hetic.png" alt class="intro__hetic">
+    <p class="intro__text">“ Ce site à été réalisé à des fins pédagogiques dans le cadre du cursus Bachelor de l’école HETIC. Les contenus présentés ne sont en aucun cas exploités à des fins commerciales et ne seront pas publiés ”</p>
     <svg
       class="intro__sea"
       width="150"
@@ -25,10 +26,11 @@ export default {
       let hetic = document.querySelector(".intro__hetic");
       let sea = document.querySelector(".intro__sea");
       let intro = document.querySelector(".intro");
+      let text = document.querySelector('.intro__text');
 
       setTimeout(function() {
         hetic.classList.add("is-hiden");
-
+          text.classList.add("is-hiden");
         setTimeout(function() {
 
           sea.classList.add("is-visible");
@@ -76,6 +78,25 @@ export default {
     height: 88.32px;
     opacity: 1;
     transition: opacity 1s;
+    &.is-hiden {
+      opacity: 0;
+    }
+  }
+
+  .intro__text {
+    font-size: 16px;
+    line-height: 30px;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    font-family: "Poppins", sans-serif;
+    position: absolute;
+    left: 50%;
+    top: 70%;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    transition: opacity 1s;
+    text-align: center;
     &.is-hiden {
       opacity: 0;
     }

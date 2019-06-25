@@ -151,11 +151,11 @@ div.home {
     color: white;
     font-weight: bold;
     letter-spacing: 0.1em;
+    font-family: "Poppins", sans-serif;
     position: absolute;
     left: 50%;
     bottom: 15%;
     transform: translateX(-50%);
-    font-family: "Poppins", sans-serif;
     z-index: 1;
   }
 
