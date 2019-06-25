@@ -232,7 +232,7 @@ export default {
   fill: none;
   transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
   stroke: #ffffff;
-  stroke-width: 5.5;
+  stroke-width: 4;
   stroke-linecap: round;
 }
 .ham8 .top {
