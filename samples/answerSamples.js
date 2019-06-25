@@ -1,6 +1,6 @@
 module.exports = [
     {
-        "id_question": 1,
+        "id_step": 1,
         "answer": "Yes i'm a man"
     },
     {
@@ -12,7 +12,7 @@ module.exports = [
         "answer": "No, I'm men"
     },
     {
-        "id_question": 3,
+        "id_step": 3,
         "answer": "Yes, but you can say GOD"
     },
 ]
