@@ -3,8 +3,17 @@
     <div class="input__content">
       <form action="">
         <label for="answer">Do you know how to swim?</label>
+<<<<<<< HEAD
         <input type="text" name="answer" id="answer" @input="checkAnswer">
         <input type="submit" id="submit" value="CONTINUE THE ADVENTURE" disabled @click.prevent="redirection(next)">
+=======
+        <!-- <input type="text" name="answer" id="answer" @input="storeAnswer"> -->
+        <div class="answers__content">
+          <button class="answer__one answers" id="answer-1" @click.prevent="storeAnswer(1)"  value="answer one">ANSWER ONE</button>
+          <button class="answer__two answers" id="answer-2" @click.prevent="storeAnswer(2)" value="answer two">ANSWER TWO</button>
+        </div>
+        <input type="submit" id="submit" value="CONTINUE THE ADVENTURE" disabled @click.prevent="redirection()">
+>>>>>>> 45674b4235a3061dcece6ee871cd72562c0de60f
       </form>
     </div>
     <svg class="boat" width="1113" height="231" viewBox="0 0 1113 231" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -163,27 +172,34 @@
   }
 
   export default {
+<<<<<<< HEAD
     props: ['next'],
     data() {
       return {
         nextLink: this.next
       }
     },
+=======
+    
+>>>>>>> 45674b4235a3061dcece6ee871cd72562c0de60f
     methods: {
-      checkAnswer() {
+      storeAnswer(button) {
+        console.log(document.querySelector(`#answer-${button}`));
+        submit.removeAttribute('disabled')
+        /* Stocker la réponse de l'utilisateur */
         /* Ceci est un test */
-        const inputText = document.querySelector('#answer')
-        const submit = document.querySelector('#submit')
+        // const inputText = document.querySelector('#answer')
+        // const submit = document.querySelector('#submit')
 
-        /* inputText.value.toLowerCase().trim() === ('yes') || ('no') ? submit.removeAttribute('disabled') : submit.setAttribute('disabled', '') */
-        if ( 
-          inputText.value.toLowerCase().trim() === 'yes' ||
-          inputText.value.toLowerCase().trim() === 'no'
-         ) {
-           submit.removeAttribute('disabled')
-         } else {
-           submit.setAttribute('disabled', '')
-         }
+        // /* inputText.value.toLowerCase().trim() === ('yes') || ('no') ? submit.removeAttribute('disabled') : submit.setAttribute('disabled', '') */
+        // if ( 
+        //   inputText.value.toLowerCase().trim() === 'yes' ||
+        //   inputText.value.toLowerCase().trim() === 'no'
+        //  ) {
+        //    submit.removeAttribute('disabled')
+        //  } else {
+        //    submit.setAttribute('disabled', '')
+        //  }
       },
 
       redirection(link) {
@@ -223,7 +239,6 @@
     .input__content {
       width: auto;
       form {
-        width: 100%; 
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -231,7 +246,7 @@
         left: 50%;
         top:60%;
         transform: translate(-50%,-50%);
-        width: 40%;
+        width: 100%;
         height: 80vh;
       }
       
@@ -240,15 +255,29 @@
         font-size: 32px;
       }
 
-      input[type="text"] {
-        margin-top: 40px;
-        color: #fff;
-        font-size: 32px;
-        width: 100%;
-        background-color: transparent;
-        border: none;
-        border-bottom: 2px solid white;
-        padding-bottom: 4px;
+      .answers__content {
+        display: flex;
+        flex-direction: row;
+        button {
+          cursor: pointer;
+          margin-top: 40px;
+          color: #fff;
+          font-size: 16px;
+          margin-right: 8px;
+          margin-left: 8px;
+          border-radius: 50px;
+          background-color: transparent;
+          border: 2px solid #fff;
+          border-bottom: 2px solid white;
+          padding: 11px 14px;
+          transition: background 0.2s, border 0.2s, color 0.2s;
+
+          &:hover {
+            border: solid 2px #101010;
+            color: #101010;
+            background: #FFF;
+          }
+        }
       }
 
       #submit {
