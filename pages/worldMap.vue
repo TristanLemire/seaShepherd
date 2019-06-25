@@ -62,9 +62,9 @@ if (process.client) {
   }, 6000);
 
   // Colors
-  let countriesColor = "#576370";
-  let countriesHoverColor = "#ffffff";
-  let outlineColor = "#fff";
+  let countriesColor = "#5588a3";
+  let countriesHoverColor = "#e8e8e8";
+  let outlineColor = "#145374";
 
   let dotsColor = "#EECB29";
   let dotsStrokeColor = "#fff";
