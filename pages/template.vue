@@ -41,6 +41,7 @@
         </div>
       </div>
     </section>
+    <ScrollDown/>
     <Footer class="scrollto"/>
   </div>
 </template>
@@ -52,6 +53,7 @@ import Logo from "~/components/Logo.vue";
 import Back from "~/components/Back.vue";
 import Footer from "~/components/Footer.vue";
 import { returnStatement } from "babel-types";
+import ScrollDown from "~/components/ScrollDown.vue";
 
 if ( process.client ) {
   $( function() {
@@ -70,6 +72,9 @@ if ( process.client ) {
 }
 
 let memo;
+let video = document.querySelectorAll('video');
+let svgPlay = document.querySelector('.video svg:nth-child(2)');
+let svgPause = document.querySelector('.video svg:nth-child(3)');
 
 export default {
   /* https://cdnjs.cloudflare.com/ajax/libs/scrollify/1.0.19/jquery.scrollify.min.js */
@@ -87,7 +92,8 @@ export default {
     Logo,
     StepsMenu,
     Back,
-    Footer
+    Footer,
+    ScrollDown
   },
 
   methods: {
@@ -108,35 +114,35 @@ export default {
     },
 
     controlVideo() {
-      let video = document.querySelector('video');
-      let svgPlay = document.querySelector('.video svg:nth-child(2)');
-      let svgPause = document.querySelector('.video svg:nth-child(3)');
 
-      if (memo === false) {
-        memo = true;
-        svgPause.setAttribute('display', 'none');
-        svgPlay.setAttribute('display', '');
-        video.pause();
-      } else if (memo === true) {
-        svgPause.style.opacity = 1;
-        memo = false;
-        svgPlay.setAttribute('display', 'none');
-        svgPause.setAttribute('display', '');
-        setTimeout(function() {
-          svgPause.style.opacity = 0;
-        }, 200)
-        video.play();
-      } else {
-        memo = false;
-        video.play();
-        svgPause.style.opacity = 1;
-        svgPlay.setAttribute('display', 'none');
-        svgPause.setAttribute('display', '');
-        setTimeout(function() {
-          svgPause.style.opacity = 0;
-        }, 200)
-      }
-    } 
+      for (let i = 0; i < video.length; i++) {
+        console.log('video')
+        if (memo === false) {
+          memo = true;
+          svgPause.setAttribute('display', 'none');
+          svgPlay.setAttribute('display', '');
+          video[i].pause();
+        } else if (memo === true) {
+          svgPause.style.opacity = 1;
+          memo = false;
+          svgPlay.setAttribute('display', 'none');
+          svgPause.setAttribute('display', '');
+          setTimeout(function() {
+            svgPause.style.opacity = 0;
+          }, 200)
+          video[i].play();
+        } else {
+          memo = false;
+          video[i].play();
+          svgPause.style.opacity = 1;
+          svgPlay.setAttribute('display', 'none');
+          svgPause.setAttribute('display', '');
+          setTimeout(function() {
+            svgPause.style.opacity = 0;
+          }, 200)
+        }
+      } 
+    }
   },
   beforeMount() {
     this.soundActive();

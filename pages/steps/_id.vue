@@ -72,6 +72,7 @@
         <p v-if="content.type === 'text' && content.order !== 0">{{ content.content }}</p>
       </div>
     </section>
+    <ScrollDown/>
     <!-- <a :href="'/steps/'+step.next" class="button">Next step</a> -->
     <Footer class="scrollto" :next="'/steps/'+step.next" />
   </div>
@@ -84,6 +85,7 @@ import Logo from "~/components/Logo.vue";
 import Back from "~/components/Back.vue";
 import { returnStatement } from "babel-types";
 import Footer from "~/components/Footer.vue";
+import ScrollDown from "~/components/ScrollDown.vue";
 
 if (process.client) {
 
@@ -167,7 +169,8 @@ export default {
     Logo,
     StepsMenu,
     Back,
-    Footer
+    Footer,
+    ScrollDown
   },
   asyncData({ params }) {
     return fetch("http://localhost:3000/api/steps/" + params.id, {
