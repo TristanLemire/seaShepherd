@@ -315,19 +315,20 @@ if (process.client) {
     let options = document.querySelectorAll("option");
     let stepId = window.location.href;
     stepId = stepId.substring(33, window.location.href.length);
-    fetch('http://localhost:3000/api/steps/'+stepId, {
+    fetch("http://localhost:3000/api/steps/" + stepId, {
       method: "GET"
-    }).then(response => {
-      return response.json()
-    }).then(step => {
-      options.forEach(option => {
-      if (Number(option.value) === Number(step.next)) {
-        option.setAttribute('selected', 'selected');
-        option.setAttribute('disabled', 'disabled');
-      }
-    });
     })
-    
+      .then(response => {
+        return response.json();
+      })
+      .then(step => {
+        options.forEach(option => {
+          if (Number(option.value) === Number(step.next)) {
+            option.setAttribute("selected", "selected");
+            option.setAttribute("disabled", "disabled");
+          }
+        });
+      });
 
     // question
     let inputQuestion = document.querySelector(".question");
@@ -340,8 +341,10 @@ if (process.client) {
         return response.json();
       })
       .then(response => {
-        inputQuestion.setAttribute("value", response[0].title);
-        inputQuestion.setAttribute("data-id", response[0].id);
+        if (response[0]) {
+          inputQuestion.setAttribute("value", response[0].title);
+          inputQuestion.setAttribute("data-id", response[0].id);
+        }
 
         // reponses
         let inputReponse1 = document.querySelector(".reponse1");
@@ -353,10 +356,14 @@ if (process.client) {
             return response.json();
           })
           .then(response => {
-            inputReponse1.setAttribute("value", response[0].answer);
-            inputReponse1.setAttribute("data-id", response[0].id);
-            inputReponse2.setAttribute("value", response[1].answer);
-            inputReponse2.setAttribute("data-id", response[1].id);
+            if (response[0]) {
+              inputReponse1.setAttribute("value", response[0].answer);
+              inputReponse1.setAttribute("data-id", response[0].id);
+            }
+            if (response[1]) {
+              inputReponse2.setAttribute("value", response[1].answer);
+              inputReponse2.setAttribute("data-id", response[1].id);
+            }
           });
       });
 
@@ -495,7 +502,29 @@ if (process.client) {
 
   /* jason */
   question.addEventListener("keyup", () => {
+    let stepId = window.location.href;
+    stepId = stepId.substring(33, window.location.href.length);
+
     let id = question.getAttribute("data-id");
+    if (id === null) {
+      let url = 'http://localhost:3000/api/questions'
+      let data = {
+        title: question.value,
+        id_step: stepId
+      }
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      }).then(response => {
+        return response.json();
+      }).then(answer => {
+        question.setAttribute('data-id',answer[0].id);
+      })
+    } else {
+      let id = question.getAttribute("data-id");
     let url = "http://localhost:3000/api/questions/" + id;
     let data = {
       title: question.value
@@ -507,34 +536,91 @@ if (process.client) {
       },
       body: JSON.stringify(data)
     });
+    }
+    // let id = question.getAttribute("data-id");
+    // let url = "http://localhost:3000/api/questions/" + id;
+    // let data = {
+    //   title: question.value
+    // };
+    // fetch(url, {
+    //   method: "PUT",
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   },
+    //   body: JSON.stringify(data)
+    // });
   });
   reponse1.addEventListener("keyup", () => {
+    let stepId = window.location.href;
+    stepId = stepId.substring(33, window.location.href.length);
+
     let id = reponse1.getAttribute("data-id");
-    let url = "http://localhost:3000/api/answers/" + id;
-    let data = {
-      answer: reponse1.value
-    };
-    fetch(url, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
-    });
+    if (id === null) {
+      let url = 'http://localhost:3000/api/answers'
+      let data = {
+        answer: reponse1.value,
+        id_step: stepId
+      }
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      }).then(response => {
+        return response.json();
+      }).then(answer => {
+        reponse1.setAttribute('data-id',answer[0].id);
+      })
+    } else {
+      let url = "http://localhost:3000/api/answers/" + id;
+      let data = {
+        answer: reponse1.value,
+      };
+      fetch(url, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      });
+    }
   });
   reponse2.addEventListener("keyup", () => {
+    let stepId = window.location.href;
+    stepId = stepId.substring(33, window.location.href.length);
+
     let id = reponse2.getAttribute("data-id");
-    let url = "http://localhost:3000/api/answers/" + id;
-    let data = {
-      answer: reponse2.value
-    };
-    fetch(url, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
-    });
+    if (id === null) {
+      let url = 'http://localhost:3000/api/answers'
+      let data = {
+        answer: reponse2.value,
+        id_step: stepId
+      }
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      }).then(response => {
+        return response.json();
+      }).then(answer => {
+        reponse2.setAttribute('data-id',answer[0].id);
+      })
+    } else {
+      let url = "http://localhost:3000/api/answers/" + id;
+      let data = {
+        answer: reponse2.value
+      };
+      fetch(url, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      });
+    }
   });
 }
 
