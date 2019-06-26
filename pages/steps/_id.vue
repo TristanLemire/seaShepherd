@@ -86,7 +86,10 @@ import Footer from "~/components/Footer.vue";
 import ScrollDown from "~/components/ScrollDown.vue";
 
 if (process.client) {
-  function videoControl(videos, svgPlays, svgPauses,i) {
+
+
+
+  function videoControl(videos, svgPlays, svgPauses, i) {
     let video = videos[i];
     let svgPlay = svgPlays[i];
     let svgPause = svgPauses[i];
@@ -124,15 +127,59 @@ if (process.client) {
     let videos = document.querySelectorAll("video");
     let svgPlays = document.querySelectorAll(".video svg:nth-child(2)");
     let svgPauses = document.querySelectorAll(".video svg:nth-child(3)");
+    let audioSound = document.querySelector("audio");
+
+    window.addEventListener('scroll', ()=> {
+      for (let i = 0; i < videos.length; i++) {
+        videos[i].setAttribute("data-play", "false");
+        videos[i].pause();
+        svgPauses[i].setAttribute("display", "none");
+        svgPlays[i].setAttribute("display", "");
+        if(localStorage.getItem("sound") != 'OFF'){
+          audioSound.play();
+        }
+      }
+    })
+
+    // for (let i = 0; i < videos.length; i++) {
+    //   videos[i].setAttribute("id", i);
+    // }
+
+    // for (let i = 0; i < videos.length; i++) {
+    //   let theVideo = videos[i];
+    //   let waypoint = new Waypoint({
+    //   element: theVideo,
+    //   handler: function(direction) {
+    //     theVideo.play();
+    //     svgPauses[i].style.opacity = 1;
+    //     svgPlays[i].setAttribute("display", "none");
+    //     svgPauses[i].setAttribute("display", "");
+    //     audioSound.pause();
+    //     setTimeout(function() {
+    //       svgPauses[i].style.opacity = 0;
+    //     }, 200);
+    //     for (let i2 = 0; i2 < videos.length; i2++) {
+    //       if(videos[i2] != theVideo){
+    //         videos[i2].pause();
+    //         svgPauses[i2].setAttribute("display", "none");
+    //         svgPlays[i2].setAttribute("display", "");
+    //       }
+    //     }
+    //   },
+    //   offset: '0%'
+    // });
+      
+    // }
+
     for (let i = 0; i < videos.length; i++) {
       videos[i].addEventListener("click", () => {
-        videoControl(videos, svgPlays, svgPauses,i) 
+        videoControl(videos, svgPlays, svgPauses, i);
       });
       svgPlays[i].addEventListener("click", () => {
-        videoControl(videos, svgPlays, svgPauses,i) 
+        videoControl(videos, svgPlays, svgPauses, i);
       });
       svgPauses[i].addEventListener("click", () => {
-        videoControl(videos, svgPlays, svgPauses,i) 
+        videoControl(videos, svgPlays, svgPauses, i);
       });
     }
   }, 200);
@@ -199,13 +246,16 @@ if (process.client) {
 let memo;
 
 export default {
-  /* head() {
+  head() {
     return {
       script: [
-        { src: "https://cdnjs.cloudflare.com/ajax/libs/scrollify/1.0.19/jquery.scrollify.min.js" },
+        {
+          src:
+            "https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/noframework.waypoints.min.js"
+        }
       ]
     };
-  }, */
+  },
 
   data() {
     return {
