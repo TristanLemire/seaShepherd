@@ -69,28 +69,27 @@
       </div>
       <div class="field">
         <label class="label has-text-light">Next step</label>
-      <div class="select">
-        <select class="select-nextStep">
-          <option :value="stepsingle.id" v-for="stepsingle in steps" :key="stepsingle.id">{{ stepsingle.title }}</option>
-        </select>
-      </div>
+        <div class="select">
+          <select class="select-nextStep">
+            <option
+              :value="stepsingle.id"
+              v-for="stepsingle in steps"
+              :key="stepsingle.id"
+            >{{ stepsingle.title }}</option>
+          </select>
+        </div>
       </div>
       <!-- Partie jason -->
       <div class="field">
         <label class="label has-text-light">Question</label>
         <div class="control">
-          <input
-            :id="step.id"
-            name="question"
-            minlength="5"
-            class="input question"
-            type="text"
-          >
+          <input :id="step.id" name="question" minlength="5" class="input question" type="text">
         </div>
       </div>
       <div class="field">
         <label class="label has-text-light">Réponses</label>
-        <div class="control">Réponse 1
+        <div class="control">
+          Réponse 1
           <input
             :id="step.id"
             name="reponse1"
@@ -100,7 +99,8 @@
           >
         </div>
         <br>
-        <div class="control">Réponse 2 
+        <div class="control">
+          Réponse 2
           <input
             :id="step.id"
             name="reponse2"
@@ -195,13 +195,13 @@ button.invisible {
 
 <script>
 if (process.client) {
-  let audiotime = document.querySelector('.musique');
-  audiotime.currentTime = localStorage.getItem('audioTime');
+  let audiotime = document.querySelector(".musique");
+  audiotime.currentTime = localStorage.getItem("audioTime");
 
-  window.addEventListener('click', () => {
-      let audiotime = document.querySelector('.musique');
-      localStorage.setItem('audioTime',audiotime.currentTime);
-  })
+  window.addEventListener("click", () => {
+    let audiotime = document.querySelector(".musique");
+    localStorage.setItem("audioTime", audiotime.currentTime);
+  });
   // Redirect if not admin
   if (
     !localStorage.getItem("connected") ||
@@ -311,41 +311,54 @@ if (process.client) {
   });
 
   setTimeout(() => {
+    // Select next
+    let options = document.querySelectorAll("option");
+    let stepId = window.location.href;
+    stepId = stepId.substring(33, window.location.href.length);
+    fetch('http://localhost:3000/api/steps/'+stepId, {
+      method: "GET"
+    }).then(response => {
+      return response.json()
+    }).then(step => {
+      options.forEach(option => {
+      if (Number(option.value) === Number(step.next)) {
+        option.setAttribute('selected', 'selected');
+        option.setAttribute('disabled', 'disabled');
+      }
+    });
+    })
+    
+
     // question
     let inputQuestion = document.querySelector(".question");
     let id = window.location.href;
     id = id.substring(33, window.location.href.length);
     let question = "http://localhost:3000/api/questions/" + id;
-    
+
     fetch(question, { method: "GET" })
       .then(function(response) {
         return response.json();
       })
       .then(response => {
-        inputQuestion.setAttribute('value', response[0].title);
-        inputQuestion.setAttribute('data-id', response[0].id);  
+        inputQuestion.setAttribute("value", response[0].title);
+        inputQuestion.setAttribute("data-id", response[0].id);
 
         // reponses
         let inputReponse1 = document.querySelector(".reponse1");
         let inputReponse2 = document.querySelector(".reponse2");
         let reponse = "http://localhost:3000/api/answers/" + id;
 
-        fetch(reponse, {method: "GET"})
-          .then(function(response){
+        fetch(reponse, { method: "GET" })
+          .then(function(response) {
             return response.json();
           })
           .then(response => {
-            inputReponse1.setAttribute('value', response[0].answer);
-            inputReponse1.setAttribute('data-id', response[0].id);
-            inputReponse2.setAttribute('value', response[1].answer);
-            inputReponse2.setAttribute('data-id', response[1].id);
-          })
-
+            inputReponse1.setAttribute("value", response[0].answer);
+            inputReponse1.setAttribute("data-id", response[0].id);
+            inputReponse2.setAttribute("value", response[1].answer);
+            inputReponse2.setAttribute("data-id", response[1].id);
+          });
       });
-
-      
-
-
 
     let forms = document.querySelectorAll("form");
     forms.forEach(form => {
@@ -394,7 +407,7 @@ if (process.client) {
   let description = document.querySelector("input[name=description]");
   let latitude = document.querySelector("input[name=latitude]");
   let longitude = document.querySelector("input[name=longitude]");
-  let selectNextStep = document.querySelector('.select-nextStep');
+  let selectNextStep = document.querySelector(".select-nextStep");
   /* Jason */
   let question = document.querySelector("input[name=question]");
   let reponse1 = document.querySelector("input[name=reponse1]");
@@ -415,7 +428,7 @@ if (process.client) {
       body: JSON.stringify(data)
     });
   });
-  
+
   title.addEventListener("keyup", () => {
     let id = title.id.substring(6, title.id.length);
     let url = "http://localhost:3000/api/steps/" + id;
@@ -482,7 +495,7 @@ if (process.client) {
 
   /* jason */
   question.addEventListener("keyup", () => {
-    let id = question.getAttribute('data-id');
+    let id = question.getAttribute("data-id");
     let url = "http://localhost:3000/api/questions/" + id;
     let data = {
       title: question.value
@@ -496,7 +509,7 @@ if (process.client) {
     });
   });
   reponse1.addEventListener("keyup", () => {
-    let id = reponse1.getAttribute('data-id');
+    let id = reponse1.getAttribute("data-id");
     let url = "http://localhost:3000/api/answers/" + id;
     let data = {
       answer: reponse1.value
@@ -510,7 +523,7 @@ if (process.client) {
     });
   });
   reponse2.addEventListener("keyup", () => {
-    let id = reponse2.getAttribute('data-id');
+    let id = reponse2.getAttribute("data-id");
     let url = "http://localhost:3000/api/answers/" + id;
     let data = {
       answer: reponse2.value
@@ -547,7 +560,7 @@ export default {
       id: this.$route.params.id,
       contents: this.getContent(),
       steps: this.getSteps(),
-      stepQuestion: this.getQuestion(),
+      stepQuestion: this.getQuestion()
     };
   },
   methods: {
