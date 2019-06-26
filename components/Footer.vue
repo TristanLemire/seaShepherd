@@ -44,7 +44,7 @@
       <circle cx="1084.5" cy="200.5" r="28.5" fill="white"></circle>
       <circle cx="1084.5" cy="200.5" r="15.5" fill="#1B263B"></circle>
       <g id="journey" clip-path="url(#clip0)">
-        <animateMotion dur="4s" repeatCount="1" rotate="auto" begin="indefinite">
+        <animateMotion dur="2.5s" repeatCount="1" rotate="auto" begin="indefinite">
           <mpath xlink:href="#moove"></mpath>
         </animateMotion>
         <path
@@ -492,7 +492,7 @@ export default {
       
       setTimeout(function() {
         document.location.href = link;
-      }, 3900);
+      }, 2400);
     }
   }
 };
