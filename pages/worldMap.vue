@@ -378,7 +378,7 @@ html {
 }
 
 #chartdiv {
-  height: 75vh;
+  height: 70vh;
   width: 100%;
   z-index: 1;
   position: absolute;

@@ -15,13 +15,13 @@
             @click.prevent="storeAnswer(answer.id)"
           >{{ answer.answer }}</button>
         </div>
-        <input
+        <!-- <input
           type="submit"
           id="submit"
           value="CONTINUE THE ADVENTURE"
           disabled
           @click.prevent="redirection(next)"
-        >
+        >-->
       </form>
     </div>
     <svg
@@ -387,19 +387,19 @@
 <script>
 if (process.client) {
   if (!localStorage.getItem("user")) window.location.href = "/nameChoice";
-  let step = document.querySelector("#submit");
-  let anime = document.querySelector(".boat animateMotion");
-  let input = document.querySelector("form");
-  let transform = document.querySelector("#journey");
+  // let step = document.querySelector("#submit");
+  // let anime = document.querySelector(".boat animateMotion");
+  // let input = document.querySelector("form");
+  // let transform = document.querySelector("#journey");
 
-  step.addEventListener(
-    "click",
-    function() {
-      transform.style.transform = "translateY(-55px)";
-      anime.beginElement();
-    },
-    false
-  );
+  // step.addEventListener(
+  //   "click",
+  //   function() {
+  //     transform.style.transform = "translateY(-55px)";
+  //     anime.beginElement();
+  //   },
+  //   false
+  // );
 }
 
 export default {
@@ -441,24 +441,24 @@ export default {
         });
     },
     storeAnswer(button) {
-      let buttons = document.querySelectorAll('button.answers');
+      let buttons = document.querySelectorAll("button.answers");
       buttons.forEach(button => {
-        button.setAttribute('disabled', 'disabled');
-      })
+        button.setAttribute("disabled", "disabled");
+      });
 
-      submit.removeAttribute("disabled");
+      //submit.removeAttribute("disabled");
 
       // Récupérer l'utilisateur dans la bdd
       let user = JSON.parse(localStorage.getItem("user"));
-      user = user[0]
-      console.log('user: ', user);
+      user = user[0];
+      console.log("user: ", user);
 
       let url = "http://localhost:3000/api/reply";
       let data = {
         id_step: this.$route.params.id,
         id_user: user.id,
         id_answer: button
-      }
+      };
 
       fetch(url, {
         method: "POST",
@@ -472,23 +472,16 @@ export default {
         body: JSON.stringify(data) // body data type must match "Content-Type" header
       });
 
-      /* Stocker la réponse de l'utilisateur */
-      /* Ceci est un test */
-      // const inputText = document.querySelector('#answer')
-      // const submit = document.querySelector('#submit')
-
-      // /* inputText.value.toLowerCase().trim() === ('yes') || ('no') ? submit.removeAttribute('disabled') : submit.setAttribute('disabled', '') */
-      // if (
-      //   inputText.value.toLowerCase().trim() === 'yes' ||
-      //   inputText.value.toLowerCase().trim() === 'no'
-      //  ) {
-      //    submit.removeAttribute('disabled')
-      //  } else {
-      //    submit.setAttribute('disabled', '')
-      //  }
+      this.redirection(this.next);
     },
 
     redirection(link) {
+      let anime = document.querySelector(".boat animateMotion");
+      let transform = document.querySelector("#journey");
+      
+      transform.style.transform = "translateY(-55px)";
+      anime.beginElement();
+      
       setTimeout(function() {
         document.location.href = link;
       }, 3900);
