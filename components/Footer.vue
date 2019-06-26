@@ -484,7 +484,7 @@ export default {
       
       setTimeout(function() {
         document.location.href = link;
-      }, 3900);
+      }, 2400);
     }
   }
 };
