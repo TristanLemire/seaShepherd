@@ -63,7 +63,7 @@ if (process.client) {
 
   // Colors
   let countriesColor = "#5588a3";
-  let countriesHoverColor = "#e8e8e8";
+  let countriesHoverColor = "#5588a3";
   let outlineColor = "#145374";
 
   let dotsColor = "#EECB29";
