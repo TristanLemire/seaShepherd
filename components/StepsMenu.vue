@@ -210,6 +210,7 @@ export default {
 }
 
 .ham {
+  width: 4.5%;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   transition: transform 400ms;
