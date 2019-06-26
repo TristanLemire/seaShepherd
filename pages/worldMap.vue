@@ -9,7 +9,7 @@
     </div>
     <div class="console">
       <P></P>
-      <p class="begin">To begin, sailing through the present point on the world map.</p>
+      <p class="begin">To start the journey, click on the markers displayed on the map</p>
       <p class="description">Discover the life of volunteers who embedded on a trip to save whales.</p>
     </div>
     <div class="steps">
@@ -63,7 +63,7 @@ if (process.client) {
 
   // Colors
   let countriesColor = "#5588a3";
-  let countriesHoverColor = "#e8e8e8";
+  let countriesHoverColor = "#5588a3";
   let outlineColor = "#145374";
 
   let dotsColor = "#EECB29";
@@ -97,7 +97,14 @@ if (process.client) {
 
   // Rotate map on drag
   map.panBehavior = "rotateLongLat";
+  
+  // Initial position
+  map.deltaLatitude = -40;
+  map.deltaLongitude = 20;
 
+  setInterval(() => {
+    map.deltaLongitude += 0.2
+  }, 50);
   // Adding outlines
   let polygonSeries = new am4maps.MapPolygonSeries();
   polygonSeries.useGeodata = true;
@@ -109,8 +116,8 @@ if (process.client) {
 
   polygonTemplate.propertyFields.fill = "fill";
 
-  var hs = polygonTemplate.states.create("hover");
-  hs.properties.fill = am4core.color(countriesHoverColor);
+  /* var hs = polygonTemplate.states.create("hover");
+  hs.properties.fill = am4core.color(countriesHoverColor); */
   // Map init end
   // ------------
 
@@ -345,9 +352,6 @@ export default {
       let active = localStorage.getItem("sound");
       let audios = document.querySelectorAll("audio");
       if (active == "OFF") {
-        if (video != null) {
-          video.volume = 0;
-        }
         if (audios.length > 0) {
           audios.forEach(audio => {
             audio.pause();
@@ -371,7 +375,7 @@ html {
 }
 
 #chartdiv {
-  height: 75vh;
+  height: 70vh;
   width: 100%;
   z-index: 1;
   position: absolute;

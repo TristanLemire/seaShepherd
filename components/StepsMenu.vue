@@ -3,7 +3,7 @@
     <div class="menuSteps">
       <ul class="steps">
         <li v-for="step, key in steps" :key="step.id">
-          <a :href="'/steps/'+step.id">{{ step.title }} <span>0{{++key}}</span></a>
+          <a :href="'/steps/'+step.id">{{ step.description }} <span>0{{++key}}</span></a>
         </li>
       </ul>
       <ul class="basic">
@@ -210,6 +210,7 @@ export default {
 }
 
 .ham {
+  width: 4.5%;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   transition: transform 400ms;
