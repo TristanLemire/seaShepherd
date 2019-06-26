@@ -3,13 +3,13 @@
     <Back />
     <StepsMenu />
 
-    <section class="section__hero">
+    <section class="section__hero scrollto">
       <h1>CONGRATULATION</h1>
       <p>You've been through the Sea-Shepherd experience, we hope it has made you feel better.
       Discover your results without further delay with your answers to the questions you have been asked during your exploration!</p>
     </section>
 
-    <section class="section__stats">
+    <section class="section__stats scrollto">
       <h2>Summary of your answers</h2>
       <div class="stats__data">
         <div class="data__values data__values--first">
@@ -35,7 +35,7 @@
         </div>
       </div>
     </section>
-    <section class="section__score">
+    <section class="section__score scrollto">
       <img src="../assets/image/paulwatson-sig.png" alt="">
       <div class="summary">
         <h3 class="score__sentence">According to your answers, you are eligible to be part of this journey!</h3>
@@ -50,6 +50,13 @@
   import Back from "~/components/Back.vue";
   import StepsMenu from "~/components/StepsMenu.vue";
   /* import Logo from "~/components/Logo.vue"; */
+  if ( process.client ) {
+      $( function() {
+        $.scrollify( {
+          section : ".scrollto"
+        } );
+      });
+    }
 
   export default {
     components: {
