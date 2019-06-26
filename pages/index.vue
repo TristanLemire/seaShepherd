@@ -19,7 +19,7 @@ src="hhttps://www.youtube.com/embed/b44QrmTn0Ng?autoplay=1&controls=0&fs=0&modes
       </svg>
     <div id="player"></div>
 
-    <h1>Take part in the trip of a volunteer through a campaign of Ses Shepherd to save whales.</h1>
+    <h1>Take part in the trip of a volunteer through a campaign of Sea Shepherd to save whales.</h1>
     <hr>
     <Menu/>
     <div class="home__button">
