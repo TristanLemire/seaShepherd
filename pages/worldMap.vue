@@ -345,9 +345,6 @@ export default {
       let active = localStorage.getItem("sound");
       let audios = document.querySelectorAll("audio");
       if (active == "OFF") {
-        if (video != null) {
-          video.volume = 0;
-        }
         if (audios.length > 0) {
           audios.forEach(audio => {
             audio.pause();

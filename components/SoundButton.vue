@@ -1,5 +1,5 @@
 <template>
-  <button class="soundButton" @click="soundChange">SOUND: {{ sound }}</button>
+  <button class="soundButton" @click="soundChange">MUSIC: {{ sound }}</button>
 </template>
 
 <script>
@@ -12,24 +12,29 @@ export default {
   },
   methods: {
     soundChange() {
-      let video = document.querySelector('video');
       let audios = document.querySelectorAll('audio');
+      let videos = document.querySelectorAll('video');
+      let countVideoPlay = 0;
       if(this.sound == 'OFF'){
-        this.sound = 'ON'
-        if(video != null){
-          video.volume = 1;
-        } 
+        for (let i = 0; i < videos.length; i++) {
+          if(videos[i].getAttribute("data-play") === 'true'){
+            countVideoPlay++;
+          }
+        }
+        if(countVideoPlay == 0){
+          this.sound = 'ON'
         if (audios.length > 0) {
           audios.forEach(audio => {
           audio.play();
         });
         }
         localStorage.setItem('sound','ON');
+        } else {
+          this.sound = 'ON'
+          localStorage.setItem('sound','ON');
+        }
       } else {
         this.sound = 'OFF'
-        if(video != null){
-          video.volume = 0;
-        } 
         if (audios.length > 0) {
           audios.forEach(audio => {
           audio.pause();
