@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <audio class="musique" loop autoplay :src="require('@/assets/music/musique.mp3')"></audio>
     <br>
     <br>
     <br>
