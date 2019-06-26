@@ -2,7 +2,7 @@ const knex = require('./knex'); // The connection
 
 module.exports = {
     getAll(table) {
-        return knex(table);
+        return knex(table).orderBy('id', 'asc');
     },
     getSteps(table) {
         return knex(table).orderBy('id', 'asc');
