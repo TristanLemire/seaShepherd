@@ -1,3 +1,4 @@
+
 <template>
   <div class="home">
     <!-- <nuxt-link to="/about" class="button--green">Home</nuxt-link> -->
@@ -18,7 +19,7 @@ src="hhttps://www.youtube.com/embed/b44QrmTn0Ng?autoplay=1&controls=0&fs=0&modes
       </svg>
     <div id="player"></div>
 
-    <h1>Introduction</h1>
+    <h1>Take part in the trip of a volunteer through a campaign of Ses Shepherd to save whales.</h1>
     <hr>
     <Menu/>
     <div class="home__button">
@@ -56,7 +57,6 @@ export default {
   },
   methods: {
     soundActive() {
-      console.log(document.querySelector(".home__video"));
       let video = document.querySelector(".home__video");
       let active = localStorage.getItem("sound");
       let audios = document.querySelectorAll("audio");
@@ -74,7 +74,6 @@ export default {
     endVideo() {
       let video = document.querySelector(".home__video");
       video.addEventListener("ended", function() {
-        console.log("end");
         window.location.href = "/nameChoice";
       });
     },
@@ -151,12 +150,13 @@ div.home {
     color: white;
     font-weight: bold;
     letter-spacing: 0.1em;
+    font-family: "Poppins", sans-serif;
     position: absolute;
     left: 50%;
     bottom: 15%;
     transform: translateX(-50%);
-    font-family: "Poppins", sans-serif;
     z-index: 1;
+    text-align: center;
   }
 
   .home__video {

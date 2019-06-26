@@ -1,6 +1,6 @@
 <template>
   <div class="worldMap">
-<audio class="musique" loop autoplay :src="require('@/assets/music/musique.mp3')"></audio>
+    <audio class="musique" loop autoplay :src="require('@/assets/music/musique.mp3')"></audio>
     <StepsMenu/>
     <div id="chartdiv"></div>
     <div class="home__button">
@@ -9,6 +9,8 @@
     </div>
     <div class="console">
       <P></P>
+      <p class="begin">To begin, sailing through the present point on the world map.</p>
+      <p class="description">Discover the life of volunteers who embedded on a trip to save whales.</p>
     </div>
     <div class="steps">
       <p
@@ -32,28 +34,37 @@ import Logo from "~/components/Logo.vue";
 import { returnStatement } from "babel-types";
 
 if (process.client) {
-  if (!localStorage.getItem('user')) window.location.href = '/nameChoice';
+  if (!localStorage.getItem("user")) window.location.href = "/nameChoice";
 
-  let audiotime = document.querySelector('.musique');
-  audiotime.currentTime = localStorage.getItem('audioTime');
+  let audiotime = document.querySelector(".musique");
+  audiotime.currentTime = localStorage.getItem("audioTime");
 
-    window.addEventListener('click', () => {
-      let audiotime = document.querySelector('.musique');
-      localStorage.setItem('audioTime',audiotime.currentTime);
-  })
-  
+  window.addEventListener("click", () => {
+    let audiotime = document.querySelector(".musique");
+    localStorage.setItem("audioTime", audiotime.currentTime);
+  });
+
+  let consoleMap = document.querySelector(".console");
   let consoleWelcome = document.querySelector(".console p");
   consoleWelcome.innerHTML =
     "Hey " +
     JSON.parse(localStorage.getItem("user"))[0]["name"] +
     ",  Welcome to the Sea-Shepherd experience.";
-  
-  
-  
+
+  let beginP = document.querySelector(".begin");
+  setTimeout(function() {
+    beginP.classList.add('is-visibleP');
+  }, 3000);
+
+  let descriptionP = document.querySelector(".description");
+  setTimeout(function() {
+    descriptionP.classList.add('is-visibleP');
+  }, 6000);
+
   // Colors
-  let countriesColor = "#576370";
-  let countriesHoverColor = "#ffffff";
-  let outlineColor = "#fff";
+  let countriesColor = "#5588a3";
+  let countriesHoverColor = "#e8e8e8";
+  let outlineColor = "#145374";
 
   let dotsColor = "#EECB29";
   let dotsStrokeColor = "#fff";
@@ -170,64 +181,66 @@ if (process.client) {
 
     city.events.on("hit", () => {
       // Remove the other tooltip if existing
-      let oldTooltips = document.querySelectorAll('.tooltip');
+      let oldTooltips = document.querySelectorAll(".tooltip");
       if (oldTooltips.length > 0) {
-        oldTooltips.forEach(tooltip => document.querySelector('body').removeChild(tooltip));
+        oldTooltips.forEach(tooltip =>
+          document.querySelector("body").removeChild(tooltip)
+        );
       }
 
-      // Get mouse position 
-      var x = event.clientX - 100 ;     // Get the horizontal coordinate
-      var y = event.clientY + 20;     // Get the vertical coordinate
+      // Get mouse position
+      var x = event.clientX - 100; // Get the horizontal coordinate
+      var y = event.clientY + 20; // Get the vertical coordinate
 
       // Get the step infos
-      let id = city.dom.className.baseVal
-      let titleText = ''
-      let descriptionText = ''
-      let stepLink = ''
-      id =  String(id).substring(5,id.length);
-      let infos = document.querySelectorAll('p');
-      
+      let id = city.dom.className.baseVal;
+      let titleText = "";
+      let descriptionText = "";
+      let stepLink = "";
+      id = String(id).substring(5, id.length);
+      let infos = document.querySelectorAll("p");
+
       infos.forEach(info => {
         if (info.id === id) {
-          descriptionText = info.getAttribute('data-description')
-          titleText = info.getAttribute('data-title')
-          stepLink = 'http://localhost:3000/steps/' + id
+          descriptionText = info.getAttribute("data-description");
+          titleText = info.getAttribute("data-title");
+          stepLink = "http://localhost:3000/steps/" + id;
         }
-      })
+      });
 
       // Create a new tooltip
-      let tooltip =  document.createElement('div');
-      tooltip.classList.add('tooltip');
+      let tooltip = document.createElement("div");
+      tooltip.classList.add("tooltip");
 
-      let title = document.createElement('p');
-      title.classList.add('tooltip__title');
-      title.innerHTML = titleText
+      let title = document.createElement("p");
+      title.classList.add("tooltip__title");
+      title.innerHTML = titleText;
 
-      let description = document.createElement('p');
-      description.classList.add('tooltip__description');
-      description.innerHTML = descriptionText
+      let description = document.createElement("p");
+      description.classList.add("tooltip__description");
+      description.innerHTML = descriptionText;
 
-      let link = document.createElement('a');
-      link.classList.add('tooltip__link');
-      link.innerHTML = 'BEGIN';
-      link.setAttribute('href', stepLink);
+      let link = document.createElement("a");
+      link.classList.add("tooltip__link");
+      link.innerHTML = "BEGIN";
+      link.setAttribute("href", stepLink);
 
-      let deleteButton = document.createElement('p');
-      deleteButton.classList.add('delete');
+      let deleteButton = document.createElement("p");
+      deleteButton.classList.add("delete");
 
-      deleteButton.addEventListener('click', () => {
-        document.querySelector('body').removeChild(tooltip);
-      })
+      deleteButton.addEventListener("click", () => {
+        document.querySelector("body").removeChild(tooltip);
+      });
 
-      tooltip.appendChild(title)
-      tooltip.appendChild(description)
-      tooltip.appendChild(link)
-      tooltip.appendChild(deleteButton)
+      tooltip.appendChild(title);
+      tooltip.appendChild(description);
+      tooltip.appendChild(link);
+      tooltip.appendChild(deleteButton);
 
-      tooltip.style.left = x + "px"
-      tooltip.style.top = y + "px"
+      tooltip.style.left = x + "px";
+      tooltip.style.top = y + "px";
 
-      document.querySelector('body').appendChild(tooltip);
+      document.querySelector("body").appendChild(tooltip);
       /*
       <div class="tooltip">
       <p class="tooltip__title">Step 1</p>
@@ -292,7 +305,7 @@ if (process.client) {
         },
         title
       );
-      point.dom.classList.add('step-'+id);
+      point.dom.classList.add("step-" + id);
       addAnimation(point);
     });
   }, 100);
@@ -350,7 +363,8 @@ export default {
 </script>
 
 <style lang="scss">
-body {
+body,
+html {
   background-color: #0d1b2a;
   height: 100vh;
   width: 100%;
@@ -372,7 +386,7 @@ body {
 }
 
 div.worldMap {
-  overflow: hidden;
+  // overflow: hidden;
   height: 100vh;
   width: 100%;
 }
@@ -389,6 +403,22 @@ div.console {
   font-size: 14px;
   line-height: 21px;
   letter-spacing: 2px;
+  overflow-y: scroll;
+  max-height: 90vh;
+  scrollbar-color: rebeccapurple green;
+  scrollbar-width: thin;
+
+  .description, .begin {
+    opacity: 0;
+    display: none;
+    transition: opacity .5s;
+    margin-top: 20px;
+  }
+
+  .description.is-visibleP, .begin.is-visibleP {
+    opacity: 1;
+    display: block;
+  }
 }
 
 .tooltip {
@@ -429,14 +459,12 @@ div.console {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    
+
     &:hover {
       color: gold;
       border: 1px solid gold;
     }
   }
-
-
 
   .delete {
     top: 10px;

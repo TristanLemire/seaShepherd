@@ -77,15 +77,36 @@
       </div>
       <!-- Partie jason -->
       <div class="field">
-        <label class="label has-text-light">Formulaire</label>
+        <label class="label has-text-light">Question</label>
         <div class="control">
           <input
-            :id="'form-'"
-            name="formulaire"
+            :id="step.id"
+            name="question"
             minlength="5"
-            class="input"
+            class="input question"
             type="text"
-            
+          >
+        </div>
+      </div>
+      <div class="field">
+        <label class="label has-text-light">Réponses</label>
+        <div class="control">Réponse 1
+          <input
+            :id="step.id"
+            name="reponse1"
+            minlength="5"
+            class="input reponse1"
+            type="text"
+          >
+        </div>
+        <br>
+        <div class="control">Réponse 2 
+          <input
+            :id="step.id"
+            name="reponse2"
+            minlength="5"
+            class="input reponse2"
+            type="text"
           >
         </div>
       </div>
@@ -96,7 +117,6 @@
       <div>
         <button class="button is-info addContent">Add content</button>
         <button class="invisible imageType contentButton button is-primary">Image / Video</button>
-        <button class="invisible contentButton button is-primary">Audio</button>
         <button class="invisible textType contentButton button is-primary">Text</button>
       </div>
       <br>
@@ -174,9 +194,6 @@ button.invisible {
 </style>
 
 <script>
-
-
-
 if (process.client) {
   let audiotime = document.querySelector('.musique');
   audiotime.currentTime = localStorage.getItem('audioTime');
@@ -223,7 +240,6 @@ if (process.client) {
     // Create it in database
     let url = "http://localhost:3000/api/contents";
     let order = document.querySelectorAll(".contentPart").length;
-    console.log("order: ", order);
 
     let data = {
       id_step: window.location.href.substring(33, window.location.href.length),
@@ -288,7 +304,6 @@ if (process.client) {
             referrer: "no-referrer", // no-referrer, *client
             body: JSON.stringify(data) // body data type must match "Content-Type" header
           }).then(response => {
-            console.log("response: ", response);
             window.location.reload();
           });
         });
@@ -296,6 +311,42 @@ if (process.client) {
   });
 
   setTimeout(() => {
+    // question
+    let inputQuestion = document.querySelector(".question");
+    let id = window.location.href;
+    id = id.substring(33, window.location.href.length);
+    let question = "http://localhost:3000/api/questions/" + id;
+    
+    fetch(question, { method: "GET" })
+      .then(function(response) {
+        return response.json();
+      })
+      .then(response => {
+        inputQuestion.setAttribute('value', response[0].title);
+        inputQuestion.setAttribute('data-id', response[0].id);  
+
+        // reponses
+        let inputReponse1 = document.querySelector(".reponse1");
+        let inputReponse2 = document.querySelector(".reponse2");
+        let reponse = "http://localhost:3000/api/answers/" + id;
+
+        fetch(reponse, {method: "GET"})
+          .then(function(response){
+            return response.json();
+          })
+          .then(response => {
+            inputReponse1.setAttribute('value', response[0].answer);
+            inputReponse1.setAttribute('data-id', response[0].id);
+            inputReponse2.setAttribute('value', response[1].answer);
+            inputReponse2.setAttribute('data-id', response[1].id);
+          })
+
+      });
+
+      
+
+
+
     let forms = document.querySelectorAll("form");
     forms.forEach(form => {
       let deleteButton = form.querySelector(".deleteContent");
@@ -338,15 +389,16 @@ if (process.client) {
     });
   }, 300);
 
-  // Edit title, description, longitude and latitude and formulaire
+  // Edit title, description, longitude and latitude and question
   let title = document.querySelector("input[name=title]");
   let description = document.querySelector("input[name=description]");
   let latitude = document.querySelector("input[name=latitude]");
   let longitude = document.querySelector("input[name=longitude]");
   let selectNextStep = document.querySelector('.select-nextStep');
   /* Jason */
-  let formulaire = document.querySelector("input[name=formulaire]");
-
+  let question = document.querySelector("input[name=question]");
+  let reponse1 = document.querySelector("input[name=reponse1]");
+  let reponse2 = document.querySelector("input[name=reponse2]");
 
   selectNextStep.addEventListener("change", () => {
     let id = title.id.substring(6, title.id.length);
@@ -428,25 +480,50 @@ if (process.client) {
     });
   });
 
-/* jason */
-//   formulaire.addEventListener("keyup", () => {
-//     let id = formulaire.id.substring(12, formulaire.id.length);
-//     let url = "http://localhost:3000/api/questions/" + id;
-//     let data = {
-//       title: formulaire.value
-//     };
-    
-
-//     fetch(url, {
-//       method: "PUT",
-//       headers: {
-//         "Content-Type": "application/json"
-//       },
-//       body: JSON.stringify(data)
-//     });
-//   });
+  /* jason */
+  question.addEventListener("keyup", () => {
+    let id = question.getAttribute('data-id');
+    let url = "http://localhost:3000/api/questions/" + id;
+    let data = {
+      title: question.value
+    };
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+  });
+  reponse1.addEventListener("keyup", () => {
+    let id = reponse1.getAttribute('data-id');
+    let url = "http://localhost:3000/api/answers/" + id;
+    let data = {
+      answer: reponse1.value
+    };
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+  });
+  reponse2.addEventListener("keyup", () => {
+    let id = reponse2.getAttribute('data-id');
+    let url = "http://localhost:3000/api/answers/" + id;
+    let data = {
+      answer: reponse2.value
+    };
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+  });
 }
-
 
 export default {
   head() {
@@ -513,11 +590,9 @@ export default {
         })
         .then(response => {
           this.stepQuestion = response;
-          console.log('this.stepQuestion: ', this.stepQuestion.title);
         });
     }
   }
-  
 };
 </script>
 
