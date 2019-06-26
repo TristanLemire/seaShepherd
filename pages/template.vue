@@ -92,7 +92,6 @@ export default {
 
   methods: {
     soundActive() {
-      console.log(document.querySelector(".home__video"));
       let video = document.querySelector(".home__video");
       let active = localStorage.getItem("sound");
       let audios = document.querySelectorAll("audio");
