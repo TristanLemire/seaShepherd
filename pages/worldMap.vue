@@ -97,7 +97,14 @@ if (process.client) {
 
   // Rotate map on drag
   map.panBehavior = "rotateLongLat";
+  
+  // Initial position
+  map.deltaLatitude = -40;
+  map.deltaLongitude = 20;
 
+  setInterval(() => {
+    map.deltaLongitude += 0.2
+  }, 50);
   // Adding outlines
   let polygonSeries = new am4maps.MapPolygonSeries();
   polygonSeries.useGeodata = true;
@@ -368,7 +375,7 @@ html {
 }
 
 #chartdiv {
-  height: 75vh;
+  height: 70vh;
   width: 100%;
   z-index: 1;
   position: absolute;
