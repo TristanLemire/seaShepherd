@@ -23,13 +23,11 @@
       </div>
     </section>
     <section class="section__score scrollto">
-      <img src="../assets/image/paulwatson-sig.png" alt>
+      <img src="~/assets/image/paulwatson-sig.png" alt>
       <div class="summary">
         <h3
           class="score__sentence"
         >According to your answers, you are eligible to be part of this journey!</h3>
-        <h3 class="score__text">Your score is:</h3>
-        <h3 class="score__percentage">77%</h3>
       </div>
     </section>
   </div>
