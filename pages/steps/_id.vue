@@ -86,9 +86,6 @@ import Footer from "~/components/Footer.vue";
 import ScrollDown from "~/components/ScrollDown.vue";
 
 if (process.client) {
-
-
-
   function videoControl(videos, svgPlays, svgPauses, i) {
     let video = videos[i];
     let svgPlay = svgPlays[i];
@@ -129,17 +126,43 @@ if (process.client) {
     let svgPauses = document.querySelectorAll(".video svg:nth-child(3)");
     let audioSound = document.querySelector("audio");
 
-    window.addEventListener('scroll', ()=> {
+    window.addEventListener("scroll", () => {
       for (let i = 0; i < videos.length; i++) {
         videos[i].setAttribute("data-play", "false");
         videos[i].pause();
         svgPauses[i].setAttribute("display", "none");
         svgPlays[i].setAttribute("display", "");
-        if(localStorage.getItem("sound") != 'OFF'){
+        if (localStorage.getItem("sound") != "OFF") {
           audioSound.play();
         }
       }
-    })
+    });
+
+    let allSection = document.querySelectorAll("section");
+    for (let i = 0; i < allSection.length; i++) {
+      console.log(allSection[i]);
+      let waypoint = new Waypoint({
+        element: allSection[i],
+        handler: function(direction) {
+          if (allSection[i].className == "scrollto video") {
+            let laVideo = allSection[i].querySelector("video");
+            let leSvgPlay = allSection[i].querySelector("svg:nth-child(2)");
+            let leSvgPause = allSection[i].querySelector("svg:nth-child(3)");
+            laVideo.play();
+            console.log(allSection[i]);
+            laVideo.setAttribute("data-play", "true");
+            leSvgPause.style.opacity = 1;
+            leSvgPlay.setAttribute("display", "none");
+            leSvgPause.setAttribute("display", "");
+            audioSound.pause();
+            setTimeout(function() {
+              leSvgPause.style.opacity = 0;
+            }, 200);
+          }
+        },
+        offset: "0%"
+      });
+    }
 
     // for (let i = 0; i < videos.length; i++) {
     //   videos[i].setAttribute("id", i);
@@ -168,7 +191,7 @@ if (process.client) {
     //   },
     //   offset: '0%'
     // });
-      
+
     // }
 
     for (let i = 0; i < videos.length; i++) {
