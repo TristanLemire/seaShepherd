@@ -21,7 +21,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: admins; Type: TABLE; Schema: public; Owner: pro-edwin
+-- Name: admins; Type: TABLE; Schema: public; Owner: lemire-HETIC
 --
 
 CREATE TABLE public.admins (
@@ -31,10 +31,10 @@ CREATE TABLE public.admins (
 );
 
 
-ALTER TABLE public.admins OWNER TO "pro-edwin";
+ALTER TABLE public.admins OWNER TO "lemire-HETIC";
 
 --
--- Name: admins_id_seq; Type: SEQUENCE; Schema: public; Owner: pro-edwin
+-- Name: admins_id_seq; Type: SEQUENCE; Schema: public; Owner: lemire-HETIC
 --
 
 CREATE SEQUENCE public.admins_id_seq
@@ -46,17 +46,17 @@ CREATE SEQUENCE public.admins_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.admins_id_seq OWNER TO "pro-edwin";
+ALTER TABLE public.admins_id_seq OWNER TO "lemire-HETIC";
 
 --
--- Name: admins_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: pro-edwin
+-- Name: admins_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: lemire-HETIC
 --
 
 ALTER SEQUENCE public.admins_id_seq OWNED BY public.admins.id;
 
 
 --
--- Name: answers; Type: TABLE; Schema: public; Owner: pro-edwin
+-- Name: answers; Type: TABLE; Schema: public; Owner: lemire-HETIC
 --
 
 CREATE TABLE public.answers (
@@ -66,10 +66,10 @@ CREATE TABLE public.answers (
 );
 
 
-ALTER TABLE public.answers OWNER TO "pro-edwin";
+ALTER TABLE public.answers OWNER TO "lemire-HETIC";
 
 --
--- Name: answers_id_seq; Type: SEQUENCE; Schema: public; Owner: pro-edwin
+-- Name: answers_id_seq; Type: SEQUENCE; Schema: public; Owner: lemire-HETIC
 --
 
 CREATE SEQUENCE public.answers_id_seq
@@ -81,17 +81,17 @@ CREATE SEQUENCE public.answers_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.answers_id_seq OWNER TO "pro-edwin";
+ALTER TABLE public.answers_id_seq OWNER TO "lemire-HETIC";
 
 --
--- Name: answers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: pro-edwin
+-- Name: answers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: lemire-HETIC
 --
 
 ALTER SEQUENCE public.answers_id_seq OWNED BY public.answers.id;
 
 
 --
--- Name: content; Type: TABLE; Schema: public; Owner: pro-edwin
+-- Name: content; Type: TABLE; Schema: public; Owner: lemire-HETIC
 --
 
 CREATE TABLE public.content (
@@ -105,10 +105,10 @@ CREATE TABLE public.content (
 );
 
 
-ALTER TABLE public.content OWNER TO "pro-edwin";
+ALTER TABLE public.content OWNER TO "lemire-HETIC";
 
 --
--- Name: content_id_seq; Type: SEQUENCE; Schema: public; Owner: pro-edwin
+-- Name: content_id_seq; Type: SEQUENCE; Schema: public; Owner: lemire-HETIC
 --
 
 CREATE SEQUENCE public.content_id_seq
@@ -120,17 +120,17 @@ CREATE SEQUENCE public.content_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.content_id_seq OWNER TO "pro-edwin";
+ALTER TABLE public.content_id_seq OWNER TO "lemire-HETIC";
 
 --
--- Name: content_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: pro-edwin
+-- Name: content_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: lemire-HETIC
 --
 
 ALTER SEQUENCE public.content_id_seq OWNED BY public.content.id;
 
 
 --
--- Name: knex_migrations; Type: TABLE; Schema: public; Owner: pro-edwin
+-- Name: knex_migrations; Type: TABLE; Schema: public; Owner: lemire-HETIC
 --
 
 CREATE TABLE public.knex_migrations (
@@ -141,10 +141,10 @@ CREATE TABLE public.knex_migrations (
 );
 
 
-ALTER TABLE public.knex_migrations OWNER TO "pro-edwin";
+ALTER TABLE public.knex_migrations OWNER TO "lemire-HETIC";
 
 --
--- Name: knex_migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: pro-edwin
+-- Name: knex_migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: lemire-HETIC
 --
 
 CREATE SEQUENCE public.knex_migrations_id_seq
@@ -156,17 +156,17 @@ CREATE SEQUENCE public.knex_migrations_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.knex_migrations_id_seq OWNER TO "pro-edwin";
+ALTER TABLE public.knex_migrations_id_seq OWNER TO "lemire-HETIC";
 
 --
--- Name: knex_migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: pro-edwin
+-- Name: knex_migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: lemire-HETIC
 --
 
 ALTER SEQUENCE public.knex_migrations_id_seq OWNED BY public.knex_migrations.id;
 
 
 --
--- Name: knex_migrations_lock; Type: TABLE; Schema: public; Owner: pro-edwin
+-- Name: knex_migrations_lock; Type: TABLE; Schema: public; Owner: lemire-HETIC
 --
 
 CREATE TABLE public.knex_migrations_lock (
@@ -175,10 +175,10 @@ CREATE TABLE public.knex_migrations_lock (
 );
 
 
-ALTER TABLE public.knex_migrations_lock OWNER TO "pro-edwin";
+ALTER TABLE public.knex_migrations_lock OWNER TO "lemire-HETIC";
 
 --
--- Name: knex_migrations_lock_index_seq; Type: SEQUENCE; Schema: public; Owner: pro-edwin
+-- Name: knex_migrations_lock_index_seq; Type: SEQUENCE; Schema: public; Owner: lemire-HETIC
 --
 
 CREATE SEQUENCE public.knex_migrations_lock_index_seq
@@ -190,17 +190,17 @@ CREATE SEQUENCE public.knex_migrations_lock_index_seq
     CACHE 1;
 
 
-ALTER TABLE public.knex_migrations_lock_index_seq OWNER TO "pro-edwin";
+ALTER TABLE public.knex_migrations_lock_index_seq OWNER TO "lemire-HETIC";
 
 --
--- Name: knex_migrations_lock_index_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: pro-edwin
+-- Name: knex_migrations_lock_index_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: lemire-HETIC
 --
 
 ALTER SEQUENCE public.knex_migrations_lock_index_seq OWNED BY public.knex_migrations_lock.index;
 
 
 --
--- Name: questions; Type: TABLE; Schema: public; Owner: pro-edwin
+-- Name: questions; Type: TABLE; Schema: public; Owner: lemire-HETIC
 --
 
 CREATE TABLE public.questions (
@@ -210,10 +210,10 @@ CREATE TABLE public.questions (
 );
 
 
-ALTER TABLE public.questions OWNER TO "pro-edwin";
+ALTER TABLE public.questions OWNER TO "lemire-HETIC";
 
 --
--- Name: questions_id_seq; Type: SEQUENCE; Schema: public; Owner: pro-edwin
+-- Name: questions_id_seq; Type: SEQUENCE; Schema: public; Owner: lemire-HETIC
 --
 
 CREATE SEQUENCE public.questions_id_seq
@@ -225,17 +225,17 @@ CREATE SEQUENCE public.questions_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.questions_id_seq OWNER TO "pro-edwin";
+ALTER TABLE public.questions_id_seq OWNER TO "lemire-HETIC";
 
 --
--- Name: questions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: pro-edwin
+-- Name: questions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: lemire-HETIC
 --
 
 ALTER SEQUENCE public.questions_id_seq OWNED BY public.questions.id;
 
 
 --
--- Name: reply; Type: TABLE; Schema: public; Owner: pro-edwin
+-- Name: reply; Type: TABLE; Schema: public; Owner: lemire-HETIC
 --
 
 CREATE TABLE public.reply (
@@ -246,10 +246,10 @@ CREATE TABLE public.reply (
 );
 
 
-ALTER TABLE public.reply OWNER TO "pro-edwin";
+ALTER TABLE public.reply OWNER TO "lemire-HETIC";
 
 --
--- Name: reply_id_seq; Type: SEQUENCE; Schema: public; Owner: pro-edwin
+-- Name: reply_id_seq; Type: SEQUENCE; Schema: public; Owner: lemire-HETIC
 --
 
 CREATE SEQUENCE public.reply_id_seq
@@ -261,17 +261,17 @@ CREATE SEQUENCE public.reply_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.reply_id_seq OWNER TO "pro-edwin";
+ALTER TABLE public.reply_id_seq OWNER TO "lemire-HETIC";
 
 --
--- Name: reply_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: pro-edwin
+-- Name: reply_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: lemire-HETIC
 --
 
 ALTER SEQUENCE public.reply_id_seq OWNED BY public.reply.id;
 
 
 --
--- Name: steps; Type: TABLE; Schema: public; Owner: pro-edwin
+-- Name: steps; Type: TABLE; Schema: public; Owner: lemire-HETIC
 --
 
 CREATE TABLE public.steps (
@@ -284,10 +284,10 @@ CREATE TABLE public.steps (
 );
 
 
-ALTER TABLE public.steps OWNER TO "pro-edwin";
+ALTER TABLE public.steps OWNER TO "lemire-HETIC";
 
 --
--- Name: steps_id_seq; Type: SEQUENCE; Schema: public; Owner: pro-edwin
+-- Name: steps_id_seq; Type: SEQUENCE; Schema: public; Owner: lemire-HETIC
 --
 
 CREATE SEQUENCE public.steps_id_seq
@@ -299,17 +299,17 @@ CREATE SEQUENCE public.steps_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.steps_id_seq OWNER TO "pro-edwin";
+ALTER TABLE public.steps_id_seq OWNER TO "lemire-HETIC";
 
 --
--- Name: steps_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: pro-edwin
+-- Name: steps_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: lemire-HETIC
 --
 
 ALTER SEQUENCE public.steps_id_seq OWNED BY public.steps.id;
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: pro-edwin
+-- Name: users; Type: TABLE; Schema: public; Owner: lemire-HETIC
 --
 
 CREATE TABLE public.users (
@@ -319,10 +319,10 @@ CREATE TABLE public.users (
 );
 
 
-ALTER TABLE public.users OWNER TO "pro-edwin";
+ALTER TABLE public.users OWNER TO "lemire-HETIC";
 
 --
--- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: pro-edwin
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: lemire-HETIC
 --
 
 CREATE SEQUENCE public.users_id_seq
@@ -334,80 +334,80 @@ CREATE SEQUENCE public.users_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.users_id_seq OWNER TO "pro-edwin";
+ALTER TABLE public.users_id_seq OWNER TO "lemire-HETIC";
 
 --
--- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: pro-edwin
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: lemire-HETIC
 --
 
 ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
--- Name: admins id; Type: DEFAULT; Schema: public; Owner: pro-edwin
+-- Name: admins id; Type: DEFAULT; Schema: public; Owner: lemire-HETIC
 --
 
 ALTER TABLE ONLY public.admins ALTER COLUMN id SET DEFAULT nextval('public.admins_id_seq'::regclass);
 
 
 --
--- Name: answers id; Type: DEFAULT; Schema: public; Owner: pro-edwin
+-- Name: answers id; Type: DEFAULT; Schema: public; Owner: lemire-HETIC
 --
 
 ALTER TABLE ONLY public.answers ALTER COLUMN id SET DEFAULT nextval('public.answers_id_seq'::regclass);
 
 
 --
--- Name: content id; Type: DEFAULT; Schema: public; Owner: pro-edwin
+-- Name: content id; Type: DEFAULT; Schema: public; Owner: lemire-HETIC
 --
 
 ALTER TABLE ONLY public.content ALTER COLUMN id SET DEFAULT nextval('public.content_id_seq'::regclass);
 
 
 --
--- Name: knex_migrations id; Type: DEFAULT; Schema: public; Owner: pro-edwin
+-- Name: knex_migrations id; Type: DEFAULT; Schema: public; Owner: lemire-HETIC
 --
 
 ALTER TABLE ONLY public.knex_migrations ALTER COLUMN id SET DEFAULT nextval('public.knex_migrations_id_seq'::regclass);
 
 
 --
--- Name: knex_migrations_lock index; Type: DEFAULT; Schema: public; Owner: pro-edwin
+-- Name: knex_migrations_lock index; Type: DEFAULT; Schema: public; Owner: lemire-HETIC
 --
 
 ALTER TABLE ONLY public.knex_migrations_lock ALTER COLUMN index SET DEFAULT nextval('public.knex_migrations_lock_index_seq'::regclass);
 
 
 --
--- Name: questions id; Type: DEFAULT; Schema: public; Owner: pro-edwin
+-- Name: questions id; Type: DEFAULT; Schema: public; Owner: lemire-HETIC
 --
 
 ALTER TABLE ONLY public.questions ALTER COLUMN id SET DEFAULT nextval('public.questions_id_seq'::regclass);
 
 
 --
--- Name: reply id; Type: DEFAULT; Schema: public; Owner: pro-edwin
+-- Name: reply id; Type: DEFAULT; Schema: public; Owner: lemire-HETIC
 --
 
 ALTER TABLE ONLY public.reply ALTER COLUMN id SET DEFAULT nextval('public.reply_id_seq'::regclass);
 
 
 --
--- Name: steps id; Type: DEFAULT; Schema: public; Owner: pro-edwin
+-- Name: steps id; Type: DEFAULT; Schema: public; Owner: lemire-HETIC
 --
 
 ALTER TABLE ONLY public.steps ALTER COLUMN id SET DEFAULT nextval('public.steps_id_seq'::regclass);
 
 
 --
--- Name: users id; Type: DEFAULT; Schema: public; Owner: pro-edwin
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: lemire-HETIC
 --
 
 ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
 
 
 --
--- Data for Name: admins; Type: TABLE DATA; Schema: public; Owner: pro-edwin
+-- Data for Name: admins; Type: TABLE DATA; Schema: public; Owner: lemire-HETIC
 --
 
 COPY public.admins (id, name, password) FROM stdin;
@@ -416,7 +416,7 @@ COPY public.admins (id, name, password) FROM stdin;
 
 
 --
--- Data for Name: answers; Type: TABLE DATA; Schema: public; Owner: pro-edwin
+-- Data for Name: answers; Type: TABLE DATA; Schema: public; Owner: lemire-HETIC
 --
 
 COPY public.answers (id, answer, id_step) FROM stdin;
@@ -432,16 +432,17 @@ COPY public.answers (id, answer, id_step) FROM stdin;
 18	Yes I am determined	4
 17	No I am not	3
 19	No I am not ready	4
+22	I am aware of that\t	6
+23	 I do not take this seriously	6
 \.
 
 
 --
--- Data for Name: content; Type: TABLE DATA; Schema: public; Owner: pro-edwin
+-- Data for Name: content; Type: TABLE DATA; Schema: public; Owner: lemire-HETIC
 --
 
 COPY public.content (id, source, type, subtitle, "order", content, id_step) FROM stdin;
 20	\N	text	This is the end	0	Thanks to you, thousands of whales are still alive, and recently, Japanese whalers have banned fishing in the whale sanctuary	6
-22	uploads/myImage-1561542040062.mp4	video		1		6
 33	\N	text	The end	0	Thanks to the mission, thousands of whales have been saved. Recently actions have been taken to prevent whale fishing in concerned areas. We need more people like you!	10
 9	\N	text	Your tasks	0	Hunting whaling ships will not be your only objective on the ship. Your primary tasks will consist of maintaining the ship and the moral of the crew. Every crew member will rely on other members. Your soft skills will be highly important.	2
 25	uploads/myImage-1561630313617.mp4	video		3		1
@@ -460,11 +461,12 @@ COPY public.content (id, source, type, subtitle, "order", content, id_step) FROM
 13	\N	text	Common issues	0	During your journey, you will encounter unforeseen events such as seasickness, shipwrecks and so on.	4
 11	\N	text	A blue dream	0	If you commit yourself, it is for the love of the oceans and the desire to make the difference. You will evolve surrounded by nature and far from any civilization.	3
 16	\N	text	Prepare for the battle	0	Action is part of our everyday life. Attacking whaling ships is our first priority of the mission, but it is also very dangerous. You will have to be mentally and physically prepared and moreover respecting orders and hierarchy, democracy does not have its place on our ships.	5
+36	uploads/myImage-1561654153514.mp4	video	\N	2	\N	6
 \.
 
 
 --
--- Data for Name: knex_migrations; Type: TABLE DATA; Schema: public; Owner: pro-edwin
+-- Data for Name: knex_migrations; Type: TABLE DATA; Schema: public; Owner: lemire-HETIC
 --
 
 COPY public.knex_migrations (id, name, batch, migration_time) FROM stdin;
@@ -479,7 +481,7 @@ COPY public.knex_migrations (id, name, batch, migration_time) FROM stdin;
 
 
 --
--- Data for Name: knex_migrations_lock; Type: TABLE DATA; Schema: public; Owner: pro-edwin
+-- Data for Name: knex_migrations_lock; Type: TABLE DATA; Schema: public; Owner: lemire-HETIC
 --
 
 COPY public.knex_migrations_lock (index, is_locked) FROM stdin;
@@ -488,7 +490,7 @@ COPY public.knex_migrations_lock (index, is_locked) FROM stdin;
 
 
 --
--- Data for Name: questions; Type: TABLE DATA; Schema: public; Owner: pro-edwin
+-- Data for Name: questions; Type: TABLE DATA; Schema: public; Owner: lemire-HETIC
 --
 
 COPY public.questions (id, title, id_step) FROM stdin;
@@ -498,11 +500,12 @@ COPY public.questions (id, title, id_step) FROM stdin;
 8	Are you ready to face all dangers?	4
 1	Can you manage your stress?	3
 9	Do you have any medical issues?	5
+10	Are you aware of the journey that we are offering you?	6
 \.
 
 
 --
--- Data for Name: reply; Type: TABLE DATA; Schema: public; Owner: pro-edwin
+-- Data for Name: reply; Type: TABLE DATA; Schema: public; Owner: lemire-HETIC
 --
 
 COPY public.reply (id, id_step, id_user, id_answer) FROM stdin;
@@ -524,25 +527,53 @@ COPY public.reply (id, id_step, id_user, id_answer) FROM stdin;
 24	4	31	18
 25	4	31	18
 26	5	31	20
+27	1	38	2
+28	2	38	16
+29	3	38	17
+30	4	38	19
+31	5	38	21
+32	1	32	2
+33	2	32	16
+34	3	32	17
+35	4	32	19
+36	5	32	21
+37	1	33	1
+38	2	33	3
+39	3	33	4
+40	4	33	18
+41	5	33	20
+42	5	33	20
+43	1	34	1
+44	2	34	3
+45	3	34	4
+46	4	34	18
+47	5	34	20
+48	5	34	20
+49	1	35	1
+50	2	35	16
+51	3	35	17
+52	4	35	18
+53	5	35	21
+54	6	35	22
 \.
 
 
 --
--- Data for Name: steps; Type: TABLE DATA; Schema: public; Owner: pro-edwin
+-- Data for Name: steps; Type: TABLE DATA; Schema: public; Owner: lemire-HETIC
 --
 
 COPY public.steps (id, longitude, latitude, title, description, next) FROM stdin;
-3	45.351	48.8567	Step 3	THE MAGIC	4
-1	2.351	48.8567	Step 1	Boarding and departure	2
-4	12.351	48.8567	Step 4	The unforeseen events	5
-5	25.351	48.8567	Step 5	At the boarding	10
-10	30	53	Step 6	Mission achieved	10
-2	10.351	48.8567	Step 2	THE DRUDGERY	3
+1	121.109898	-35.197613 	Step 1	Boarding and departure	2
+2	129.069645	-40.526916	Step 2	THE DRUDGERY	3
+3	119.511500	-46.857267	Step 3	THE MAGIC	4
+4	131.842549	-50.697588	Step 4	The unforeseen events	5
+6	139.379544	-62.839014	Step 6	Mission achieved	10
+5	121.027066	-60.105390	Step 5	At the boarding	6
 \.
 
 
 --
--- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: pro-edwin
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: lemire-HETIC
 --
 
 COPY public.users (id, name, date) FROM stdin;
@@ -560,74 +591,78 @@ COPY public.users (id, name, date) FROM stdin;
 12	Good	27/06/2019
 30	Laos	27/06/2019
 31	Virgil	27/06/2019
+32	Edwin	27/06/2019
+33	tristan	27/06/2019
+34	edwin	27/06/2019
+35	Test	27/06/2019
 \.
 
 
 --
--- Name: admins_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pro-edwin
+-- Name: admins_id_seq; Type: SEQUENCE SET; Schema: public; Owner: lemire-HETIC
 --
 
 SELECT pg_catalog.setval('public.admins_id_seq', 1, true);
 
 
 --
--- Name: answers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pro-edwin
+-- Name: answers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: lemire-HETIC
 --
 
-SELECT pg_catalog.setval('public.answers_id_seq', 21, true);
-
-
---
--- Name: content_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pro-edwin
---
-
-SELECT pg_catalog.setval('public.content_id_seq', 35, true);
+SELECT pg_catalog.setval('public.answers_id_seq', 23, true);
 
 
 --
--- Name: knex_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pro-edwin
+-- Name: content_id_seq; Type: SEQUENCE SET; Schema: public; Owner: lemire-HETIC
+--
+
+SELECT pg_catalog.setval('public.content_id_seq', 36, true);
+
+
+--
+-- Name: knex_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: lemire-HETIC
 --
 
 SELECT pg_catalog.setval('public.knex_migrations_id_seq', 7, true);
 
 
 --
--- Name: knex_migrations_lock_index_seq; Type: SEQUENCE SET; Schema: public; Owner: pro-edwin
+-- Name: knex_migrations_lock_index_seq; Type: SEQUENCE SET; Schema: public; Owner: lemire-HETIC
 --
 
 SELECT pg_catalog.setval('public.knex_migrations_lock_index_seq', 1, true);
 
 
 --
--- Name: questions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pro-edwin
+-- Name: questions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: lemire-HETIC
 --
 
-SELECT pg_catalog.setval('public.questions_id_seq', 9, true);
-
-
---
--- Name: reply_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pro-edwin
---
-
-SELECT pg_catalog.setval('public.reply_id_seq', 26, true);
+SELECT pg_catalog.setval('public.questions_id_seq', 10, true);
 
 
 --
--- Name: steps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pro-edwin
+-- Name: reply_id_seq; Type: SEQUENCE SET; Schema: public; Owner: lemire-HETIC
+--
+
+SELECT pg_catalog.setval('public.reply_id_seq', 54, true);
+
+
+--
+-- Name: steps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: lemire-HETIC
 --
 
 SELECT pg_catalog.setval('public.steps_id_seq', 10, true);
 
 
 --
--- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pro-edwin
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: lemire-HETIC
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 31, true);
+SELECT pg_catalog.setval('public.users_id_seq', 35, true);
 
 
 --
--- Name: admins admins_pkey; Type: CONSTRAINT; Schema: public; Owner: pro-edwin
+-- Name: admins admins_pkey; Type: CONSTRAINT; Schema: public; Owner: lemire-HETIC
 --
 
 ALTER TABLE ONLY public.admins
@@ -635,7 +670,7 @@ ALTER TABLE ONLY public.admins
 
 
 --
--- Name: answers answers_pkey; Type: CONSTRAINT; Schema: public; Owner: pro-edwin
+-- Name: answers answers_pkey; Type: CONSTRAINT; Schema: public; Owner: lemire-HETIC
 --
 
 ALTER TABLE ONLY public.answers
@@ -643,7 +678,7 @@ ALTER TABLE ONLY public.answers
 
 
 --
--- Name: content content_pkey; Type: CONSTRAINT; Schema: public; Owner: pro-edwin
+-- Name: content content_pkey; Type: CONSTRAINT; Schema: public; Owner: lemire-HETIC
 --
 
 ALTER TABLE ONLY public.content
@@ -651,7 +686,7 @@ ALTER TABLE ONLY public.content
 
 
 --
--- Name: knex_migrations_lock knex_migrations_lock_pkey; Type: CONSTRAINT; Schema: public; Owner: pro-edwin
+-- Name: knex_migrations_lock knex_migrations_lock_pkey; Type: CONSTRAINT; Schema: public; Owner: lemire-HETIC
 --
 
 ALTER TABLE ONLY public.knex_migrations_lock
@@ -659,7 +694,7 @@ ALTER TABLE ONLY public.knex_migrations_lock
 
 
 --
--- Name: knex_migrations knex_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: pro-edwin
+-- Name: knex_migrations knex_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: lemire-HETIC
 --
 
 ALTER TABLE ONLY public.knex_migrations
@@ -667,7 +702,7 @@ ALTER TABLE ONLY public.knex_migrations
 
 
 --
--- Name: questions questions_pkey; Type: CONSTRAINT; Schema: public; Owner: pro-edwin
+-- Name: questions questions_pkey; Type: CONSTRAINT; Schema: public; Owner: lemire-HETIC
 --
 
 ALTER TABLE ONLY public.questions
@@ -675,7 +710,7 @@ ALTER TABLE ONLY public.questions
 
 
 --
--- Name: reply reply_pkey; Type: CONSTRAINT; Schema: public; Owner: pro-edwin
+-- Name: reply reply_pkey; Type: CONSTRAINT; Schema: public; Owner: lemire-HETIC
 --
 
 ALTER TABLE ONLY public.reply
@@ -683,7 +718,7 @@ ALTER TABLE ONLY public.reply
 
 
 --
--- Name: steps steps_pkey; Type: CONSTRAINT; Schema: public; Owner: pro-edwin
+-- Name: steps steps_pkey; Type: CONSTRAINT; Schema: public; Owner: lemire-HETIC
 --
 
 ALTER TABLE ONLY public.steps
@@ -691,7 +726,7 @@ ALTER TABLE ONLY public.steps
 
 
 --
--- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: pro-edwin
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: lemire-HETIC
 --
 
 ALTER TABLE ONLY public.users
