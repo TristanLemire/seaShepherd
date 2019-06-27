@@ -2,6 +2,7 @@
   <div class="template">
     <audio class="musique" loop autoplay :src="require('@/assets/music/musique.mp3')"></audio>
     <StepsMenu/>
+    <Donation />
     <section class="top scrollto">
       <Back/>
       <div class="top__title">
@@ -83,6 +84,7 @@ import Logo from "~/components/Logo.vue";
 import Back from "~/components/Back.vue";
 import { returnStatement } from "babel-types";
 import Footer from "~/components/Footer.vue";
+import Donation from "~/components/Donation.vue";
 import ScrollDown from "~/components/ScrollDown.vue";
 
 if (process.client) {
@@ -289,7 +291,8 @@ export default {
     StepsMenu,
     Back,
     Footer,
-    ScrollDown
+    ScrollDown,
+    Donation
   },
   asyncData({ params }) {
     return fetch("http://localhost:3000/api/steps/" + params.id, {

@@ -2,7 +2,7 @@
   <div class="template__summary">
     <Back />
     <StepsMenu />
-
+    
     <section class="section__hero scrollto">
       <h1>CONGRATULATION</h1>
       <p>You've been through the Sea-Shepherd experience, we hope it has made you feel better.
