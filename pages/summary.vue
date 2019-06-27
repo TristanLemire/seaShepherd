@@ -340,6 +340,8 @@ section {
 
     .score__sentence {
       font-size: 16px;
+      position: relative;
+      z-index: 2
     }
 
     .score__text {
