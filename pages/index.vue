@@ -3,7 +3,7 @@
   <div class="home">
     <!-- <nuxt-link to="/about" class="button--green">Home</nuxt-link> -->
     <Intro/>
-    <video class="home__video" src="../assets/video/home.mp4"  autoplay @click="controlVideo"></video>
+    <video data-play="true" class="home__video" src="../assets/video/home.mp4"  autoplay @click="controlVideo"></video>
     <!-- <iframe class="home__video"
 src="hhttps://www.youtube.com/embed/b44QrmTn0Ng?autoplay=1&controls=0&fs=0&modestbranding=1&rel=0&showinfo=0" frameborder="0" allowfullscreen> -->
 <!-- <iframe class="home__video" src="https://www.youtube.com/embed/668nUCeBHyY?autoplay=1&controls=0&fs=0&modestbranding=1&rel=0&showinfo=0" frameborder="0" allowfullscreen>
@@ -19,12 +19,11 @@ src="hhttps://www.youtube.com/embed/b44QrmTn0Ng?autoplay=1&controls=0&fs=0&modes
       </svg>
     <div id="player"></div>
 
-    <h1>Take part in the trip of a volunteer through a campaign of Ses Shepherd to save whales.</h1>
+    <h1>Take part in the trip of a volunteer through a campaign of Sea Shepherd to save whales.</h1>
     <hr>
     <Menu/>
     <div class="home__button">
       <SkipButton/>
-      <SoundButton/>
       <Logo/>
     </div>
   </div>
@@ -61,9 +60,6 @@ export default {
       let active = localStorage.getItem("sound");
       let audios = document.querySelectorAll("audio");
       if (active == "OFF" || active == null) {
-        if (video != null) {
-          video.volume = 0;
-        }
         if (audios.length > 0) {
           audios.forEach(audio => {
             audio.pause();

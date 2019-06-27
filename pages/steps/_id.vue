@@ -86,7 +86,7 @@ import Footer from "~/components/Footer.vue";
 import ScrollDown from "~/components/ScrollDown.vue";
 
 if (process.client) {
-  function videoControl(videos, svgPlays, svgPauses,i) {
+  function videoControl(videos, svgPlays, svgPauses, i) {
     let video = videos[i];
     let svgPlay = svgPlays[i];
     let svgPause = svgPauses[i];

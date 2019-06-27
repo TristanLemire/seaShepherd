@@ -2,7 +2,8 @@
   <div class="intro">
     <!-- <img src="../assets/img/hetic.png" alt="" class="intro__hetic"> -->
     <img src="../assets/img/hetic.png" alt class="intro__hetic">
-    <p class="intro__text">“ Ce site à été réalisé à des fins pédagogiques dans le cadre du cursus Bachelor de l’école HETIC. Les contenus présentés ne sont en aucun cas exploités à des fins commerciales et ne seront pas publiés ”</p>
+    <p class="intro__text">“ This website was made for educational purposes, as part of HETIC Web Bachelor year. Everything on this website will not be used for commercial purposes and will not be published. ”
+    </p>
     <svg
       class="intro__sea"
       width="150"
