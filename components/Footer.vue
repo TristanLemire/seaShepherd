@@ -491,7 +491,15 @@ export default {
       anime.beginElement();
       
       setTimeout(function() {
-        document.location.href = link;
+        let id = window.location.href
+        id = Number(id.substring(28, id.length)) + 1;
+        console.log('id: ', id);
+        fetch('http://localhost:3000/api/steps/'+id)
+        .then(response => {return response.json()})
+        .then(response => {
+          if (response.message === "This record doesn't exist") document.location.href = 'http://localhost:3000/summary';
+          else document.location.href = link;
+        })
       }, 2400);
     }
   }

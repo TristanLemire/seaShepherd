@@ -207,7 +207,6 @@ if (process.client) {
     }
   }, 200);
 
-  // TODO: solve scroll problems
   setTimeout(() => {
     let sections = document.querySelectorAll(".scrollto");
     let arr = [];
