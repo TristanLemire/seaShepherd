@@ -3,6 +3,7 @@
 <audio class="musique" loop autoplay :src="require('@/assets/music/musique.mp3')"></audio>
     <Menu/>
     <Back/>
+    <Donation />
     <SoundButton/>
     <div class="content">
       <div class="text">
@@ -25,6 +26,7 @@
 <script>
 import Menu from "~/components/Menu.vue";
 import Back from "~/components/Back.vue";
+import Donation from "~/components/Donation.vue";
 import SoundButton from "~/components/SoundButton.vue";
 
 
@@ -42,7 +44,8 @@ export default {
   components: {
     Menu,
     Back,
-    SoundButton
+    SoundButton, 
+    Donation
   },
     methods: {
     soundActive() {

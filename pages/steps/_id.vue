@@ -2,6 +2,7 @@
   <div class="template">
     <audio class="musique" loop autoplay :src="require('@/assets/music/musique.mp3')"></audio>
     <StepsMenu/>
+    <Donation />
     <section class="top scrollto">
       <Back/>
       <div class="top__title">
@@ -83,6 +84,7 @@ import Logo from "~/components/Logo.vue";
 import Back from "~/components/Back.vue";
 import { returnStatement } from "babel-types";
 import Footer from "~/components/Footer.vue";
+import Donation from "~/components/Donation.vue";
 import ScrollDown from "~/components/ScrollDown.vue";
 
 if (process.client) {
@@ -126,28 +128,42 @@ if (process.client) {
     let svgPauses = document.querySelectorAll(".video svg:nth-child(3)");
     let audioSound = document.querySelector("audio");
 
-    window.addEventListener("scroll", () => {
-      for (let i = 0; i < videos.length; i++) {
-        videos[i].setAttribute("data-play", "false");
-        videos[i].pause();
-        svgPauses[i].setAttribute("display", "none");
-        svgPlays[i].setAttribute("display", "");
-        if (localStorage.getItem("sound") != "OFF") {
-          audioSound.play();
-        }
-      }
-    });
+    window.addEventListener('scroll', () => {
+          if (document.querySelector('.template').getBoundingClientRect().top == 0 || $(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+                        for (let i = 0; i < videos.length; i++) {
+              videos[i].setAttribute("data-play", "false");
+              videos[i].pause();
+              svgPauses[i].setAttribute("display", "none");
+              svgPlays[i].setAttribute("display", "");
+              if (localStorage.getItem("sound") != "OFF") {
+                audioSound.play();
+              }
+            }
+          }
+    })
+
 
     let allSection = document.querySelectorAll("section");
     for (let i = 0; i < allSection.length; i++) {
-      let waypoint = new Waypoint({
-        element: allSection[i],
-        handler: function(direction) {
-          if (allSection[i].className == "scrollto video") {
+      console.log(allSection[i]);
+      if (allSection[i].className == "scrollto video") {
+        let waypoint = new Waypoint({
+          element: allSection[i],
+          handler: function(direction) {
             let laVideo = allSection[i].querySelector("video");
             let leSvgPlay = allSection[i].querySelector("svg:nth-child(2)");
             let leSvgPause = allSection[i].querySelector("svg:nth-child(3)");
+            for (let i = 0; i < videos.length; i++) {
+              videos[i].setAttribute("data-play", "false");
+              videos[i].pause();
+              svgPauses[i].setAttribute("display", "none");
+              svgPlays[i].setAttribute("display", "");
+              if (localStorage.getItem("sound") != "OFF") {
+                audioSound.play();
+              }
+            }
             laVideo.play();
+            console.log(allSection[i]);
             laVideo.setAttribute("data-play", "true");
             leSvgPause.style.opacity = 1;
             leSvgPlay.setAttribute("display", "none");
@@ -156,10 +172,26 @@ if (process.client) {
             setTimeout(function() {
               leSvgPause.style.opacity = 0;
             }, 200);
-          }
-        },
-        offset: "0%"
-      });
+          },
+          offset: "0%"
+        });
+      } else {
+        let waypoint = new Waypoint({
+          element: allSection[i],
+          handler: function(direction) {
+            for (let i = 0; i < videos.length; i++) {
+              videos[i].setAttribute("data-play", "false");
+              videos[i].pause();
+              svgPauses[i].setAttribute("display", "none");
+              svgPlays[i].setAttribute("display", "");
+              if (localStorage.getItem("sound") != "OFF") {
+                audioSound.play();
+              }
+            }
+          },
+          offset: "0%"
+        });
+      }
     }
 
     for (let i = 0; i < videos.length; i++) {
@@ -272,7 +304,8 @@ export default {
     StepsMenu,
     Back,
     Footer,
-    ScrollDown
+    ScrollDown,
+    Donation
   },
   asyncData({ params }) {
     return fetch("http://localhost:3000/api/steps/" + params.id, {
@@ -427,7 +460,7 @@ body {
     width: 50%;
     position: absolute;
     left: 183px;
-    top: 499px;
+    top: 449px;
 
     h2 {
       font-family: Poppins;

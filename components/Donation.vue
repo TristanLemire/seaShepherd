@@ -1,5 +1,5 @@
 <template>
-  <a class="button" href="/nameChoice">SKIP</a>
+  <a class="donation" href="http://seashepherd.fr/index.php/Soutenez-Nous/dons-ponctuels/">DONATE</a>
 </template>
 
 <script>
@@ -12,20 +12,20 @@ export default {
 
 <style lang="scss">
 
-.button{
+.donation{
   cursor: pointer;
-  padding: 10px 24px 10px 24px;
+  padding: 5px 20px 5px 20px;
   border: white solid 1px;
   border-radius: 50px;
-  position: absolute;
+  position: fixed;
   right: 5.86%;
-  bottom: 5.33%;
+  top: 5.33%;
   background-color: transparent;
   color: white;
   letter-spacing: 0.1em;
   font-size: 12px;
   font-family: 'Poppins', sans-serif;
-  transition: background-color .5s, color .5s;
+  transition: background-color .5s color .5s  border .5;
   z-index: 2;
 
   &:hover {

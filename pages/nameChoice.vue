@@ -1,5 +1,6 @@
 <template>
   <div class="nameChoice">
+    <Donation />
 <audio class="musique" loop autoplay :src="require('@/assets/music/musique.mp3')"></audio>
     <div class="nameChoice__form">
       <h1>Hello, what is your name?</h1>
@@ -20,6 +21,7 @@
 import Menu from "~/components/Menu.vue";
 import SoundButton from "~/components/SoundButton.vue";
 import Logo from "~/components/Logo.vue";
+import Donation from "~/components/Donation.vue";
 import { returnStatement } from "babel-types";
 
 if (process.client) {
@@ -70,7 +72,8 @@ export default {
   components: {
     Menu,
     SoundButton,
-    Logo
+    Logo,
+    Donation
   },
   methods: {
     soundActive: function() {
