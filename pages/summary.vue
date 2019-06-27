@@ -307,10 +307,12 @@ section {
 .question,
 .like {
   font-size: 22px;
+  max-width: 25vw;
 }
 
 .answer,
 .percentage {
+  max-width: 25vw;
   font-size: 32px;
   font-weight: bold;
   margin-top: 32px;
