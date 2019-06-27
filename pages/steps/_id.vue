@@ -120,6 +120,7 @@ if (process.client) {
       }
     }
   }
+
   setTimeout(() => {
     let videos = document.querySelectorAll("video");
     let svgPlays = document.querySelectorAll(".video svg:nth-child(2)");
@@ -140,7 +141,6 @@ if (process.client) {
 
     let allSection = document.querySelectorAll("section");
     for (let i = 0; i < allSection.length; i++) {
-      console.log(allSection[i]);
       let waypoint = new Waypoint({
         element: allSection[i],
         handler: function(direction) {
@@ -149,7 +149,6 @@ if (process.client) {
             let leSvgPlay = allSection[i].querySelector("svg:nth-child(2)");
             let leSvgPause = allSection[i].querySelector("svg:nth-child(3)");
             laVideo.play();
-            console.log(allSection[i]);
             laVideo.setAttribute("data-play", "true");
             leSvgPause.style.opacity = 1;
             leSvgPlay.setAttribute("display", "none");
@@ -214,6 +213,7 @@ if (process.client) {
     sections.forEach(section => {
       arr.push(section);
     });
+
     if (sections[1].className === "scrollto text") arr.splice(1, 1);
     sections = arr;
     let pos = 0;
@@ -222,6 +222,18 @@ if (process.client) {
     let offset = 0;
 
     window.addEventListener("wheel", e => {
+      // setInterval(() => {
+      //   if (
+      //     (e.deltaY > 0 && window.scrollY > offset) ||
+      //     (e.deltaY < 0 && window.scrollY < offset)
+      //   ) {
+      //     window.scrollTo({
+      //       behavior: "smooth",
+      //       top: offset
+      //     });
+      //   }
+      // }, 600);
+
       // If the function is allowed to run
       if (flag) {
         if (e.deltaY > 5 && pos < sections.length - 1) {
@@ -246,6 +258,7 @@ if (process.client) {
             behavior: "smooth",
             top: offset
           });
+
           flag = false;
 
           // Allow the listener to work again
