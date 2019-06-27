@@ -410,7 +410,7 @@ body {
     width: 50%;
     position: absolute;
     left: 183px;
-    top: 499px;
+    top: 449px;
 
     h2 {
       font-family: Poppins;
