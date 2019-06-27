@@ -3,6 +3,7 @@
     <audio class="musique" loop autoplay :src="require('@/assets/music/musique.mp3')"></audio>
     <StepsMenu/>
     <Donation />
+    <Begin />
     <div id="chartdiv"></div>
     <div class="home__button">
       <SoundButton/>
@@ -33,6 +34,7 @@ import StepsMenu from "~/components/StepsMenu.vue";
 import SoundButton from "~/components/SoundButton.vue";
 import Logo from "~/components/Logo.vue";
 import Donation from "~/components/Donation.vue";
+import Begin from "~/components/Begin.vue";
 import { returnStatement } from "babel-types";
 
 if (process.client) {
@@ -338,7 +340,8 @@ export default {
     SoundButton,
     Logo,
     StepsMenu,
-    Donation
+    Donation,
+    Begin
   },
   asyncData({ params }) {
     return fetch("http://localhost:3000/api/steps", { method: "GET" })
