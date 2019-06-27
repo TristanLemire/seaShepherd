@@ -103,8 +103,8 @@ if (process.client) {
   map.panBehavior = "rotateLongLat";
   
   // Initial position
-  map.deltaLatitude = -40;
-  map.deltaLongitude = 20;
+  map.deltaLatitude = 20;
+  map.deltaLongitude = -155;
 
   setInterval(() => {
     map.deltaLongitude += 0.2
