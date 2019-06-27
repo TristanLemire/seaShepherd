@@ -99,6 +99,7 @@ export default {
 
 .ham {
   cursor: pointer;
+  width: 4.5%;
   -webkit-tap-highlight-color: transparent;
   transition: transform 400ms;
   -moz-user-select: none;

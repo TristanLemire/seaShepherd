@@ -44,7 +44,7 @@
       <circle cx="1084.5" cy="200.5" r="28.5" fill="white"></circle>
       <circle cx="1084.5" cy="200.5" r="15.5" fill="#1B263B"></circle>
       <g id="journey" clip-path="url(#clip0)">
-        <animateMotion dur="4s" repeatCount="1" rotate="auto" begin="indefinite">
+        <animateMotion dur="2.5s" repeatCount="1" rotate="auto" begin="indefinite">
           <mpath xlink:href="#moove"></mpath>
         </animateMotion>
         <path
@@ -411,6 +411,16 @@ export default {
       question: this.getQuestion()
     };
   },
+
+  updated: function() {
+    const allButtons = document.querySelectorAll('button.answers')
+    allButtons.forEach( button => {
+      button.addEventListener('click', event => {
+        button.className = 'to-white'
+      } )
+    });
+  },
+
   methods: {
     getAnswers() {
       let id = this.$route.params.id;
@@ -471,10 +481,8 @@ export default {
         referrer: "no-referrer", // no-referrer, *client
         body: JSON.stringify(data) // body data type must match "Content-Type" header
       });
-
       this.redirection(this.next);
     },
-
     redirection(link) {
       let anime = document.querySelector(".boat animateMotion");
       let transform = document.querySelector("#journey");
@@ -484,7 +492,7 @@ export default {
       
       setTimeout(function() {
         document.location.href = link;
-      }, 3900);
+      }, 2400);
     }
   }
 };
@@ -534,7 +542,7 @@ footer {
     .answers__content {
       display: flex;
       flex-direction: row;
-      button {
+      .answers {
         cursor: pointer;
         margin-top: 40px;
         color: #fff;
@@ -572,6 +580,20 @@ footer {
       }
     }
   }
+}
+
+.to-white {
+  cursor: pointer;
+  margin-top: 40px;
+  font-size: 16px;
+  margin-right: 8px;
+  margin-left: 8px;
+  border-radius: 50px;
+  border: solid 2px #101010;
+  color: #101010;
+  background: #fff;
+  padding: 11px 14px;
+  transition: background 0.2s, border 0.2s, color 0.2s;
 }
 
 .waves {

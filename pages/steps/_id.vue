@@ -120,7 +120,6 @@ if (process.client) {
       }
     }
   }
-
   setTimeout(() => {
     let videos = document.querySelectorAll("video");
     let svgPlays = document.querySelectorAll(".video svg:nth-child(2)");
@@ -163,36 +162,6 @@ if (process.client) {
       });
     }
 
-    // for (let i = 0; i < videos.length; i++) {
-    //   videos[i].setAttribute("id", i);
-    // }
-
-    // for (let i = 0; i < videos.length; i++) {
-    //   let theVideo = videos[i];
-    //   let waypoint = new Waypoint({
-    //   element: theVideo,
-    //   handler: function(direction) {
-    //     theVideo.play();
-    //     svgPauses[i].style.opacity = 1;
-    //     svgPlays[i].setAttribute("display", "none");
-    //     svgPauses[i].setAttribute("display", "");
-    //     audioSound.pause();
-    //     setTimeout(function() {
-    //       svgPauses[i].style.opacity = 0;
-    //     }, 200);
-    //     for (let i2 = 0; i2 < videos.length; i2++) {
-    //       if(videos[i2] != theVideo){
-    //         videos[i2].pause();
-    //         svgPauses[i2].setAttribute("display", "none");
-    //         svgPlays[i2].setAttribute("display", "");
-    //       }
-    //     }
-    //   },
-    //   offset: '0%'
-    // });
-
-    // }
-
     for (let i = 0; i < videos.length; i++) {
       videos[i].addEventListener("click", () => {
         videoControl(videos, svgPlays, svgPauses, i);
@@ -213,7 +182,6 @@ if (process.client) {
     sections.forEach(section => {
       arr.push(section);
     });
-
     if (sections[1].className === "scrollto text") arr.splice(1, 1);
     sections = arr;
     let pos = 0;

@@ -34,14 +34,14 @@ router.get('/', (req, res) => {
     })
 })
 
-router.post('/', (req, res, next) => {
+router.post('/', (req, res) => {
     //insert into db
     queries.create('reply', req.body).then(response => {
         res.json(response);
     })
 })
 
-router.put('/:id', (req, res, next) => {
+router.put('/:id', (req, res) => {
     // update the db
     queries.update('reply', req.params.id, req.body).then(stickers => {
         if (stickers) res.json(stickers[0]);
@@ -49,7 +49,7 @@ router.put('/:id', (req, res, next) => {
     })
 })
 
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', (req, res) => {
     queries.delete('reply', req.params.id).then(() => {
         res.json({
             deleted: true

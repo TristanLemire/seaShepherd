@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <audio class="musique" loop autoplay :src="require('@/assets/music/musique.mp3')"></audio>
     <br>
     <br>
     <br>
@@ -195,13 +194,6 @@ button.invisible {
 
 <script>
 if (process.client) {
-  let audiotime = document.querySelector(".musique");
-  audiotime.currentTime = localStorage.getItem("audioTime");
-
-  window.addEventListener("click", () => {
-    let audiotime = document.querySelector(".musique");
-    localStorage.setItem("audioTime", audiotime.currentTime);
-  });
   // Redirect if not admin
   if (
     !localStorage.getItem("connected") ||

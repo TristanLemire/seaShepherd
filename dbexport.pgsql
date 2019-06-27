@@ -21,7 +21,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: admins; Type: TABLE; Schema: public; Owner: pro-edwin
+-- Name: admins; Type: TABLE; Schema: public; Owner: CassandraHETIC
 --
 
 CREATE TABLE public.admins (
@@ -31,10 +31,10 @@ CREATE TABLE public.admins (
 );
 
 
-ALTER TABLE public.admins OWNER TO "pro-edwin";
+ALTER TABLE public.admins OWNER TO "CassandraHETIC";
 
 --
--- Name: admins_id_seq; Type: SEQUENCE; Schema: public; Owner: pro-edwin
+-- Name: admins_id_seq; Type: SEQUENCE; Schema: public; Owner: CassandraHETIC
 --
 
 CREATE SEQUENCE public.admins_id_seq
@@ -46,17 +46,17 @@ CREATE SEQUENCE public.admins_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.admins_id_seq OWNER TO "pro-edwin";
+ALTER TABLE public.admins_id_seq OWNER TO "CassandraHETIC";
 
 --
--- Name: admins_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: pro-edwin
+-- Name: admins_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: CassandraHETIC
 --
 
 ALTER SEQUENCE public.admins_id_seq OWNED BY public.admins.id;
 
 
 --
--- Name: answers; Type: TABLE; Schema: public; Owner: pro-edwin
+-- Name: answers; Type: TABLE; Schema: public; Owner: CassandraHETIC
 --
 
 CREATE TABLE public.answers (
@@ -66,10 +66,10 @@ CREATE TABLE public.answers (
 );
 
 
-ALTER TABLE public.answers OWNER TO "pro-edwin";
+ALTER TABLE public.answers OWNER TO "CassandraHETIC";
 
 --
--- Name: answers_id_seq; Type: SEQUENCE; Schema: public; Owner: pro-edwin
+-- Name: answers_id_seq; Type: SEQUENCE; Schema: public; Owner: CassandraHETIC
 --
 
 CREATE SEQUENCE public.answers_id_seq
@@ -81,17 +81,17 @@ CREATE SEQUENCE public.answers_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.answers_id_seq OWNER TO "pro-edwin";
+ALTER TABLE public.answers_id_seq OWNER TO "CassandraHETIC";
 
 --
--- Name: answers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: pro-edwin
+-- Name: answers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: CassandraHETIC
 --
 
 ALTER SEQUENCE public.answers_id_seq OWNED BY public.answers.id;
 
 
 --
--- Name: content; Type: TABLE; Schema: public; Owner: pro-edwin
+-- Name: content; Type: TABLE; Schema: public; Owner: CassandraHETIC
 --
 
 CREATE TABLE public.content (
@@ -105,10 +105,10 @@ CREATE TABLE public.content (
 );
 
 
-ALTER TABLE public.content OWNER TO "pro-edwin";
+ALTER TABLE public.content OWNER TO "CassandraHETIC";
 
 --
--- Name: content_id_seq; Type: SEQUENCE; Schema: public; Owner: pro-edwin
+-- Name: content_id_seq; Type: SEQUENCE; Schema: public; Owner: CassandraHETIC
 --
 
 CREATE SEQUENCE public.content_id_seq
@@ -120,17 +120,17 @@ CREATE SEQUENCE public.content_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.content_id_seq OWNER TO "pro-edwin";
+ALTER TABLE public.content_id_seq OWNER TO "CassandraHETIC";
 
 --
--- Name: content_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: pro-edwin
+-- Name: content_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: CassandraHETIC
 --
 
 ALTER SEQUENCE public.content_id_seq OWNED BY public.content.id;
 
 
 --
--- Name: knex_migrations; Type: TABLE; Schema: public; Owner: pro-edwin
+-- Name: knex_migrations; Type: TABLE; Schema: public; Owner: CassandraHETIC
 --
 
 CREATE TABLE public.knex_migrations (
@@ -141,10 +141,10 @@ CREATE TABLE public.knex_migrations (
 );
 
 
-ALTER TABLE public.knex_migrations OWNER TO "pro-edwin";
+ALTER TABLE public.knex_migrations OWNER TO "CassandraHETIC";
 
 --
--- Name: knex_migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: pro-edwin
+-- Name: knex_migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: CassandraHETIC
 --
 
 CREATE SEQUENCE public.knex_migrations_id_seq
@@ -156,17 +156,17 @@ CREATE SEQUENCE public.knex_migrations_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.knex_migrations_id_seq OWNER TO "pro-edwin";
+ALTER TABLE public.knex_migrations_id_seq OWNER TO "CassandraHETIC";
 
 --
--- Name: knex_migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: pro-edwin
+-- Name: knex_migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: CassandraHETIC
 --
 
 ALTER SEQUENCE public.knex_migrations_id_seq OWNED BY public.knex_migrations.id;
 
 
 --
--- Name: knex_migrations_lock; Type: TABLE; Schema: public; Owner: pro-edwin
+-- Name: knex_migrations_lock; Type: TABLE; Schema: public; Owner: CassandraHETIC
 --
 
 CREATE TABLE public.knex_migrations_lock (
@@ -175,10 +175,10 @@ CREATE TABLE public.knex_migrations_lock (
 );
 
 
-ALTER TABLE public.knex_migrations_lock OWNER TO "pro-edwin";
+ALTER TABLE public.knex_migrations_lock OWNER TO "CassandraHETIC";
 
 --
--- Name: knex_migrations_lock_index_seq; Type: SEQUENCE; Schema: public; Owner: pro-edwin
+-- Name: knex_migrations_lock_index_seq; Type: SEQUENCE; Schema: public; Owner: CassandraHETIC
 --
 
 CREATE SEQUENCE public.knex_migrations_lock_index_seq
@@ -190,17 +190,17 @@ CREATE SEQUENCE public.knex_migrations_lock_index_seq
     CACHE 1;
 
 
-ALTER TABLE public.knex_migrations_lock_index_seq OWNER TO "pro-edwin";
+ALTER TABLE public.knex_migrations_lock_index_seq OWNER TO "CassandraHETIC";
 
 --
--- Name: knex_migrations_lock_index_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: pro-edwin
+-- Name: knex_migrations_lock_index_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: CassandraHETIC
 --
 
 ALTER SEQUENCE public.knex_migrations_lock_index_seq OWNED BY public.knex_migrations_lock.index;
 
 
 --
--- Name: questions; Type: TABLE; Schema: public; Owner: pro-edwin
+-- Name: questions; Type: TABLE; Schema: public; Owner: CassandraHETIC
 --
 
 CREATE TABLE public.questions (
@@ -210,10 +210,10 @@ CREATE TABLE public.questions (
 );
 
 
-ALTER TABLE public.questions OWNER TO "pro-edwin";
+ALTER TABLE public.questions OWNER TO "CassandraHETIC";
 
 --
--- Name: questions_id_seq; Type: SEQUENCE; Schema: public; Owner: pro-edwin
+-- Name: questions_id_seq; Type: SEQUENCE; Schema: public; Owner: CassandraHETIC
 --
 
 CREATE SEQUENCE public.questions_id_seq
@@ -225,17 +225,17 @@ CREATE SEQUENCE public.questions_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.questions_id_seq OWNER TO "pro-edwin";
+ALTER TABLE public.questions_id_seq OWNER TO "CassandraHETIC";
 
 --
--- Name: questions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: pro-edwin
+-- Name: questions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: CassandraHETIC
 --
 
 ALTER SEQUENCE public.questions_id_seq OWNED BY public.questions.id;
 
 
 --
--- Name: reply; Type: TABLE; Schema: public; Owner: pro-edwin
+-- Name: reply; Type: TABLE; Schema: public; Owner: CassandraHETIC
 --
 
 CREATE TABLE public.reply (
@@ -246,10 +246,10 @@ CREATE TABLE public.reply (
 );
 
 
-ALTER TABLE public.reply OWNER TO "pro-edwin";
+ALTER TABLE public.reply OWNER TO "CassandraHETIC";
 
 --
--- Name: reply_id_seq; Type: SEQUENCE; Schema: public; Owner: pro-edwin
+-- Name: reply_id_seq; Type: SEQUENCE; Schema: public; Owner: CassandraHETIC
 --
 
 CREATE SEQUENCE public.reply_id_seq
@@ -261,17 +261,17 @@ CREATE SEQUENCE public.reply_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.reply_id_seq OWNER TO "pro-edwin";
+ALTER TABLE public.reply_id_seq OWNER TO "CassandraHETIC";
 
 --
--- Name: reply_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: pro-edwin
+-- Name: reply_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: CassandraHETIC
 --
 
 ALTER SEQUENCE public.reply_id_seq OWNED BY public.reply.id;
 
 
 --
--- Name: steps; Type: TABLE; Schema: public; Owner: pro-edwin
+-- Name: steps; Type: TABLE; Schema: public; Owner: CassandraHETIC
 --
 
 CREATE TABLE public.steps (
@@ -284,10 +284,10 @@ CREATE TABLE public.steps (
 );
 
 
-ALTER TABLE public.steps OWNER TO "pro-edwin";
+ALTER TABLE public.steps OWNER TO "CassandraHETIC";
 
 --
--- Name: steps_id_seq; Type: SEQUENCE; Schema: public; Owner: pro-edwin
+-- Name: steps_id_seq; Type: SEQUENCE; Schema: public; Owner: CassandraHETIC
 --
 
 CREATE SEQUENCE public.steps_id_seq
@@ -299,17 +299,17 @@ CREATE SEQUENCE public.steps_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.steps_id_seq OWNER TO "pro-edwin";
+ALTER TABLE public.steps_id_seq OWNER TO "CassandraHETIC";
 
 --
--- Name: steps_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: pro-edwin
+-- Name: steps_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: CassandraHETIC
 --
 
 ALTER SEQUENCE public.steps_id_seq OWNED BY public.steps.id;
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: pro-edwin
+-- Name: users; Type: TABLE; Schema: public; Owner: CassandraHETIC
 --
 
 CREATE TABLE public.users (
@@ -319,10 +319,10 @@ CREATE TABLE public.users (
 );
 
 
-ALTER TABLE public.users OWNER TO "pro-edwin";
+ALTER TABLE public.users OWNER TO "CassandraHETIC";
 
 --
--- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: pro-edwin
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: CassandraHETIC
 --
 
 CREATE SEQUENCE public.users_id_seq
@@ -334,80 +334,80 @@ CREATE SEQUENCE public.users_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.users_id_seq OWNER TO "pro-edwin";
+ALTER TABLE public.users_id_seq OWNER TO "CassandraHETIC";
 
 --
--- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: pro-edwin
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: CassandraHETIC
 --
 
 ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
--- Name: admins id; Type: DEFAULT; Schema: public; Owner: pro-edwin
+-- Name: admins id; Type: DEFAULT; Schema: public; Owner: CassandraHETIC
 --
 
 ALTER TABLE ONLY public.admins ALTER COLUMN id SET DEFAULT nextval('public.admins_id_seq'::regclass);
 
 
 --
--- Name: answers id; Type: DEFAULT; Schema: public; Owner: pro-edwin
+-- Name: answers id; Type: DEFAULT; Schema: public; Owner: CassandraHETIC
 --
 
 ALTER TABLE ONLY public.answers ALTER COLUMN id SET DEFAULT nextval('public.answers_id_seq'::regclass);
 
 
 --
--- Name: content id; Type: DEFAULT; Schema: public; Owner: pro-edwin
+-- Name: content id; Type: DEFAULT; Schema: public; Owner: CassandraHETIC
 --
 
 ALTER TABLE ONLY public.content ALTER COLUMN id SET DEFAULT nextval('public.content_id_seq'::regclass);
 
 
 --
--- Name: knex_migrations id; Type: DEFAULT; Schema: public; Owner: pro-edwin
+-- Name: knex_migrations id; Type: DEFAULT; Schema: public; Owner: CassandraHETIC
 --
 
 ALTER TABLE ONLY public.knex_migrations ALTER COLUMN id SET DEFAULT nextval('public.knex_migrations_id_seq'::regclass);
 
 
 --
--- Name: knex_migrations_lock index; Type: DEFAULT; Schema: public; Owner: pro-edwin
+-- Name: knex_migrations_lock index; Type: DEFAULT; Schema: public; Owner: CassandraHETIC
 --
 
 ALTER TABLE ONLY public.knex_migrations_lock ALTER COLUMN index SET DEFAULT nextval('public.knex_migrations_lock_index_seq'::regclass);
 
 
 --
--- Name: questions id; Type: DEFAULT; Schema: public; Owner: pro-edwin
+-- Name: questions id; Type: DEFAULT; Schema: public; Owner: CassandraHETIC
 --
 
 ALTER TABLE ONLY public.questions ALTER COLUMN id SET DEFAULT nextval('public.questions_id_seq'::regclass);
 
 
 --
--- Name: reply id; Type: DEFAULT; Schema: public; Owner: pro-edwin
+-- Name: reply id; Type: DEFAULT; Schema: public; Owner: CassandraHETIC
 --
 
 ALTER TABLE ONLY public.reply ALTER COLUMN id SET DEFAULT nextval('public.reply_id_seq'::regclass);
 
 
 --
--- Name: steps id; Type: DEFAULT; Schema: public; Owner: pro-edwin
+-- Name: steps id; Type: DEFAULT; Schema: public; Owner: CassandraHETIC
 --
 
 ALTER TABLE ONLY public.steps ALTER COLUMN id SET DEFAULT nextval('public.steps_id_seq'::regclass);
 
 
 --
--- Name: users id; Type: DEFAULT; Schema: public; Owner: pro-edwin
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: CassandraHETIC
 --
 
 ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
 
 
 --
--- Data for Name: admins; Type: TABLE DATA; Schema: public; Owner: pro-edwin
+-- Data for Name: admins; Type: TABLE DATA; Schema: public; Owner: CassandraHETIC
 --
 
 COPY public.admins (id, name, password) FROM stdin;
@@ -416,7 +416,7 @@ COPY public.admins (id, name, password) FROM stdin;
 
 
 --
--- Data for Name: answers; Type: TABLE DATA; Schema: public; Owner: pro-edwin
+-- Data for Name: answers; Type: TABLE DATA; Schema: public; Owner: CassandraHETIC
 --
 
 COPY public.answers (id, answer, id_question) FROM stdin;
@@ -427,36 +427,47 @@ COPY public.answers (id, answer, id_question) FROM stdin;
 
 
 --
--- Data for Name: content; Type: TABLE DATA; Schema: public; Owner: pro-edwin
+-- Data for Name: content; Type: TABLE DATA; Schema: public; Owner: CassandraHETIC
 --
 
 COPY public.content (id, source, type, subtitle, "order", content, id_step) FROM stdin;
-1	uploads/myImage-1561372325167.png	image	\N	1	\N	6
-2	\N	text	le texte de la section 1	0	bonjour et bienvenue pour le départ du bateau 	1
-3	uploads/myImage-1561373871962.png	image	Le chateau	2	la description de l'image du chateau	1
-4	uploads/myImage-1561374695756.mp4	video	\N	3	\N	1
-5	\N	text	vous avez vu la vidéo ?	3	elle est belle hein ?	1
-6	uploads/myImage-1561387777368.png	image	blob	1	prout	2
+3	\N	text	Welcome !	1	Embarked on one of the ships in Sea-Shepherd's fleet. Attends the traditional departure of a boat and the final preparations.	1
+4	uploads/myImage-1561407171891.mp4	video		2		1
+7	uploads/myImage-1561407745301.mp4	video		4		1
+6	\N	text		3	Now attend the captain's briefing.	1
+8	\N	text		0	With many volunteers embarking on Sea-Shepherd, being a mission in Arctic waters is not easy.\nIndeed, you are people living on the ship which means that you have to do the daily tasks, the cleaning chores...\nSleeping in and lazy people can refrain from getting involved.\nBut we must keep in mind that all these things are done in coordination and in a very strong team spirit.	2
+9	uploads/myImage-1561408269554.mp4	video		2		2
+11	uploads/myImage-1561408543620.mp4	video		2		3
+10	\N	text	The magic	1	If you commit yourself, it is for the love of the oceans and the desire to make a difference.\nIn the middle of the mission you will be amazed, see the ocean as you have never seen it before.	3
+15	uploads/myImage-1561408917896.mp4	video		4		4
+14	uploads/myImage-1561408887120.mp4	video		3		4
+13	uploads/myImage-1561408871284.mp4	video		2		4
+12	\N	text		1	During your journey, you will encounter unforeseen events such as seasickness, a boat turning over in the open sea and a drone spitting out.	4
+16	\N	text	It's time for the fight !	1		5
+17	uploads/myImage-1561409147163.mp4	video		2		5
+18	\N	text	This is the end	1	Thanks to you, thousands of whales are still alive, and recently, Japanese whalers have banned fishing in the whale sanctuary	6
+19	uploads/myImage-1561409380301.mp4	video		2		6
+20	uploads/myImage-1561538397302.mp4	video		3		5
 \.
 
 
 --
--- Data for Name: knex_migrations; Type: TABLE DATA; Schema: public; Owner: pro-edwin
+-- Data for Name: knex_migrations; Type: TABLE DATA; Schema: public; Owner: CassandraHETIC
 --
 
 COPY public.knex_migrations (id, name, batch, migration_time) FROM stdin;
-1	20190620093559_users.js	1	2019-06-24 12:30:58.778+02
-2	20190620094712_reply.js	1	2019-06-24 12:30:58.781+02
-3	20190620094718_questions.js	1	2019-06-24 12:30:58.784+02
-4	20190620094726_answers.js	1	2019-06-24 12:30:58.787+02
-5	20190620094731_content.js	1	2019-06-24 12:30:58.791+02
-6	20190620094736_steps.js	1	2019-06-24 12:30:58.794+02
-7	20190620163512_admins.js	1	2019-06-24 12:30:58.797+02
+1	20190620093559_users.js	1	2019-06-24 17:49:42.792+02
+2	20190620094712_reply.js	1	2019-06-24 17:49:42.796+02
+3	20190620094718_questions.js	1	2019-06-24 17:49:42.8+02
+4	20190620094726_answers.js	1	2019-06-24 17:49:42.804+02
+5	20190620094731_content.js	1	2019-06-24 17:49:42.808+02
+6	20190620094736_steps.js	1	2019-06-24 17:49:42.812+02
+7	20190620163512_admins.js	1	2019-06-24 17:49:42.816+02
 \.
 
 
 --
--- Data for Name: knex_migrations_lock; Type: TABLE DATA; Schema: public; Owner: pro-edwin
+-- Data for Name: knex_migrations_lock; Type: TABLE DATA; Schema: public; Owner: CassandraHETIC
 --
 
 COPY public.knex_migrations_lock (index, is_locked) FROM stdin;
@@ -465,7 +476,7 @@ COPY public.knex_migrations_lock (index, is_locked) FROM stdin;
 
 
 --
--- Data for Name: questions; Type: TABLE DATA; Schema: public; Owner: pro-edwin
+-- Data for Name: questions; Type: TABLE DATA; Schema: public; Owner: CassandraHETIC
 --
 
 COPY public.questions (id, title, id_step) FROM stdin;
@@ -476,7 +487,7 @@ COPY public.questions (id, title, id_step) FROM stdin;
 
 
 --
--- Data for Name: reply; Type: TABLE DATA; Schema: public; Owner: pro-edwin
+-- Data for Name: reply; Type: TABLE DATA; Schema: public; Owner: CassandraHETIC
 --
 
 COPY public.reply (id, id_question, id_user, id_answer) FROM stdin;
@@ -484,20 +495,21 @@ COPY public.reply (id, id_question, id_user, id_answer) FROM stdin;
 
 
 --
--- Data for Name: steps; Type: TABLE DATA; Schema: public; Owner: pro-edwin
+-- Data for Name: steps; Type: TABLE DATA; Schema: public; Owner: CassandraHETIC
 --
 
 COPY public.steps (id, longitude, latitude, title, description, next) FROM stdin;
-1	2.351	48.8567	Step 1	boarding and departure	2
-2	10.351	48.8567	Step 2	description for step 2 !!!	3
-3	45.351	48.8567	Step 3	description for step 3 !!!	4
-4	12.351	48.8567	Step 4	description for step 4 !!!	5
-5	25.351	48.8567	Step 5	description for step 5 !!!	1
+3	-26.655598	66.938345	Step 03	The magic	\N
+4	5.313321	77.158406	Step 04	The unforeseen events	\N
+5	-65.933134	72.628393	Step 05	At the boarding	\N
+6	-53.899640	59.998149	Step 06	Mission achieved	3
+1	-5.055113	48.316947	Step 01 	Boarding and departure	\N
+2	-26.943062	54.214195	Step 02	The drudgery	\N
 \.
 
 
 --
--- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: pro-edwin
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: CassandraHETIC
 --
 
 COPY public.users (id, name, date) FROM stdin;
@@ -507,85 +519,82 @@ COPY public.users (id, name, date) FROM stdin;
 4	Cassandra	02/06/2019
 5	Tristan	14/06/2019
 6	Virgil	13/06/2019
-7	bob	24/06/2019
-8	brendon	24/06/2019
-9	k	24/06/2019
-10	toile des neiges	24/06/2019
-11	Edwin	24/06/2019
-12	Edwin	24/06/2019
-13	Prout	24/06/2019
-14	Zedouin	24/06/2019
-15	Zedouin	24/06/2019
-16	âul	24/06/2019
-17	prout	24/06/2019
+7	Cassandra	24/06/2019
+8	Cassou	24/06/2019
+9		24/06/2019
+10		24/06/2019
+11		25/06/2019
+12		25/06/2019
+13		25/06/2019
+14	Cassandra	26/06/2019
 \.
 
 
 --
--- Name: admins_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pro-edwin
+-- Name: admins_id_seq; Type: SEQUENCE SET; Schema: public; Owner: CassandraHETIC
 --
 
 SELECT pg_catalog.setval('public.admins_id_seq', 1, true);
 
 
 --
--- Name: answers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pro-edwin
+-- Name: answers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: CassandraHETIC
 --
 
 SELECT pg_catalog.setval('public.answers_id_seq', 3, true);
 
 
 --
--- Name: content_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pro-edwin
+-- Name: content_id_seq; Type: SEQUENCE SET; Schema: public; Owner: CassandraHETIC
 --
 
-SELECT pg_catalog.setval('public.content_id_seq', 6, true);
+SELECT pg_catalog.setval('public.content_id_seq', 20, true);
 
 
 --
--- Name: knex_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pro-edwin
+-- Name: knex_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: CassandraHETIC
 --
 
 SELECT pg_catalog.setval('public.knex_migrations_id_seq', 7, true);
 
 
 --
--- Name: knex_migrations_lock_index_seq; Type: SEQUENCE SET; Schema: public; Owner: pro-edwin
+-- Name: knex_migrations_lock_index_seq; Type: SEQUENCE SET; Schema: public; Owner: CassandraHETIC
 --
 
 SELECT pg_catalog.setval('public.knex_migrations_lock_index_seq', 1, true);
 
 
 --
--- Name: questions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pro-edwin
+-- Name: questions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: CassandraHETIC
 --
 
 SELECT pg_catalog.setval('public.questions_id_seq', 3, true);
 
 
 --
--- Name: reply_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pro-edwin
+-- Name: reply_id_seq; Type: SEQUENCE SET; Schema: public; Owner: CassandraHETIC
 --
 
 SELECT pg_catalog.setval('public.reply_id_seq', 1, false);
 
 
 --
--- Name: steps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pro-edwin
+-- Name: steps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: CassandraHETIC
 --
 
-SELECT pg_catalog.setval('public.steps_id_seq', 5, true);
-
-
---
--- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pro-edwin
---
-
-SELECT pg_catalog.setval('public.users_id_seq', 17, true);
+SELECT pg_catalog.setval('public.steps_id_seq', 6, true);
 
 
 --
--- Name: admins admins_pkey; Type: CONSTRAINT; Schema: public; Owner: pro-edwin
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: CassandraHETIC
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 14, true);
+
+
+--
+-- Name: admins admins_pkey; Type: CONSTRAINT; Schema: public; Owner: CassandraHETIC
 --
 
 ALTER TABLE ONLY public.admins
@@ -593,7 +602,7 @@ ALTER TABLE ONLY public.admins
 
 
 --
--- Name: answers answers_pkey; Type: CONSTRAINT; Schema: public; Owner: pro-edwin
+-- Name: answers answers_pkey; Type: CONSTRAINT; Schema: public; Owner: CassandraHETIC
 --
 
 ALTER TABLE ONLY public.answers
@@ -601,7 +610,7 @@ ALTER TABLE ONLY public.answers
 
 
 --
--- Name: content content_pkey; Type: CONSTRAINT; Schema: public; Owner: pro-edwin
+-- Name: content content_pkey; Type: CONSTRAINT; Schema: public; Owner: CassandraHETIC
 --
 
 ALTER TABLE ONLY public.content
@@ -609,7 +618,7 @@ ALTER TABLE ONLY public.content
 
 
 --
--- Name: knex_migrations_lock knex_migrations_lock_pkey; Type: CONSTRAINT; Schema: public; Owner: pro-edwin
+-- Name: knex_migrations_lock knex_migrations_lock_pkey; Type: CONSTRAINT; Schema: public; Owner: CassandraHETIC
 --
 
 ALTER TABLE ONLY public.knex_migrations_lock
@@ -617,7 +626,7 @@ ALTER TABLE ONLY public.knex_migrations_lock
 
 
 --
--- Name: knex_migrations knex_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: pro-edwin
+-- Name: knex_migrations knex_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: CassandraHETIC
 --
 
 ALTER TABLE ONLY public.knex_migrations
@@ -625,7 +634,7 @@ ALTER TABLE ONLY public.knex_migrations
 
 
 --
--- Name: questions questions_pkey; Type: CONSTRAINT; Schema: public; Owner: pro-edwin
+-- Name: questions questions_pkey; Type: CONSTRAINT; Schema: public; Owner: CassandraHETIC
 --
 
 ALTER TABLE ONLY public.questions
@@ -633,7 +642,7 @@ ALTER TABLE ONLY public.questions
 
 
 --
--- Name: reply reply_pkey; Type: CONSTRAINT; Schema: public; Owner: pro-edwin
+-- Name: reply reply_pkey; Type: CONSTRAINT; Schema: public; Owner: CassandraHETIC
 --
 
 ALTER TABLE ONLY public.reply
@@ -641,7 +650,7 @@ ALTER TABLE ONLY public.reply
 
 
 --
--- Name: steps steps_pkey; Type: CONSTRAINT; Schema: public; Owner: pro-edwin
+-- Name: steps steps_pkey; Type: CONSTRAINT; Schema: public; Owner: CassandraHETIC
 --
 
 ALTER TABLE ONLY public.steps
@@ -649,7 +658,7 @@ ALTER TABLE ONLY public.steps
 
 
 --
--- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: pro-edwin
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: CassandraHETIC
 --
 
 ALTER TABLE ONLY public.users
