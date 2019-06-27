@@ -140,7 +140,6 @@ if (process.client) {
 
     let allSection = document.querySelectorAll("section");
     for (let i = 0; i < allSection.length; i++) {
-      console.log(allSection[i]);
       let waypoint = new Waypoint({
         element: allSection[i],
         handler: function(direction) {
@@ -149,7 +148,6 @@ if (process.client) {
             let leSvgPlay = allSection[i].querySelector("svg:nth-child(2)");
             let leSvgPause = allSection[i].querySelector("svg:nth-child(3)");
             laVideo.play();
-            console.log(allSection[i]);
             laVideo.setAttribute("data-play", "true");
             leSvgPause.style.opacity = 1;
             leSvgPlay.setAttribute("display", "none");
@@ -163,36 +161,6 @@ if (process.client) {
         offset: "0%"
       });
     }
-
-    // for (let i = 0; i < videos.length; i++) {
-    //   videos[i].setAttribute("id", i);
-    // }
-
-    // for (let i = 0; i < videos.length; i++) {
-    //   let theVideo = videos[i];
-    //   let waypoint = new Waypoint({
-    //   element: theVideo,
-    //   handler: function(direction) {
-    //     theVideo.play();
-    //     svgPauses[i].style.opacity = 1;
-    //     svgPlays[i].setAttribute("display", "none");
-    //     svgPauses[i].setAttribute("display", "");
-    //     audioSound.pause();
-    //     setTimeout(function() {
-    //       svgPauses[i].style.opacity = 0;
-    //     }, 200);
-    //     for (let i2 = 0; i2 < videos.length; i2++) {
-    //       if(videos[i2] != theVideo){
-    //         videos[i2].pause();
-    //         svgPauses[i2].setAttribute("display", "none");
-    //         svgPlays[i2].setAttribute("display", "");
-    //       }
-    //     }
-    //   },
-    //   offset: '0%'
-    // });
-
-    // }
 
     for (let i = 0; i < videos.length; i++) {
       videos[i].addEventListener("click", () => {
@@ -329,43 +297,6 @@ export default {
         }
       }
     }
-
-    // controlVideo() {
-    //   let video = document.querySelector("video");
-    //   let svgPlay = document.querySelector(".video svg:nth-child(2)");
-    //   let svgPause = document.querySelector(".video svg:nth-child(3)");
-    //   let audioSound = document.querySelector("audio");
-
-    //   if (memo === false) {
-    //     memo = true;
-    //     svgPause.setAttribute("display", "none");
-    //     svgPlay.setAttribute("display", "");
-    //     video.pause();
-    //     if (localStorage.getItem("sound") == "ON") {
-    //       audioSound.play();
-    //     }
-    //   } else if (memo === true) {
-    //     svgPause.style.opacity = 1;
-    //     memo = false;
-    //     svgPlay.setAttribute("display", "none");
-    //     svgPause.setAttribute("display", "");
-    //     setTimeout(function() {
-    //       svgPause.style.opacity = 0;
-    //     }, 200);
-    //     video.play();
-    //     audioSound.pause();
-    //   } else {
-    //     memo = false;
-    //     video.play();
-    //     audioSound.pause();
-    //     svgPause.style.opacity = 1;
-    //     svgPlay.setAttribute("display", "none");
-    //     svgPause.setAttribute("display", "");
-    //     setTimeout(function() {
-    //       svgPause.style.opacity = 0;
-    //     }, 200);
-    //   }
-    // }
   },
   beforeMount() {
     this.soundActive();
