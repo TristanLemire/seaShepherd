@@ -61,7 +61,7 @@ pg_dump sea-shepherd > dbexport.pgsql
 
 ## DB
 
-![](./assets/bdd.png)
+![](./assets/bdd-scheme.png)
 
 ---
 ## API
