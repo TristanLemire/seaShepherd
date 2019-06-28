@@ -497,6 +497,8 @@ export default {
         fetch('http://localhost:3000/api/steps/'+id)
         .then(response => {return response.json()})
         .then(response => {
+          let audiotime = document.querySelector('.musique');
+          localStorage.setItem('audioTime',audiotime.currentTime);
           if (response.message === "This record doesn't exist") document.location.href = 'http://localhost:3000/summary';
           else document.location.href = link;
         })
