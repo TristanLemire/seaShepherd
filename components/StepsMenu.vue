@@ -221,7 +221,7 @@ export default {
   user-select: none;
   position: fixed;
   left: 5.86%;
-  top: 2.33%;
+  top: 3.66%;
   z-index: 3;
 }
 .hamRotate.active {

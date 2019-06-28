@@ -1,5 +1,5 @@
 <template>
-  <a class="donation" href="https://my.seashepherd.org/donate">DONATE</a>
+  <a class="join" href="https://seashepherd.org/get-involved/crewing-at-sea/">CREWING AT SEA</a>
 </template>
 
 <script>
@@ -12,14 +12,15 @@ export default {
 
 <style lang="scss">
 
-.donation{
+.join{
   cursor: pointer;
   padding: 5px 20px 5px 20px;
   border: white solid 1px;
   border-radius: 50px;
-  position: fixed;
-  right: 5.86%;
-  top: 5.33%;
+  position: absolute;
+  right: 50%;
+  bottom: 5.33%;
+  transform: translateX(50%);
   background-color: transparent;
   color: white;
   letter-spacing: 0.1em;

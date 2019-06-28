@@ -1,8 +1,9 @@
 <template>
   <div class="template__summary">
+    <audio class="musique" loop autoplay :src="require('@/assets/music/musique.mp3')"></audio>
     <Back/>
     <StepsMenu/>
-
+    <SoundButton/>
     <section class="section__hero scrollto">
       <h1>CONGRATULATIONS</h1>
       <p>
@@ -29,15 +30,20 @@
           class="score__sentence"
         >According to your answers, you are eligible to be part of this journey!</h3>
       </div>
+          <JoinButton />
     </section>
   </div>
 </template>
 
 <script>
 import Back from "~/components/Back.vue";
+import SoundButton from "~/components/SoundButton.vue";
+import JoinButton from "~/components/JoinButton.vue";
 import StepsMenu from "~/components/StepsMenu.vue";
 
 if (process.client) {
+  let audiotime = document.querySelector('.musique');
+  audiotime.currentTime = localStorage.getItem('audioTime');
   // Scroll function
   setTimeout(() => {
     let sections = document.querySelectorAll(".scrollto");
@@ -168,7 +174,7 @@ export default {
           miniTable = [];
         }
       }
-      this.sortedTable = sortedTable
+      this.sortedTable = sortedTable;
     },
     getUser() {
       if (process.client) {
@@ -207,12 +213,29 @@ export default {
         .then(response => {
           this.questions = response;
         });
+    },
+    soundActive: function() {
+      let video = document.querySelector("video");
+      let active = localStorage.getItem("sound");
+      let audios = document.querySelectorAll("audio");
+      if (active == "OFF") {
+        if (audios.length > 0) {
+          audios.forEach(audio => {
+            audio.pause();
+          });
+        }
+      }
     }
+  },
+   beforeMount() {
+    this.soundActive();
   },
   components: {
     /* Logo, */
     StepsMenu,
-    Back
+    Back,
+    SoundButton,
+    JoinButton
   }
 };
 </script>
@@ -330,7 +353,7 @@ section {
     .score__sentence {
       font-size: 16px;
       position: relative;
-      z-index: 2
+      z-index: 2;
     }
 
     .score__text {
