@@ -53,17 +53,6 @@ if (process.client) {
     let offset = 0;
 
     window.addEventListener("wheel", e => {
-      // setInterval(() => {
-      //   if (
-      //     (e.deltaY > 0 && window.scrollY > offset) ||
-      //     (e.deltaY < 0 && window.scrollY < offset)
-      //   ) {
-      //     window.scrollTo({
-      //       behavior: "smooth",
-      //       top: offset
-      //     });
-      //   }
-      // }, 600);
 
       // If the function is allowed to run
       if (flag) {

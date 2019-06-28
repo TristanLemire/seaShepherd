@@ -3,11 +3,7 @@
     <div class="input__content">
       <form action>
         <label for="answer">{{ question }}</label>
-        <!-- <input type="text" name="answer" id="answer" @input="checkAnswer"> -->
-        <!-- <input type="text" name="answer" id="answer" @input="storeAnswer"> -->
         <div class="answers__content">
-          <!-- <button class="answer__one answers" id="answer-1" @click.prevent="storeAnswer(1)"  value="answer one">ANSWER ONE</button>
-          <button class="answer__two answers" id="answer-2" @click.prevent="storeAnswer(2)" value="answer two">ANSWER TWO</button>-->
           <button
             class="answers"
             v-for="answer in answers"
@@ -15,13 +11,6 @@
             @click.prevent="storeAnswer(answer.id)"
           >{{ answer.answer }}</button>
         </div>
-        <!-- <input
-          type="submit"
-          id="submit"
-          value="CONTINUE THE ADVENTURE"
-          disabled
-          @click.prevent="redirection(next)"
-        >-->
       </form>
     </div>
     <svg
@@ -387,19 +376,6 @@
 <script>
 if (process.client) {
   if (!localStorage.getItem("user")) window.location.href = "/nameChoice";
-  // let step = document.querySelector("#submit");
-  // let anime = document.querySelector(".boat animateMotion");
-  // let input = document.querySelector("form");
-  // let transform = document.querySelector("#journey");
-
-  // step.addEventListener(
-  //   "click",
-  //   function() {
-  //     transform.style.transform = "translateY(-55px)";
-  //     anime.beginElement();
-  //   },
-  //   false
-  // );
 }
 
 export default {
@@ -507,6 +483,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
 footer {
   height: 100vh;
   width: 100%;
@@ -517,9 +494,6 @@ footer {
   justify-content: space-between;
   align-items: center;
   position: relative;
-
-  #journey {
-  }
 
   .boat {
     position: absolute;

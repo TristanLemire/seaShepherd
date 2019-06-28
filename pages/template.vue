@@ -77,15 +77,6 @@ let svgPlay = document.querySelector('.video svg:nth-child(2)');
 let svgPause = document.querySelector('.video svg:nth-child(3)');
 
 export default {
-  /* https://cdnjs.cloudflare.com/ajax/libs/scrollify/1.0.19/jquery.scrollify.min.js */
-
-  /* head() {
-    return {
-      script: [
-        { src: "https://cdnjs.cloudflare.com/ajax/libs/scrollify/1.0.19/jquery.scrollify.min.js" },
-      ]
-    };
-  }, */
 
   components: {
     SoundButton,

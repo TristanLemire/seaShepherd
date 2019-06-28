@@ -1,7 +1,6 @@
 
 <template>
   <div class="home">
-    <!-- <nuxt-link to="/about" class="button--green">Home</nuxt-link> -->
     <Intro/>
     <video data-play="true" class="home__video" src="../assets/video/home.mp4"  autoplay @click="controlVideo"></video>
   <svg @click="controlVideo" display="none" class="play" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">

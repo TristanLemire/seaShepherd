@@ -529,18 +529,6 @@ if (process.client) {
       body: JSON.stringify(data)
     });
     }
-    // let id = question.getAttribute("data-id");
-    // let url = "http://localhost:3000/api/questions/" + id;
-    // let data = {
-    //   title: question.value
-    // };
-    // fetch(url, {
-    //   method: "PUT",
-    //   headers: {
-    //     "Content-Type": "application/json"
-    //   },
-    //   body: JSON.stringify(data)
-    // });
   });
   reponse1.addEventListener("keyup", () => {
     let stepId = window.location.href;

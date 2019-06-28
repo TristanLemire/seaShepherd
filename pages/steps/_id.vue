@@ -72,7 +72,6 @@
       </div>
     </section>
     <ScrollDown/>
-    <!-- <a :href="'/steps/'+step.next" class="button">Next step</a> -->
     <Footer class="scrollto" :next="'/steps/'+step.next"/>
   </div>
 </template>
@@ -221,18 +220,6 @@ if (process.client) {
     let offset = 0;
 
     window.addEventListener("wheel", e => {
-      // setInterval(() => {
-      //   if (
-      //     (e.deltaY > 0 && window.scrollY > offset) ||
-      //     (e.deltaY < 0 && window.scrollY < offset)
-      //   ) {
-      //     window.scrollTo({
-      //       behavior: "smooth",
-      //       top: offset
-      //     });
-      //   }
-      // }, 600);
-
       // If the function is allowed to run
       if (flag) {
         if (e.deltaY > 5 && pos < sections.length - 1) {
@@ -342,43 +329,6 @@ export default {
         }
       }
     }
-
-    // controlVideo() {
-    //   let video = document.querySelector("video");
-    //   let svgPlay = document.querySelector(".video svg:nth-child(2)");
-    //   let svgPause = document.querySelector(".video svg:nth-child(3)");
-    //   let audioSound = document.querySelector("audio");
-
-    //   if (memo === false) {
-    //     memo = true;
-    //     svgPause.setAttribute("display", "none");
-    //     svgPlay.setAttribute("display", "");
-    //     video.pause();
-    //     if (localStorage.getItem("sound") == "ON") {
-    //       audioSound.play();
-    //     }
-    //   } else if (memo === true) {
-    //     svgPause.style.opacity = 1;
-    //     memo = false;
-    //     svgPlay.setAttribute("display", "none");
-    //     svgPause.setAttribute("display", "");
-    //     setTimeout(function() {
-    //       svgPause.style.opacity = 0;
-    //     }, 200);
-    //     video.play();
-    //     audioSound.pause();
-    //   } else {
-    //     memo = false;
-    //     video.play();
-    //     audioSound.pause();
-    //     svgPause.style.opacity = 1;
-    //     svgPlay.setAttribute("display", "none");
-    //     svgPause.setAttribute("display", "");
-    //     setTimeout(function() {
-    //       svgPause.style.opacity = 0;
-    //     }, 200);
-    //   }
-    // }
   },
   beforeMount() {
     this.soundActive();
@@ -389,11 +339,6 @@ export default {
 <style lang="scss">
 html {
   background-color: #0d1b2a;
-}
-body {
-  // padding: 0;
-  // box-sizing: border-box;
-  // margin: 0;
 }
 
 .video {
