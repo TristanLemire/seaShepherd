@@ -1,42 +1,55 @@
-# semaineFinal
+# First Year Final Project
 
-> My neat Nuxt.js project
+**Project name:** Shepherd of the Sea
 
-## Build Setup
+**Description:** This project is a web documentary about the NGO Sea Shepherd, their missions and their way of organization during missions.
 
-``` bash
-# install dependencies
-$ npm install
+**Team:** 
+* Cassandra Doux
+* Virgil Limongi
+* Kento Monthubert
+* Jason Gauvin
+* Edwin Vautier
+* Tristan Lemire
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+---
 
-# build for production and launch server
-$ npm run build
-$ npm start
+## Technos
 
-# generate static project
-$ npm run generate
-```
+Front: **Nuxt** / **Vue** / **Bulma**(Back-office)
+
+Back: **Knex** / **Postgresql** / **Node**
+
+Libraries: **Amchart**(map)
+
+---
+
+## Setup
 
 For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
 
-## DB
-
-![](./assets/bdd.png)
-
-### Install the DB
-
-We are using postgres for our database.
-First you have to create the db, you can do it with the following command: 
+```bash
+npm i # install dependencies
 ```
+
+We are using postgres and knex for our database, if you don't have it, run the following command: 
+
+```bash
+npm run installall
+```
+
+Then you have to create the db, you can do it with the following command: 
+```bash
 createdb sea-shepherd
 ```
 
-Once it's done you have to run migrations in order to have your tables created:
+Once it's done, you can import the database with this command: 
+
+```bash
+psql sea-shepherd < dbexport.pgsql
 ```
-knex migrate:latest
-```
+
+---
 
 ## Export the DB
 
@@ -44,22 +57,33 @@ knex migrate:latest
 pg_dump sea-shepherd > dbexport.pgsql
 ```
 
-## Import the DB
+---
 
-```
-psql sea-shepherd < dbexport.pgsql
-```
+## DB
+
+![](./assets/bdd.png)
 
 ---
 ## API
 
-Our routes are availables on the `/api` route.
+We've created an API to manage all site content, the API is available on the `/api` route.
 
-|route       |description                            |
-|------------|---------------------------------------|
-|`/steps`    |The steps of the doc                   |
-|`/users`    |The users of the doc                   |
-|`/questions`|The questions we ask to users          |
-|`/answers`  |The answer possibilities of a question |
-|`/reply`    |The reply of the user                  |
-|`/contents` |The content we put in a step           |
+### Routes
+
+|route       |description                                 |
+|------------|--------------------------------------------|
+|`/steps`    |The steps of the doc                        |
+|`/users`    |The users of the doc                        |
+|`/questions`|The questions we ask to users               |
+|`/answers`  |The answer possibilities of a question      |
+|`/reply`    |The reply of the user                       |
+|`/contents` |A content of the step (Image - Vidéo - Text)|
+
+## Back-office
+
+The back office can be accessed at the `/admin` route.
+By default, the username and password are:
+```
+username: admin
+password: admin
+```
