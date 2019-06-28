@@ -5,7 +5,7 @@
     <div class="nameChoice__form">
       <h1>Hello, what is your name?</h1>
       <form>
-        <input type="text" placeholder="Your Name">
+        <input autofocus type="text" placeholder="Your Name">
         <input type="submit" value="CONFIRM">
       </form>
     </div>
