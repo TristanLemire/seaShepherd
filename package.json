@@ -20,7 +20,7 @@
     "form-data": "^2.4.0",
     "fullpage-nuxt": "0.0.3",
     "jquery-scrollify": "^1.0.20",
-    "knex": "^0.17.6",
+    "knex": "^0.19.5",
     "multer": "^1.4.1",
     "nuxt": "^2.0.0",
     "pg": "^7.11.0"
